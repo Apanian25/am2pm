@@ -7,24 +7,24 @@ package com.dawson.jonat.stockers.LoanCalculator;
 public class LoanPayoutSummary {
     private double timeToPayOff;
     private double originalBalance;
-    private double interestPaid;
+    private double interestAccumulated;
     private double totalPaid;
     private double amountLeftToPay;
 
     /**
      * Constructor that will initialize all of the fields
-     * 
+     *
      * @param timeToPayOff
      * @param originalBalance
-     * @param interestPaid
+     * @param interestAccumulated
      * @param totalPaid
      * @param amountLeftToPay
      */
-    public LoanPayoutSummary(double timeToPayOff, double originalBalance, double interestPaid,
+    public LoanPayoutSummary(double timeToPayOff, double originalBalance, double interestAccumulated,
                              double totalPaid, double amountLeftToPay) {
         this.timeToPayOff = timeToPayOff;
         this.originalBalance = originalBalance;
-        this.interestPaid = interestPaid;
+        this.interestAccumulated = interestAccumulated;
         this.totalPaid = totalPaid;
         this.amountLeftToPay = amountLeftToPay;
     }
@@ -45,12 +45,12 @@ public class LoanPayoutSummary {
         this.originalBalance = originalBalance;
     }
 
-    public double getInterestPaid() {
-        return interestPaid;
+    public double getInterestAccumulated() {
+        return interestAccumulated;
     }
 
-    public void setInterestPaid(double interestPaid) {
-        this.interestPaid = interestPaid;
+    public void setInterestAccumulated(double interestAccumulated) {
+        this.interestAccumulated = interestAccumulated;
     }
 
     public double getTotalPaid() {
