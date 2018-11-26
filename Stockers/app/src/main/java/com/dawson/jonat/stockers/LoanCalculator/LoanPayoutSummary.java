@@ -5,8 +5,8 @@ package com.dawson.jonat.stockers.LoanCalculator;
  * your credit card.
  */
 public class LoanPayoutSummary {
-    private double timeToPayOff;
-    private double originalBalance;
+    private int monthsToPayOff;
+    private double originalAmountOwed;
     private double interestAccumulated;
     private double totalPaid;
     private double amountLeftToPay;
@@ -14,35 +14,33 @@ public class LoanPayoutSummary {
     /**
      * Constructor that will initialize all of the fields
      *
-     * @param timeToPayOff
-     * @param originalBalance
+     * @param monthsToPayOff
+     * @param originalAmountOwed
      * @param interestAccumulated
      * @param totalPaid
      * @param amountLeftToPay
      */
-    public LoanPayoutSummary(double timeToPayOff, double originalBalance, double interestAccumulated,
+    public LoanPayoutSummary(int monthsToPayOff, double originalAmountOwed, double interestAccumulated,
                              double totalPaid, double amountLeftToPay) {
-        this.timeToPayOff = timeToPayOff;
-        this.originalBalance = originalBalance;
+        this.monthsToPayOff = monthsToPayOff;
+        this.originalAmountOwed = originalAmountOwed;
         this.interestAccumulated = interestAccumulated;
         this.totalPaid = totalPaid;
         this.amountLeftToPay = amountLeftToPay;
     }
 
-    public double getTimeToPayOff() {
-        return timeToPayOff;
+    public int getMonthsToPayOff() { return monthsToPayOff; }
+
+    public void setMonthsToPayOff (int monthsToPayOff) {
+        this.monthsToPayOff = monthsToPayOff;
     }
 
-    public void setTimeToPayOff(double timeToPayOff) {
-        this.timeToPayOff = timeToPayOff;
+    public double getOriginalAmountOwed() {
+        return originalAmountOwed;
     }
 
-    public double getOriginalBalance() {
-        return originalBalance;
-    }
-
-    public void setOriginalBalance(double originalBalance) {
-        this.originalBalance = originalBalance;
+    public void setOriginalAmountOwed(double originalAmountOwed) {
+        this.originalAmountOwed = originalAmountOwed;
     }
 
     public double getInterestAccumulated() {
