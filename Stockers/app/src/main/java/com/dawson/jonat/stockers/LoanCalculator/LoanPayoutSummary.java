@@ -24,9 +24,19 @@ public class LoanPayoutSummary {
                              double totalPaid, double amountLeftToPay) {
         this.monthsToPayOff = monthsToPayOff;
         this.originalAmountOwed = originalAmountOwed;
-        this.interestAccumulated = interestAccumulated;
-        this.totalPaid = totalPaid;
-        this.amountLeftToPay = amountLeftToPay;
+        this.interestAccumulated = roundTwoDecimals(interestAccumulated);
+        this.totalPaid = roundTwoDecimals(totalPaid);
+        this.amountLeftToPay = roundTwoDecimals(amountLeftToPay);
+    }
+
+    /**
+     * Helper function that will round a decimal number to the nearest hundreth decimal place
+     * @param amount
+     * @return
+     */
+    private double roundTwoDecimals(double amount) {
+        amount *= 100;
+        return (Math.round(amount) / 100.0);
     }
 
     public int getMonthsToPayOff() { return monthsToPayOff; }
