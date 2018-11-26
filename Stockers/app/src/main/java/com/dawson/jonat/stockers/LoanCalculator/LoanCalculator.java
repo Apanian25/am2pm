@@ -1,7 +1,7 @@
 package com.dawson.jonat.stockers.LoanCalculator;
 
 public class LoanCalculator {
-    private static final double AVERAGE_DAYS_PER_MONTH = 30.41;
+    private static final double AVERAGE_DAYS_PER_MONTH = 30.4169;
 
     /**
      * Generates a Loan Payout Summary based on the amount is owed, the interest rate, the minPayment amount
@@ -30,6 +30,7 @@ public class LoanCalculator {
             if (amountLeftToPay > 0) {
                 double interest = calculateInterestForAMonth(amountLeftToPay, dailyRate);
                 interestAccumulated += interest;
+                amountLeftToPay += interest;
             } else {
                 //If we reach here it means that we may have paid more than what we needed to, so if
                 //that is the case then we need remove the extra amount we paid from what we have paid
@@ -50,7 +51,7 @@ public class LoanCalculator {
      * @return
      */
     private static double calculateInterestForAMonth(double debt, double ratePerDay) {
-        return debt * Math.pow((1 + ratePerDay), AVERAGE_DAYS_PER_MONTH);
+        return debt * Math.pow(1 + ratePerDay, AVERAGE_DAYS_PER_MONTH) - debt;
     }
 
 }

@@ -30,7 +30,7 @@ public class LoanPayoutSummary {
     }
 
     /**
-     * Helper function that will round a decimal number to the nearest hundreth decimal place
+     * Helper function that will round a decimal number to the nearest hundredth decimal place
      * @param amount
      * @return
      */
