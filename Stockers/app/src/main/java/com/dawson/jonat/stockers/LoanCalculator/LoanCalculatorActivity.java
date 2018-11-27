@@ -47,11 +47,11 @@ public class LoanCalculatorActivity extends Activity {
     private void displayResults(LoanPayoutSummary loanPayoutSummary) {
         if (resultsTable == null) {
             resultsTable = (LinearLayout)this.getLayoutInflater().inflate(R.layout.loan_calculator_result_table,resultsSpace);
-            ((TextView)findViewById(R.id.timeToPayOff)).setText(loanPayoutSummary.getTimeToPayOff() + "");
-            ((TextView)findViewById(R.id.originalBalance)).setText(loanPayoutSummary.getTimeToPayOff() + "");
-            ((TextView)findViewById(R.id.interestAccumulated)).setText(loanPayoutSummary.getTimeToPayOff() + "");
-            ((TextView)findViewById(R.id.totalPaid)).setText(loanPayoutSummary.getTimeToPayOff() + "fffff");
-            ((TextView)findViewById(R.id.amountLeft)).setText(loanPayoutSummary.getAmountLeftToPay() + "fffff");
+            ((TextView)findViewById(R.id.timeToPayOff)).setText(loanPayoutSummary.getMonthsToPayOff() + "");
+            ((TextView)findViewById(R.id.originalBalance)).setText(loanPayoutSummary.getOriginalAmountOwed() + "");
+            ((TextView)findViewById(R.id.interestAccumulated)).setText(loanPayoutSummary.getInterestAccumulated() + "");
+            ((TextView)findViewById(R.id.totalPaid)).setText(loanPayoutSummary.getTotalPaid() + "");
+            ((TextView)findViewById(R.id.amountLeft)).setText(loanPayoutSummary.getAmountLeftToPay() + "");
         }
 
     }
