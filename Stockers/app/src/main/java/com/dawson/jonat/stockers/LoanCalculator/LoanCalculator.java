@@ -1,7 +1,7 @@
 package com.dawson.jonat.stockers.LoanCalculator;
 
 public class LoanCalculator {
-    private static final double AVERAGE_DAYS_PER_MONTH = 30.41;
+    private static final double AVERAGE_DAYS_PER_MONTH = 30.4169;
 
     /**
      * Generates a Loan Payout Summary based on the amount is owed, the interest rate, the minPayment amount
@@ -17,7 +17,7 @@ public class LoanCalculator {
         double amountPaid = 0;
         double interestAccumulated = 0;
         double amountLeftToPay = debt;
-        double dailyRate = rate / 365;
+        double dailyRate = (rate / 100) / 365;
         int monthsPaid = 0;
         int monthsToCalculate = years * 12;
 
@@ -30,13 +30,14 @@ public class LoanCalculator {
             if (amountLeftToPay > 0) {
                 double interest = calculateInterestForAMonth(amountLeftToPay, dailyRate);
                 interestAccumulated += interest;
+                amountLeftToPay += interest;
             } else {
                 //If we reach here it means that we may have paid more than what we needed to, so if
                 //that is the case then we need remove the extra amount we paid from what we have paid
                 amountPaid += amountLeftToPay;
-                amountPaid = 0;
+                amountLeftToPay = 0;
             }
-
+            monthsPaid++;
         }
 
         return new LoanPayoutSummary(monthsPaid, debt, interestAccumulated, amountPaid, amountLeftToPay);
@@ -50,7 +51,7 @@ public class LoanCalculator {
      * @return
      */
     private static double calculateInterestForAMonth(double debt, double ratePerDay) {
-        return Math.pow(debt * (1 + ratePerDay), ratePerDay * AVERAGE_DAYS_PER_MONTH) - debt;
+        return debt * Math.pow(1 + ratePerDay, AVERAGE_DAYS_PER_MONTH) - debt;
     }
 
 }
