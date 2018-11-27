@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Stockers</string>
+    <string name="amount">Amount:</string>
+    <string name="interestRate">Interest Rate:</string>
+    <string name="minPayment">Minimum Payment:</string>
+    <string name="years">Years:</string>
+
+    <integer-array name="yearOptions">
+        <item>1</item>
+        <item>5</item>
+        <item>10</item>
+    </integer-array>
 </resources>
