@@ -29,6 +29,13 @@ public class LoanCalculatorActivity extends Activity {
         this.fillYearSpinner();
     }
 
+
+    /**
+     * Reads the user input and will then calculate the LoanPaymentResults, which will then be
+     * displayed on the screen.
+     *
+     * @param view
+     */
     public void calculateAndDisplayResults(View view) {
         try {
             double amount = Double.parseDouble(this.amountView.getText().toString());
@@ -38,22 +45,24 @@ public class LoanCalculatorActivity extends Activity {
 
             this.displayResults(LoanCalculator.calculateInterestPayoutSummary(amount, interestRate, minPayment, years));
         } catch (Exception e) {
-            //Toast.makeText(this, "Please ensure that all the fields are filled in", Toast.LENGTH_LONG).show();
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please ensure that all the fields are filled in", Toast.LENGTH_LONG).show();
         }
 
     }
 
+    /**
+     * Displays the loanPayoutSummary on the table results
+     * @param loanPayoutSummary
+     */
     private void displayResults(LoanPayoutSummary loanPayoutSummary) {
         if (resultsTable == null) {
             resultsTable = (LinearLayout)this.getLayoutInflater().inflate(R.layout.loan_calculator_result_table,resultsSpace);
-            ((TextView)findViewById(R.id.timeToPayOff)).setText(loanPayoutSummary.getMonthsToPayOff() + "");
-            ((TextView)findViewById(R.id.originalBalance)).setText(loanPayoutSummary.getOriginalAmountOwed() + "");
-            ((TextView)findViewById(R.id.interestAccumulated)).setText(loanPayoutSummary.getInterestAccumulated() + "");
-            ((TextView)findViewById(R.id.totalPaid)).setText(loanPayoutSummary.getTotalPaid() + "");
-            ((TextView)findViewById(R.id.amountLeft)).setText(loanPayoutSummary.getAmountLeftToPay() + "");
         }
-
+        ((TextView)findViewById(R.id.timeToPayOff)).setText(loanPayoutSummary.getMonthsToPayOff() + "");
+        ((TextView)findViewById(R.id.originalBalance)).setText(loanPayoutSummary.getOriginalAmountOwed() + "");
+        ((TextView)findViewById(R.id.interestAccumulated)).setText(loanPayoutSummary.getInterestAccumulated() + "");
+        ((TextView)findViewById(R.id.totalPaid)).setText(loanPayoutSummary.getTotalPaid() + "");
+        ((TextView)findViewById(R.id.amountLeft)).setText(loanPayoutSummary.getAmountLeftToPay() + "");
     }
 
     /**
