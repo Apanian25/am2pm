@@ -7,10 +7,16 @@
     tools:context=".LoanCalculator.LoanCalculatorActivity"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
     <!--Amount TextView and EditText-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="4">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -37,7 +43,8 @@
     <!--Interest Rate TextView and EditText-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="4">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -64,7 +71,8 @@
     <!--Minimum Payment TextView and EditText-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="4">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -90,7 +98,8 @@
     <!--Years TextView and EditText-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="4">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -111,6 +120,25 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="12">
+
+
     </LinearLayout>
 
 </LinearLayout>

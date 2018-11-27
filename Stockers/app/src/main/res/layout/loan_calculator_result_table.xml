@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <!--Row for Time To Pay Off-->
+    <TableRow>
+        <TextView
+            android:text="@string/timeToPay"/>
+        <TextView
+            android:id="@+id/timeToPayOff"/>
+    </TableRow>
+
+    <!--Row for Original Balance-->
+    <TableRow>
+        <TextView
+            android:text="@string/ogBalance"/>
+        <TextView
+            android:id="@+id/originalBalance"/>
+    </TableRow>
+
+    <!--Row for Interest Accumulated-->
+    <TableRow>
+        <TextView
+            android:text="@string/interestAccumulated"/>
+        <TextView
+            android:id="@+id/interestAccumulated"/>
+    </TableRow>
+
+    <!--Row for Total Paid-->
+    <TableRow>
+        <TextView
+            android:text="@string/totalPaid"/>
+        <TextView
+            android:id="@+id/totalPaid"/>
+    </TableRow>
+
+    <!--Row for Amount Left-->
+    <TableRow>
+        <TextView
+            android:text="@string/amountLeft"/>
+        <TextView
+            android:id="@+id/amountLeft"/>
+    </TableRow>
+</TableLayout>
