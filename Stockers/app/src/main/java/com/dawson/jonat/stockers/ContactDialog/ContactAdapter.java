@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dawson.jonat.stockers.R;
 
@@ -28,20 +29,28 @@ public class ContactAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return contacts.length;
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return position;
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
 
+    /**
+     * This method is used by android in order to display the elements within the list view
+     *
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder vh = new ViewHolder();
@@ -49,18 +58,24 @@ public class ContactAdapter extends BaseAdapter {
 
         if (row == null) {
             row = this.infalter.inflate(R.layout.contact_view, null);
+
+            vh.textView = (TextView)row.findViewById(R.id.contactName);
+            vh.textView.setText(contacts[position].contactName);
+
             row.setTag(vh);
         } else {
             vh = (ViewHolder)convertView.getTag();
-        }
 
-        vh.textView = (TextView)row.findViewById(R.id.contactName);
-        vh.textView.setText(contacts[position].contactName);
+
+            vh.textView = (TextView)row.findViewById(R.id.contactName);
+            vh.textView.setText(contacts[position].contactName);
+        }
 
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Send the email to this person
+                Toast.makeText(contextOfView, "Was clicked", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -71,5 +86,4 @@ public class ContactAdapter extends BaseAdapter {
 //Class that is used to hold the textView, imageView and imageUrl in the tag of a row
 class ViewHolder {
     TextView textView;
-    String imageUrl;
 }
