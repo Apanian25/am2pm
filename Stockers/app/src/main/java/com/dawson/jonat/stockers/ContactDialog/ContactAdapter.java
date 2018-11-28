@@ -65,8 +65,12 @@ public class ContactAdapter extends BaseAdapter {
             vh = (ViewHolder)convertView.getTag();
         }
 
-        vh.textView = (TextView)row.findViewById(R.id.contactName);
-        vh.textView.setText(contacts[position].contactName);
+        //
+        vh.textViewEmail = (TextView)row.findViewById(R.id.emailAddress);
+        vh.textViewEmail.setText(contacts[position].getEmailAddress());
+
+        vh.textViewName = (TextView)row.findViewById(R.id.contactName);
+        vh.textViewName.setText(contacts[position].getContactName());
 
         vh.imageView = (ImageView)row.findViewById(R.id.icon);
         if (contacts[position].getImage() != null) {
@@ -90,6 +94,7 @@ public class ContactAdapter extends BaseAdapter {
 
 //Class that is used to hold the textView, imageView and imageUrl in the tag of a row
 class ViewHolder {
-    TextView textView;
+    TextView textViewName;
+    TextView textViewEmail;
     ImageView imageView;
 }

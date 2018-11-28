@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.dawson.jonat.stockers.R;
 
-public class LoanCalculatorActivity extends Activity {
+public class LoanCalculatorActivity extends AppCompatActivity {
 
     Spinner spinnerYears;
     EditText amountView, interestRateView, minPaymentView;

@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contact_dialog);
-        //startActivity(new Intent(this, LoanCalculatorActivity.class));
+        startActivity(new Intent(this, LoanCalculatorActivity.class));
         launchDialog();
 
         ContactInformation[] contacts = new ContactInformation[20];
@@ -32,8 +32,11 @@ public class MainActivity extends Activity {
         int counter = 0;
 
         while (cursor.moveToNext() && counter < 20) {
-            contacts[counter] = new ContactInformation(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)),
-                    cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI)));
+            String name = getStringFromContacts(cursor, ContactsContract.Contacts.DISPLAY_NAME);
+            String imageUri = getStringFromContacts(cursor, ContactsContract.Contacts.PHOTO_THUMBNAIL_URI);
+            //String emailAddress = getStringFromContacts(cursor, ContactsContract.CommonDataKinds.Email.DATA);
+
+            contacts[counter] = new ContactInformation(name, imageUri, "Email Is Not Implemented Yet");
             counter++;
         }
         cursor.close();
@@ -45,7 +48,7 @@ public class MainActivity extends Activity {
     public void launchDialog() {
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.contact_dialog);
-        dialog.setTitle("Title...");
+        dialog.setTitle("Contacts");
 
         ContactInformation[] contacts = new ContactInformation[20];
 
@@ -54,8 +57,11 @@ public class MainActivity extends Activity {
         int counter = 0;
 
         while (cursor.moveToNext() && counter < 20) {
-            contacts[counter] = new ContactInformation(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)),
-                    cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI)));
+            String name = getStringFromContacts(cursor, ContactsContract.Contacts.DISPLAY_NAME);
+            String imageUri = getStringFromContacts(cursor, ContactsContract.Contacts.PHOTO_THUMBNAIL_URI);
+            //String emailAddress = getStringFromContacts(cursor, ContactsContract.CommonDataKinds.Email.DATA);
+
+            contacts[counter] = new ContactInformation(name, imageUri, "Email Not Implemented");
             counter++;
         }
         cursor.close();
@@ -63,5 +69,9 @@ public class MainActivity extends Activity {
         ListView listView = (ListView)dialog.findViewById(R.id.contactList);
         listView.setAdapter(new ContactAdapter(this, contacts));
         dialog.show();
+    }
+
+    public String getStringFromContacts(Cursor cursor, String column) {
+        return cursor.getString(cursor.getColumnIndex(column));
     }
 }
