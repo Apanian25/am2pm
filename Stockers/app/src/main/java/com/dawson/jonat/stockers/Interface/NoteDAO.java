@@ -1,5 +1,6 @@
 package com.dawson.jonat.stockers.Interface;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -19,5 +20,5 @@ public interface NoteDAO {
     void deleteNote(int id);
 
     @Query("SELECT * FROM note_table ORDER BY id ASC")
-    List<Note> getAllNotes();
+    LiveData<List<Note>> getAllNotes();
 }
