@@ -124,8 +124,7 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:onClick="calculateAndDisplayResults"
         android:text="@string/calculate"/>
@@ -144,5 +143,15 @@
 
 
     </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:clickable="true"
+        android:onClick="displayContacts"
+        android:src="@drawable/icon"
+        />
 
 </LinearLayout>

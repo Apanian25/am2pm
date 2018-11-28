@@ -2,6 +2,7 @@ package com.dawson.jonat.stockers.LoanCalculator;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dawson.jonat.stockers.ContactDialog.ContactUtilities;
 import com.dawson.jonat.stockers.R;
 
 public class LoanCalculatorActivity extends AppCompatActivity {
@@ -47,7 +49,21 @@ public class LoanCalculatorActivity extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(this, "Please ensure that all the fields are filled in", Toast.LENGTH_LONG).show();
         }
+    }
 
+    /**
+     * Event handler that will check if results have been calculated, and if they have, it will then
+     * launch the contact list for the user to choose who to send the results to, if no results have
+     * been calculated, a meaningful message will be displayed on screen.
+     *
+     * @param view
+     */
+    public void displayContacts(View view) {
+        if (resultsTable == null) {
+            Toast.makeText(this, "First calculate a result before sending an email to friends", Toast.LENGTH_LONG).show();
+        } else {
+            ContactUtilities.launchDialogToSendEmail(this);
+        }
     }
 
     /**
