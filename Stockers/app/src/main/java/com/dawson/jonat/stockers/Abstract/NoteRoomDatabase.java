@@ -15,7 +15,7 @@ public abstract class NoteRoomDatabase extends RoomDatabase{
 
     public abstract NoteDAO noteDAO();
 
-    static NoteRoomDatabase getDatabase(final Context context) {
+    public static NoteRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (NoteRoomDatabase.class) {
                 if (INSTANCE == null) {

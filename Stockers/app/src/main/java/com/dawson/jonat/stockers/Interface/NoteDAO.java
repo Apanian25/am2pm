@@ -14,7 +14,7 @@ import java.util.List;
 public interface NoteDAO {
 
     @Insert
-    void insertNote();
+    void insertNote(Note note);
 
     @Query("DELETE FROM note_Table WHERE id = :id")
     void deleteNote(int id);
