@@ -122,6 +122,7 @@
             android:layout_weight="1" />
     </LinearLayout>
 
+    <!--Button that is used to calculate the results-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -134,6 +135,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
+    <!--Space that is dedicated to display the results-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -151,7 +153,7 @@
         android:layout_gravity="right|bottom"
         android:clickable="true"
         android:onClick="displayContacts"
-        android:src="@drawable/icon"
+        android:src="@drawable/send_icon"
         />
 
 </LinearLayout>

@@ -65,7 +65,7 @@ public class ContactAdapter extends BaseAdapter {
             vh = (ViewHolder)convertView.getTag();
         }
 
-        //
+        //Set the values of all the views in the view group
         vh.textViewEmail = (TextView)row.findViewById(R.id.emailAddress);
         vh.textViewEmail.setText(contacts[position].getEmailAddress());
 
