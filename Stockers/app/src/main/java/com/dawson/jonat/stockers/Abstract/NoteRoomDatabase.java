@@ -8,7 +8,7 @@ import android.content.Context;
 import com.dawson.jonat.stockers.Entity.Note;
 import com.dawson.jonat.stockers.Interface.NoteDAO;
 
-@Database(entities = {Note.class}, version = 1)
+@Database(entities = {Note.class}, version = 1, exportSchema = false)
 public abstract class NoteRoomDatabase extends RoomDatabase{
 
     private static volatile NoteRoomDatabase INSTANCE;

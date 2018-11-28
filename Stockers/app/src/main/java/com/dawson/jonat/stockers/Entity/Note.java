@@ -17,14 +17,14 @@ public class Note {
     @ColumnInfo(name = "id")
     private int id;
 
-    public Note(@NonNull String note) {
+    public Note(@NonNull String note, @NonNull int id) {
         this.note = note;
+        this.id = id;
     }
 
     public String getNote() {
         return this.note;
     }
-
     public int getId() {
         return this.id;
     }
