@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">Stockers</string>
+    <string name="app_name">FEAM2PM</string>
+    <string name="desc">This app is intended to be an educational tool for learning a bit about finances (loans, currency exchange, stocks.)  The purpose of this project is to create an application
+        that will exercise what our team (see below) have learned about the Android framework and Mobile software development</string>
+    <string name="team">Lara M, Nicholas A, John P, Danny M</string>
+    <string name="urlToDawson">https://www.dawsoncollege.qc.ca</string>
+    <string name="team_title">The Team</string>
+    <string name="names_title">Our Names</string>
+    <string name="dialog_message">We are 3d year compsci students</string>
+    <string name="dialog_title">More about us</string>
 </resources>

@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8f24117-9fa2-47d1-9130-e24c1ec8b07a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Stockers/.idea/gradle.xml" afterPath="$PROJECT_DIR$/Stockers/.idea/gradle.xml" />
       <change beforePath="$PROJECT_DIR$/Stockers/.idea/misc.xml" afterPath="$PROJECT_DIR$/Stockers/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/Stockers/.idea/runConfigurations.xml" afterPath="$PROJECT_DIR$/Stockers/.idea/runConfigurations.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
