@@ -33,18 +33,13 @@ public class MainActivity extends Activity {
 
         while (cursor.moveToNext() && counter < 20) {
             contacts[counter] = new ContactInformation(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)),
-                    getThumbnailAsBitmap(cursor.getBlob(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI))));
+                    cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI)));
             counter++;
         }
         cursor.close();
 
         ListView listView = (ListView)findViewById(R.id.contactList);
         listView.setAdapter(new ContactAdapter(this, contacts));
-    }
-
-    public Bitmap getThumbnailAsBitmap(byte[] uri) {
-        Bitmap bitmap = null;
-        InputStream is = new InputStream();
     }
 
     public void launchDialog() {
@@ -59,7 +54,8 @@ public class MainActivity extends Activity {
         int counter = 0;
 
         while (cursor.moveToNext() && counter < 20) {
-            contacts[counter] = new ContactInformation(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)));
+            contacts[counter] = new ContactInformation(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)),
+                    cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI)));
             counter++;
         }
         cursor.close();

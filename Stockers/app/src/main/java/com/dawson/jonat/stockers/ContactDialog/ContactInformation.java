@@ -4,13 +4,14 @@ import android.graphics.Bitmap;
 
 public class ContactInformation {
     public String contactName;
-    private Bitmap image;
+    private String image;
 
-    public ContactInformation(String name, Bitmap image) {
+    public ContactInformation(String name, String image) {
         contactName = name;
+        this.image = image;
     }
 
-    public Bitmap getImage() {
+    public String getImage() {
         return image;
     }
 }

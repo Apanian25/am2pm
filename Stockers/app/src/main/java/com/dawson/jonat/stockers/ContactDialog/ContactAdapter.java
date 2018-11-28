@@ -1,10 +1,12 @@
 package com.dawson.jonat.stockers.ContactDialog;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,17 +60,20 @@ public class ContactAdapter extends BaseAdapter {
 
         if (row == null) {
             row = this.infalter.inflate(R.layout.contact_view, null);
-
-            vh.textView = (TextView)row.findViewById(R.id.contactName);
-            vh.textView.setText(contacts[position].contactName);
-
             row.setTag(vh);
         } else {
             vh = (ViewHolder)convertView.getTag();
+        }
 
+        vh.textView = (TextView)row.findViewById(R.id.contactName);
+        vh.textView.setText(contacts[position].contactName);
 
-            vh.textView = (TextView)row.findViewById(R.id.contactName);
-            vh.textView.setText(contacts[position].contactName);
+        vh.imageView = (ImageView)row.findViewById(R.id.icon);
+        if (contacts[position].getImage() != null) {
+            Uri uri = Uri.parse(contacts[position].getImage());
+            vh.imageView.setImageURI(uri);
+        } else {
+            vh.imageView.setImageResource(R.drawable.icon);
         }
 
         row.setOnClickListener(new View.OnClickListener() {
@@ -86,4 +91,5 @@ public class ContactAdapter extends BaseAdapter {
 //Class that is used to hold the textView, imageView and imageUrl in the tag of a row
 class ViewHolder {
     TextView textView;
+    ImageView imageView;
 }
