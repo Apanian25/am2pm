@@ -4,8 +4,23 @@
         that will exercise what our team (see below) have learned about the Android framework and Mobile software development</string>
     <string name="team">Lara M, Nicholas A, John P, Danny M</string>
     <string name="urlToDawson">https://www.dawsoncollege.qc.ca</string>
-    <string name="team_title">The Team</string>
-    <string name="names_title">Our Names</string>
-    <string name="dialog_message">We are 3d year compsci students</string>
+    <string name="desc_title">About the app</string>
+    <string name="names_title">Meet our awesome developers</string>
+    <string name="why_title">Purpose of the app</string>
     <string name="dialog_title">More about us</string>
+    <string name="john"><b>John Pesce</b></string>
+    <string name="about_john_short">19 years old, loves math and algorithms, can solve any problem</string>
+    <string name="git_john">Get to know John Pesce more at @johnPesce on gitlab</string>
+    <string name="git_lara">Get to know Lara Mezirovsky more at @Mosh_La on gitlab</string>
+    <string name="git_nick">Get to know Nick more at @Apanian25 on gitlab</string>
+    <string name="git_danny">Get to know Danny more at @danny on gitlab</string>
+    <string name="nick"><b>Nicholas Apanian</b></string>
+    <string name="about_nick_short">20 years old, codes with in a fast an efficient manner in multiple languages</string>
+    <string name="lara"><b>Lara Mezirovsky</b></string>
+    <string name="about_lara_short">19 years old, loves design and creating websites/apps on any platform</string>
+    <string name="danny"><b>Danny Manzano</b></string>
+    <string name="about_danny_short">21 years old, great with logic and data structures</string>
+    <string name="why">Final project for the Android Course(420-517-DW) with Patricia Campbell, Dawson College</string>
+    <string name="btn_text">OK</string>
+
 </resources>
