@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.dawson.jonat.stockers.AboutActivity;
 import com.dawson.jonat.stockers.R;
+import com.dawson.jonat.stockers.SettingsActivity;
 
 import java.net.URI;
 
@@ -42,6 +43,8 @@ public class Menus extends AppCompatActivity {
                 return true;
             case R.id.dawson_website:
                 launchDawsonWebsiteActivity();
+            case R.id.settings:
+                launchSettingsActivity();
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -52,7 +55,7 @@ public class Menus extends AppCompatActivity {
      */
     private void launchAboutActivity() {
         Intent i = new Intent(this, AboutActivity.class);
-        this.startActivity(i);
+        startActivity(i);
     }
 
     /**
@@ -60,6 +63,15 @@ public class Menus extends AppCompatActivity {
      */
     private void launchDawsonWebsiteActivity() {
         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(this.getString(R.string.urlToDawson)));
-        this.startActivity(i);
+        startActivity(i);
+    }
+
+    /**
+     * Helper method to launch an implicit intent - setting activity
+     * todo: put about and settings in one method to avoid repetition!
+     */
+    private void launchSettingsActivity(){
+        Intent i = new Intent(this, SettingsActivity.class);
+        startActivity(i);
     }
 }//end class

@@ -41,11 +41,11 @@ public class AboutActivity extends Menus {
         menu.getItem(0).setEnabled(false);
         return true;
     }
-    
+
     public void showMoreInfo(View view) {
         //declare a dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.dialog_title);
+        builder.setTitle(R.string.about_dialog_title);
 
         switch (view.getId()){
             case R.id.john:
