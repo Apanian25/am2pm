@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "640270396045",
+    "firebase_url": "https://stockers-b79f4.firebaseio.com",
+    "project_id": "stockers-b79f4",
+    "storage_bucket": "stockers-b79f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640270396045:android:f81d3bb603f93099",
+        "android_client_info": {
+          "package_name": "com.dawson.jonat.stockers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640270396045-d9of2gjcoi2jkqacf1b6u7lk83hci2vj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq629Fg4s8kFLoJqGUSG3lfBJVQO_AYsY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
