@@ -62,7 +62,7 @@ public class LoanCalculatorActivity extends AppCompatActivity {
         if (resultsTable == null) {
             Toast.makeText(this, "First calculate a result before sending an email to friends", Toast.LENGTH_LONG).show();
         } else {
-            ContactUtilities.launchDialogToSendEmail(this);
+            ContactUtilities.launchDialogToSendEmail(this, (LoanPayoutSummary)resultsTable.getTag());
         }
     }
 
@@ -79,6 +79,7 @@ public class LoanCalculatorActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.interestAccumulated)).setText(loanPayoutSummary.getInterestAccumulated() + "");
         ((TextView)findViewById(R.id.totalPaid)).setText(loanPayoutSummary.getTotalPaid() + "");
         ((TextView)findViewById(R.id.amountLeft)).setText(loanPayoutSummary.getAmountLeftToPay() + "");
+        resultsTable.setTag(loanPayoutSummary);
     }
 
     /**

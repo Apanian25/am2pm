@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.widget.ListView;
 
+import com.dawson.jonat.stockers.LoanCalculator.LoanPayoutSummary;
 import com.dawson.jonat.stockers.R;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class ContactUtilities {
      *
      * @param context Activity for the launch to be launced in
      */
-    public static void launchDialogToSendEmail(Context context) {
+    public static void launchDialogToSendEmail(Context context, LoanPayoutSummary summary) {
         Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.contact_dialog);
         dialog.setTitle("Contacts");
@@ -33,7 +34,7 @@ public class ContactUtilities {
         ContactInformation[] contacts = getContactInformation(context);
 
         ListView listView = (ListView)dialog.findViewById(R.id.contactList);
-        listView.setAdapter(new ContactAdapter(context, contacts));
+        listView.setAdapter(new ContactAdapter(context, contacts, summary));
         dialog.show();
     }
 
@@ -54,7 +55,7 @@ public class ContactUtilities {
             String id = getStringFromContacts(contacts, ContactsContract.Contacts._ID);
             String email = getEmailAddress(id, context);
 
-            //if (email != null)
+            if (email != null)
                 contactList.add(new ContactInformation(name, imageUri, email));
         }
 

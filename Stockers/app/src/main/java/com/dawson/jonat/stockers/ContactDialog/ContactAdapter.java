@@ -10,12 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dawson.jonat.stockers.Email.Email;
+import com.dawson.jonat.stockers.LoanCalculator.LoanPayoutSummary;
 import com.dawson.jonat.stockers.R;
 
 public class ContactAdapter extends BaseAdapter {
     private Context contextOfView;
     private ContactInformation[] contacts;
     private LayoutInflater infalter;
+    private  LoanPayoutSummary summary;
+    private static final String SUBJECT = "Credit Loan Calculation Results";
 
     /**
      * Initializes the context, contacts and will use the context to create the inflater
@@ -23,10 +27,11 @@ public class ContactAdapter extends BaseAdapter {
      * @param context
      * @param contacts
      */
-    public ContactAdapter(Context context, ContactInformation[] contacts) {
+    public ContactAdapter(Context context, ContactInformation[] contacts, LoanPayoutSummary summary) {
         this.contextOfView = context;
         this.infalter = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.contacts = contacts;
+        this.summary = summary;
     }
 
     @Override
@@ -84,6 +89,8 @@ public class ContactAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //Send the email to this person
+                ViewHolder vh = (ViewHolder)v.getTag();
+                Email.sendEmail(vh.textViewEmail.getText().toString(), SUBJECT, summary, contextOfView);
                 Toast.makeText(contextOfView, "Was clicked", Toast.LENGTH_LONG).show();
             }
         });
@@ -91,6 +98,8 @@ public class ContactAdapter extends BaseAdapter {
         return row;
     }
 }
+
+
 
 //Class that is used to hold the textView, imageView and imageUrl in the tag of a row
 class ViewHolder {
