@@ -11,15 +11,15 @@ import com.dawson.jonat.stockers.LoanCalculator.LoanPayoutSummary;
 public class Email {
 
     public static void sendEmail(String to, String subject, LoanPayoutSummary results, Context context){
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+        final Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
         //This line ensures that the intent is only handled by email apps
         emailIntent.setType("text/html");
         emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
-        emailIntent.putExtra(Intent.EXTRA_TEXT, formatText(results));
+        emailIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(formatText(results)));
         if (emailIntent.resolveActivity(context.getPackageManager()) != null) {
-            context.startActivity(emailIntent);
+            context.startActivity(Intent.createChooser(emailIntent, "Email:"));
         }
     }
 
@@ -30,17 +30,17 @@ public class Email {
      * @param results
      * @return
      */
-    private static Spanned formatText(LoanPayoutSummary results) {
-        String text = "<html>";
+    private static String formatText(LoanPayoutSummary results) {
+        String text = "<html><body>";
         text += "<table>";
         text += genearateRow("Original Balance:", results.getOriginalAmountOwed() + "");
         text += genearateRow("Time to pay off:", results.getMonthsToPayOff() + "");
         text += genearateRow("Interest Accumulated:", results.getInterestAccumulated() + "");
         text += genearateRow("Total Amount Paid:", results.getTotalPaid() + "");
         text += genearateRow("Balance Left:", results.getAmountLeftToPay() + "");
-        text += "</table></html>";
+        text += "</table></body></html>";
 
-        return Html.fromHtml(text);
+        return text;
     }
 
     /**
