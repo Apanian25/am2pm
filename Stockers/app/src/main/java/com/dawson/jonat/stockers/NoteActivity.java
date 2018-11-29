@@ -52,7 +52,7 @@ public class NoteActivity extends AppCompatActivity {
         } else if(requestCode == NEW_NOTE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_CANCELED) {
             Toast.makeText(
                     getApplicationContext(),
-                    R.string.empty_not_saved,
+                    R.string.not_saved,
                     Toast.LENGTH_LONG).show();
         } else if(requestCode == UPDATE_NOTE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
             noteViewModel.updateNote(String.valueOf(data.getExtras().getInt("id")), data.getStringExtra(NewNoteActivity.EXTRA_REPLY));
