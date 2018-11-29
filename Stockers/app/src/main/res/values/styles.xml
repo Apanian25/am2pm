@@ -5,4 +5,8 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="TableThem">
+        <item name="android:layout_margin">1dp</item>
+        <item name="android:la"
+    </style>
 </resources>

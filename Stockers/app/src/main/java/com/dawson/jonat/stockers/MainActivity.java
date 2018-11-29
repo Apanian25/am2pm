@@ -9,8 +9,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.widget.ListView;
-
-import com.dawson.jonat.stockers.ContactDialog.ContactAdapter;
 import com.dawson.jonat.stockers.ContactDialog.ContactInformation;
 import com.dawson.jonat.stockers.LoanCalculator.LoanCalculatorActivity;
 
