@@ -16,9 +16,12 @@ public interface NoteDAO {
     @Insert
     void insertNote(Note note);
 
-    @Query("DELETE FROM note_Table WHERE id = :id")
+    @Query("DELETE FROM note_table WHERE id = :id")
     void deleteNote(int id);
 
     @Query("SELECT * FROM note_table ORDER BY id ASC")
     LiveData<List<Note>> getAllNotes();
+
+    @Query("UPDATE note_table set note = :note WHERE id = :id")
+    void updateNote(int id, String note);
 }

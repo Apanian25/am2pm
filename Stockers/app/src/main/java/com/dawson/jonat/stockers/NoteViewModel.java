@@ -50,6 +50,11 @@ public class NoteViewModel extends AndroidViewModel {
     public void insert(Note note) {
         noteRepository.insert(note);
     }
+
+
+    public void updateNote(String id, String note){
+        noteRepository.updateNote(id, note);
+    }
 }
 
 

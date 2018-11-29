@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Stockers</string>
     <string name="title_activity_note">Note</string>
-    <string name="hint_word">Word...</string>
+    <string name="hint_word">Enter Text here…</string>
     <string name="button_save">Save</string>
-    <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="empty_not_saved">Note not saved because it is empty<empty></empty></string>
     <string name="title_activity_new_note">New Note</string>
 </resources>

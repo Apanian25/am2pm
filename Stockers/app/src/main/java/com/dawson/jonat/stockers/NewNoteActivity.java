@@ -21,18 +21,39 @@ public class NewNoteActivity extends AppCompatActivity {
         mEditNoteView = findViewById(R.id.edit_note);
 
         final Button button = findViewById(R.id.button_save);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent replyIntent = new Intent();
-                if (TextUtils.isEmpty(mEditNoteView.getText())) {
-                    setResult(RESULT_CANCELED, replyIntent);
-                } else {
-                    String word = mEditNoteView.getText().toString();
-                    replyIntent.putExtra(EXTRA_REPLY, word);
-                    setResult(RESULT_OK, replyIntent);
+        final Intent intent = getIntent();
+
+        if(intent.getExtras() == null) {
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Intent replyIntent = new Intent();
+                    if (TextUtils.isEmpty(mEditNoteView.getText())) {
+                        setResult(RESULT_CANCELED, replyIntent);
+                    } else {
+                        String note = mEditNoteView.getText().toString();
+                        replyIntent.putExtra(EXTRA_REPLY, note);
+                        setResult(RESULT_OK, replyIntent);
+                    }
+                    finish();
                 }
-                finish();
-            }
-        });
+            });
+        } else {
+            mEditNoteView.setText(intent.getExtras().getString("note"));
+
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Intent replyIntent = new Intent();
+                    if (TextUtils.isEmpty(mEditNoteView.getText())) {
+                        setResult(RESULT_CANCELED, replyIntent);
+                    } else {
+                        String note = mEditNoteView.getText().toString();
+                        replyIntent.putExtra("id", intent.getExtras().getInt("id"));
+                        replyIntent.putExtra(EXTRA_REPLY, note);
+                        setResult(RESULT_OK, replyIntent);
+                    }
+                    finish();
+                }
+            });
+        }
     }
 }
