@@ -34,6 +34,10 @@ public class NoteRepository {
         new updateAsyncTask(noteDAO).execute(id, note);
     }
 
+    public void deleteNote(Integer id) {
+        new deleteAsyncTask(noteDAO).execute(id);
+    }
+
     /**
      * This class is used to insert a note in the database in an asynchronous matter.
      */
@@ -66,6 +70,25 @@ public class NoteRepository {
         @Override
         protected Void doInBackground(final String... values) {
             mAsyncTaskDao.updateNote(Integer.valueOf(values[0]), values[1]);
+            return null;
+        }
+    }
+
+
+    /**
+     * This class is used to delete the note in an asynchronous matter.
+     */
+    private static class deleteAsyncTask extends AsyncTask<Integer, Void, Void> {
+
+        private NoteDAO mAsyncTaskDao;
+
+        deleteAsyncTask(NoteDAO dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Integer... values) {
+            mAsyncTaskDao.deleteNote(values[0]);
             return null;
         }
     }

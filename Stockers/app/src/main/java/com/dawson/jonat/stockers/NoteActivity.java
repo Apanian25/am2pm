@@ -49,12 +49,20 @@ public class NoteActivity extends AppCompatActivity {
         if (requestCode == NEW_NOTE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             Note note = new Note(data.getStringExtra(NewNoteActivity.EXTRA_REPLY));
             noteViewModel.insert(note);
-        }else if(requestCode == UPDATE_NOTE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
-            noteViewModel.updateNote(String.valueOf(data.getIntExtra("id", -1)), data.getStringExtra(NewNoteActivity.EXTRA_REPLY));
-        } else {
+        } else if(requestCode == NEW_NOTE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_CANCELED) {
             Toast.makeText(
                     getApplicationContext(),
                     R.string.empty_not_saved,
+                    Toast.LENGTH_LONG).show();
+        } else if(requestCode == UPDATE_NOTE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
+            noteViewModel.updateNote(String.valueOf(data.getExtras().getInt("id")), data.getStringExtra(NewNoteActivity.EXTRA_REPLY));
+        } else if(requestCode == UPDATE_NOTE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_CANCELED && data != null){
+            //The user has pressed the delete button when editing the note
+
+            noteViewModel.deleteNote(data.getExtras().getInt("id"));
+            Toast.makeText(
+                    getApplicationContext(),
+                    R.string.item_deleted,
                     Toast.LENGTH_LONG).show();
         }
     }
