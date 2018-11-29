@@ -6,6 +6,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ListView;
 
 import com.dawson.jonat.stockers.LoanCalculator.LoanPayoutSummary;
@@ -31,10 +33,11 @@ public class ContactUtilities {
         dialog.setContentView(R.layout.contact_dialog);
         dialog.setTitle("Contacts");
 
-        ContactInformation[] contacts = getContactInformation(context);
+        List<ContactInformation> contacts = getContactInformation(context);
 
-        ListView listView = (ListView)dialog.findViewById(R.id.contactList);
-        listView.setAdapter(new ContactAdapter(context, contacts, summary));
+        RecyclerView recyclerView = (RecyclerView) dialog.findViewById(R.id.contactList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(new ContactRecyclerView(context, contacts, summary));
         dialog.show();
     }
 
@@ -45,7 +48,7 @@ public class ContactUtilities {
      * @param context
      * @return
      */
-    private static ContactInformation[] getContactInformation(Context context) {
+    private static List<ContactInformation> getContactInformation(Context context) {
         Cursor contacts = getContacts(context);
         List<ContactInformation> contactList = new ArrayList<>();
 
@@ -59,8 +62,7 @@ public class ContactUtilities {
                 contactList.add(new ContactInformation(name, imageUri, email));
         }
 
-        ContactInformation[] contactArray = new ContactInformation[contactList.size()];
-        return contactList.toArray(contactArray);
+        return contactList;
     }
 
     /**
