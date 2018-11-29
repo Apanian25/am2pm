@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.List;
@@ -44,8 +45,8 @@ public class NoteActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_NOTE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Note word = new Note(data.getStringExtra(NewNote.EXTRA_REPLY), 1);
-            noteViewModel.insert(word);
+            Note note = new Note(data.getStringExtra(NewNoteActivity.EXTRA_REPLY));
+            noteViewModel.insert(note);
         } else {
             Toast.makeText(
                     getApplicationContext(),
@@ -54,4 +55,9 @@ public class NoteActivity extends AppCompatActivity {
         }
     }
 
+
+    public void createNote(View view) {
+        Intent intent = new Intent(NoteActivity.this, NewNoteActivity.class);
+        startActivityForResult(intent, NEW_NOTE_ACTIVITY_REQUEST_CODE);
+    }
 }

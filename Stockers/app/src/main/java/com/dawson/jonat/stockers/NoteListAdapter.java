@@ -49,7 +49,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteVi
     }
 
     public void setNotes(List<Note> notes){
-        notes = notes;
+        this.notes = notes;
         notifyDataSetChanged();
     }
 

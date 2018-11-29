@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "note_table")
 public class Note {
 
-
     @NonNull
     @ColumnInfo(name = "note")
     private String note;
@@ -17,15 +16,19 @@ public class Note {
     @ColumnInfo(name = "id")
     private int id;
 
-    public Note(@NonNull String note, @NonNull int id) {
+    public Note(@NonNull String note) {
         this.note = note;
-        this.id = id;
     }
 
     public String getNote() {
         return this.note;
     }
+
     public int getId() {
         return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
