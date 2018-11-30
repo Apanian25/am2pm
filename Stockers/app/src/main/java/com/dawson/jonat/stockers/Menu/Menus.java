@@ -23,6 +23,7 @@ import java.net.URI;
  * @version 1.0
  */
 public class Menus extends AppCompatActivity {
+    protected boolean isOptionSelected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,16 +47,20 @@ public class Menus extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+         isOptionSelected = true;
         switch (item.getItemId()) {
             case R.id.about:
                 launchAboutActivity();
-                return true;
+                return isOptionSelected;
             case R.id.dawson_website:
                 launchDawsonWebsiteActivity();
+                return isOptionSelected;
             case R.id.settings:
                 launchSettingsActivity();
+                return isOptionSelected;
             default:
-                return super.onOptionsItemSelected(item);
+                isOptionSelected = super.onOptionsItemSelected(item);
+                return isOptionSelected;
         }
     }
 

@@ -31,7 +31,10 @@ public class AboutActivity extends Menus {
     @Override
     public void onPause(){
         super.onPause();
-        finish();
+        //only if another item on the menu is selected
+        if(isOptionSelected)
+            finish();
+
     }
 
     /**
