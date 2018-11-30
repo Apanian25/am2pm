@@ -1,11 +1,12 @@
 package com.dawson.jonat.stockers.Messaging;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.dawson.jonat.stockers.R;
 
-public class Messaging extends AppCompatActivity {
+public class Messaging extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

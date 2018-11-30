@@ -12,6 +12,8 @@ import com.dawson.jonat.stockers.Hints.FinancialHintsActivity;
 import com.dawson.jonat.stockers.Hints.HintsFragmentPagerAdapter;
 =======
 import com.dawson.jonat.stockers.Hints.Hints;
+import com.dawson.jonat.stockers.Messaging.Messaging;
+import com.dawson.jonat.stockers.Messaging.NotificationUtilities;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -51,6 +53,11 @@ public class MainActivity extends Activity {
                 Log.d("newToken",newToken);
             }
         });
+
+        NotificationUtilities n = new NotificationUtilities(this);
+        n.displayNotification("Nick Look at this", "You have a new update: wait...");
+        Intent intent = new Intent(this, Messaging.class);
+        startActivity(intent);
     }
 
     public void goToNoteActivity(View view) {
