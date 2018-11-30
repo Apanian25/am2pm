@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceIdService;
 import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
 
 public class StockersFirebaseMessagingService extends FirebaseMessagingService {
     private final String TAG = "MessagingService";
@@ -18,4 +19,11 @@ public class StockersFirebaseMessagingService extends FirebaseMessagingService {
         //Send the token to the server
         //TODO sendRegistrationToServer(token);
     }
+
+    @Override
+    public void onMessageReceived(RemoteMessage remoteMessage) {
+
+
+    }
+
 }
