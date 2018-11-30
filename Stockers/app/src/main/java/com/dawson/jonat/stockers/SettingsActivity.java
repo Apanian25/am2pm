@@ -2,19 +2,31 @@ package com.dawson.jonat.stockers;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dawson.jonat.stockers.Menu.Menus;
 
+/**
+ * Class responsible for letting the user enter info such as: first name, last name, email, password
+ * and lets the user to chose the preferred currency and the preferred stock.
+ * The user will be able to see the date he last modified his personal information, if he never modified it, the date
+ * will be the "registration" date
+ * @author Lara Mezirovsky
+ * @version 1.0
+ */
 public class SettingsActivity extends Menus  implements AdapterView.OnItemSelectedListener{
-
+    private String fname, lname, email, password, curr, stock, date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +35,7 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
         createSpinner(R.id.pref_curr, R.array.spinner_values_currency); //params: id of the spinner, string-array with values
         createSpinner(R.id.pref_stock, R.array.spinner_values_stock); //params: id of the spinner, string-array with values
 
+        //get values from shared preferences
     }
 
     /**
@@ -37,8 +50,8 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
         super.onPause();
         showDialog();
         //ask how to cancle - finish
+        //todo ask tricia and my team
     }
-    //todo doc!
 
     /**
      * Must override the option menu items - don't let the user click on the setting option to launch
@@ -56,7 +69,7 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
 
     /**
      * private helper method to show a dialog asking a user if
-     * they wish to save their changes when quiting the acitivty/without pressing on the save btn
+     * they wish to save their changes when quiting the activity/without pressing on the save btn
      */
     private void showDialog(){
             //declare a dialog
@@ -83,7 +96,9 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
         }
 
     /**
-     * Private method to help create the spinner
+     * Helper method to create a spinner
+     * @param id -> spinner id (either currency spinner or stock spinner)
+     * @param array -> spinner string-array items that represent either the currencies or the stocks
      */
     private void createSpinner(int id, int array){
         Spinner spinner = findViewById(id); //find
@@ -104,4 +119,38 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
     public void onNothingSelected(AdapterView<?> parent) {
     //log nothing was selected
     }
+
+    /**
+     * As soon as the user clicks on the save button/ or on the OK option in the dialog before quiting the page,
+     * the information will be stored in the shared preference
+     * A method from the outside will check if to call this method
+     * For ex: this method wont be called if no changed were detected
+     */
+    public void saveInfo(View view){
+       SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+       SharedPreferences.Editor editor = prefs.edit();
+        fname = ((EditText)findViewById(R.id.fname)).getText().toString();
+        lname = ((EditText)findViewById(R.id.lname)).getText().toString();
+        email = ((EditText)findViewById(R.id.email)).getText().toString();
+        password = ((EditText)findViewById(R.id.password)).getText().toString();
+        curr = ((Spinner)findViewById(R.id.pref_curr)).getSelectedItem().toString();
+        stock = ((Spinner)findViewById(R.id.pref_stock)).getSelectedItem().toString();
+        date = ((TextView)findViewById(R.id.date)).getText().toString();
+
+        //store first name
+        editor.putString("fname", fname);
+        // store last name
+        editor.putString("lname", lname);
+        // store email
+        editor.putString("email", email);
+        // store password
+        editor.putString("password", password);
+        // store currency
+        editor.putString("curr", fname);
+        // store stock
+        editor.putString("stock", fname);
+        // store date
+        editor.putString("date", fname);
+    }
+
 }

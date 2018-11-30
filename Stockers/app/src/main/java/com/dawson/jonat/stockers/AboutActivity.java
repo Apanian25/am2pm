@@ -1,16 +1,20 @@
 package com.dawson.jonat.stockers;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.dawson.jonat.stockers.Menu.Menus;
-
+/**
+ * Class responsible for displaying information about the app,
+ * how to use, the apps purpose and its developers
+ * By cliking on a developer, a dialog will pop up with the git name of that developer
+ *
+ * @author Lara Mezirovsky
+ * @version 1.0
+ */
 public class AboutActivity extends Menus {
 
     @Override
@@ -33,7 +37,7 @@ public class AboutActivity extends Menus {
     /**
      * Must override the option menu items - don't let the user click on the about option to launch
      * the about activity from the about page itself
-     * @param true if successfully created
+     * @param
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -42,6 +46,11 @@ public class AboutActivity extends Menus {
         return true;
     }
 
+    /**
+     * This method pops up a dialog with the gitlab name of the developer according to the view id.
+     * For example: if view-id is lara, lara's git lab name will be shown in the dialog
+     * @param view
+     */
     public void showMoreInfo(View view) {
         //declare a dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

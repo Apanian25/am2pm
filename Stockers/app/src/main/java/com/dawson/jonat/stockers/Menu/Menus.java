@@ -13,7 +13,15 @@ import com.dawson.jonat.stockers.R;
 import com.dawson.jonat.stockers.SettingsActivity;
 
 import java.net.URI;
-
+/**
+ * Class responsible for displaying an Options menu with
+ * 3 choices: About --> info about app and the team
+ * Go To Dawson - redirects the user to the dawson website using an implicit intent
+ * Settings --> the user can edit his personal info
+ *
+ * @author Lara Mezirovsky
+ * @version 1.0
+ */
 public class Menus extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +41,8 @@ public class Menus extends AppCompatActivity {
     }
 
     /**
-     * Giving functionality to each option in the menu
+     * Giving functionality to each option in the menu - launching other activities
+     * Note: view documentation in activities for functionality
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -36,6 +36,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/fname"
             style="@style/edit_text"/>
 
 
@@ -74,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_marginTop="5dp">
+        android:layout_margin="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_marginTop="5dp">
+        android:layout_margin="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,12 +114,14 @@
                 android:text="@string/btn_text_settings"
                 android:background="@color/colorPrimary"
                 android:layout_marginTop="10dp"
+                android:onClick="saveInfo"
                 android:layout_gravity="center"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/date"
+                android:id="@+id/date"
                 android:paddingTop="5dp"
                 android:layout_gravity="center"/>
         </LinearLayout>
