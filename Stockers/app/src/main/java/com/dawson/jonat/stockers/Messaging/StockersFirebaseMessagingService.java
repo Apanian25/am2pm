@@ -23,14 +23,13 @@ public class StockersFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-            super.onMessageReceived(remoteMessage);
+        super.onMessageReceived(remoteMessage);
 
-            String title = remoteMessage.getNotification().getTitle();
-            String text = remoteMessage.getNotification().getBody();
+        String title = remoteMessage.getNotification().getTitle();
+        String text = remoteMessage.getNotification().getBody();
 
-            NotificationUtilities notificationUtilities = new NotificationUtilities(getApplicationContext());
-            notificationUtilities.displayNotification(title, text);
-
+        NotificationUtilities notificationUtilities = new NotificationUtilities(getApplicationContext());
+        notificationUtilities.displayNotification(title, text);
     }
 
 }

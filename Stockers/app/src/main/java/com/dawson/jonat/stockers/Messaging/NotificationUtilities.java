@@ -1,5 +1,6 @@
 package com.dawson.jonat.stockers.Messaging;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -22,7 +23,10 @@ public class NotificationUtilities {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, null)
                 .setSmallIcon(R.drawable.temp)
                 .setContentTitle(title)
-                .setContentText(text);
+                .setContentText(text)
+                //This allows for the notification to pop up
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setDefaults(Notification.DEFAULT_ALL);
 
         Intent intent = new Intent(context, Messaging.class);
 
