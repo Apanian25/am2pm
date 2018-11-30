@@ -6,25 +6,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.dawson.jonat.stockers.Menu.Menus;
 
-public class SettingsActivity extends Menus {
+public class SettingsActivity extends Menus  implements AdapterView.OnItemSelectedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         //initialize spinner
+        createSpinner(R.id.pref_curr, R.array.spinner_values_currency); //params: id of the spinner, string-array with values
+        createSpinner(R.id.pref_stock, R.array.spinner_values_stock); //params: id of the spinner, string-array with values
 
-    }
-    /**
-     * private helper method to initialize spinner
-     */
-    private void createSpinner(){
     }
 
     /**
@@ -38,7 +36,7 @@ public class SettingsActivity extends Menus {
         //dialog will launch if some changes were detected todo
         super.onPause();
         showDialog();
-        //ask how to cancle
+        //ask how to cancle - finish
     }
     //todo doc!
 
@@ -83,4 +81,27 @@ public class SettingsActivity extends Menus {
             builder.show();
 
         }
+
+    /**
+     * Private method to help create the spinner
+     */
+    private void createSpinner(int id, int array){
+        Spinner spinner = findViewById(id); //find
+        //create an array adapter using the pre-defined spinner layout in android
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, array, android.R.layout.simple_spinner_item);
+        //init
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+       //store in shared pref.
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+    //log nothing was selected
+    }
 }

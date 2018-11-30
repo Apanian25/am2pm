@@ -7,11 +7,12 @@
     android:orientation="vertical"
     tools:context=".SettingsActivity"
     android:padding="5dp"
-    android:textSize="14sp">
+    android:textSize="15sp">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="4dp">
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -25,28 +26,20 @@
             android:text="@string/settings_title"
             style="@style/text_style"
             android:layout_gravity="center"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+
+    <!-- actual date -->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/fname"
-            android:padding="2dp"/>
+            android:text="@string/fname"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/fname"
-            android:padding="5dp"
-            android:hint="@string/fname"/>
-    </LinearLayout>
+            style="@style/edit_text"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
+
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lname"/>
@@ -54,14 +47,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/lname"
-            android:hint="@string/lname"/>
-    </LinearLayout>
+            style="@style/edit_text"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
+
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/email"/>
@@ -69,68 +58,70 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/email"
-            android:hint="@string/email"/>
-    </LinearLayout>
+            style="@style/edit_text"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/password"/>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/password"
-            android:hint="@string/password"/>
-    </LinearLayout>
-
+            style="@style/edit_text"/>
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pref_curr"
-            android:hint="@string/pref_curr"/>
-        <EditText
-            android:layout_width="match_parent"
+            android:layout_marginRight="5dp"/>
+        <Spinner
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/pref_curr"/>
     </LinearLayout>
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_stock"
-        android:hint="@string/pref_stock"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/pref_stock"/>
-</LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_text_settings"
-        android:background="@color/colorPrimary"
-        android:layout_gravity="center"
-        android:paddingTop="5dp"/>
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pref_stock"
+            android:layout_marginRight="5dp"/>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pref_stock"/>
+    </LinearLayout>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|end|bottom"
-        android:text="@string/date"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_text_settings"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
+                android:paddingTop="5dp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
 </LinearLayout>
 </ScrollView>
 

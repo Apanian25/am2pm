@@ -20,18 +20,18 @@
     <string name="lara"><b>Lara Mezirovsky</b></string>
     <string name="about_lara_short">19 years old, loves design and creating websites/apps on any platform</string>
     <string name="danny"><b>Danny Manzano</b></string>
-    <string name="about_danny_short">21 years old, great with logic and data structures</string>
+    <string name="about_danny_short">21 years old, great with slogic and data structures</string>
     <!--DIALOGS IN ABOUT ACTIVITY-->
     <string name="about_dialog_title">More about us</string>
     <string name="btn_text">OK</string>
     <!-- SETTING ACTIVITY STRINGS -->
     <string name="settings_title">Settings</string>
-    <string name="fname"><b>First Name</b></string>
-    <string name="lname"><b>Last Name</b></string>
-    <string name="email"><b>Email</b></string>
-    <string name="password"><b>Password</b></string>
-    <string name="pref_curr"><b>Preferred Currency</b></string>
-    <string name="pref_stock"><b>Preferred Stock Exchange</b></string>
+    <string name="fname"><b>First Name:</b></string>
+    <string name="lname"><b>Last Name:</b></string>
+    <string name="email"><b>Email:</b></string>
+    <string name="password"><b>Password:</b></string>
+    <string name="pref_curr"><b>Preferred Currency:</b></string>
+    <string name="pref_stock"><b>Preferred Stock Exchange:</b></string>
     <string name="date">Last Updated: 29/11/2018</string>
     <string-array name="spinner_values_currency">
         <item>CAD</item>
