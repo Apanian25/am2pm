@@ -97,11 +97,11 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     //will cancle
-                    Log.i("CANCLED", "Cancle");
+                    Log.i("CANCLED", "Cancel");
                 }
             });
 
-            builder.show();
+            builder.show(); //todo ask
 
         }
 
@@ -136,7 +136,7 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
      * For ex: this method wont be called if no changed were detected
      */
     public void saveInfo(View view){
-        SharedPreferences prefs = getSharedPreferences("name", MODE_PRIVATE); //to change string
+        SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
         Spinner spinner_curr = findViewById(R.id.pref_curr);
         Spinner spinner_stock = findViewById(R.id.pref_stock); ////////////ASK WHY HERE?
@@ -172,14 +172,14 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
      * Helper method used to load shared preferences
      */
     private void loadInfo(){
-        SharedPreferences prefs = getSharedPreferences("name", MODE_PRIVATE); //to change string
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         ((EditText)findViewById(R.id.fname)).setText(prefs.getString("fname", null));
         ((EditText)findViewById(R.id.lname)).setText(prefs.getString("lname", null));
         ((EditText)findViewById(R.id.email)).setText(prefs.getString("email", null));
         ((EditText)findViewById(R.id.password)).setText(prefs.getString("password", null));
         ((Spinner)findViewById(R.id.pref_curr)).setSelection(prefs.getInt("curr", 0));
         ((Spinner)findViewById(R.id.pref_stock)).setSelection(prefs.getInt("stock", 0));
-        ((TextView)findViewById(R.id.date)).setText(prefs.getString("date", null));
+        ((TextView)findViewById(R.id.date)).setText(R.string.date +  " " + prefs.getString("date", null));
     }
 
 }
