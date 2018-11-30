@@ -1,14 +1,14 @@
 package com.dawson.jonat.stockers.Hints;
 
-public class Hints {
+public class Hint {
     private String hint;
     private String url;
 
-    public Hints(){
+    public Hint(){
 
     }
 
-    public Hints(String hint, String url){
+    public Hint(String hint, String url){
         this.hint = hint;
         this.url = url;
     }
