@@ -1,27 +1,35 @@
 {
   "project_info": {
-    "project_number": "640270396045",
-    "firebase_url": "https://stockers-b79f4.firebaseio.com",
-    "project_id": "stockers-b79f4",
-    "storage_bucket": "stockers-b79f4.appspot.com"
+    "project_number": "173648502582",
+    "firebase_url": "https://stocker-a6d4e.firebaseio.com",
+    "project_id": "stocker-a6d4e",
+    "storage_bucket": "stocker-a6d4e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:640270396045:android:f81d3bb603f93099",
+        "mobilesdk_app_id": "1:173648502582:android:f81d3bb603f93099",
         "android_client_info": {
           "package_name": "com.dawson.jonat.stockers"
         }
       },
       "oauth_client": [
         {
-          "client_id": "640270396045-d9of2gjcoi2jkqacf1b6u7lk83hci2vj.apps.googleusercontent.com",
+          "client_id": "173648502582-0fukohcfa8dh15q1md6cgen0m75pkuc5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dawson.jonat.stockers",
+            "certificate_hash": "89162cf2e8e360c797170be251f0970eda0993e9"
+          }
+        },
+        {
+          "client_id": "173648502582-ggmk41s38l7icpq7vqur375a7l061nms.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAq629Fg4s8kFLoJqGUSG3lfBJVQO_AYsY"
+          "current_key": "AIzaSyBia5jAUGEis9DQAXbNn2wswhBrF_1xgGk"
         }
       ],
       "services": {
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "173648502582-ggmk41s38l7icpq7vqur375a7l061nms.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
