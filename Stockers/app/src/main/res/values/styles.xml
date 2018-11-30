@@ -1,7 +1,10 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme">
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="tableContent">
+       <item name="android:textSize">20sp</item>
     </style>
 </resources>

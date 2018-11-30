@@ -34,22 +34,22 @@ public class LoanCalculatorActivity extends AppCompatActivity {
 
     /**
      * Reads the user input and will then calculate the LoanPaymentResults, which will then be
-     * displayed on the screen.
+     * displayed on the screen. If there are any errors with the data, a toast message will be
+     * displayed
      *
      * @param view
      */
     public void calculateAndDisplayResults(View view) {
         try {
-            double amount = Double.parseDouble(this.amountView.getText().toString());
-            double interestRate = Double.parseDouble(this.interestRateView.getText().toString());
-            double minPayment = Double.parseDouble(this.minPaymentView.getText().toString());
-            int years = Integer.parseInt(spinnerYears.getSelectedItem().toString());
-
-            this.displayResults(LoanCalculator.calculateInterestPayoutSummary(amount, interestRate, minPayment, years));
-        } catch (Exception e) {
-            Toast.makeText(this, "Please ensure that all the fields are filled in", Toast.LENGTH_LONG).show();
+            CalculationInformation info = this.validateAndRetrieveValues();
+            this.displayResults(LoanCalculator.calculateInterestPayoutSummary(info.getPrincipal(),
+                   info.getInterestRate(), info.getMinimumPayment(), info.getYears()));
+        } catch (InvalidCalculationValuesException exception) {
+            this.displayErrorToastMessage(exception.getMessage());
         }
     }
+
+
 
     /**
      * Event handler that will check if results have been calculated, and if they have, it will then
@@ -104,5 +104,47 @@ public class LoanCalculatorActivity extends AppCompatActivity {
         //Set the drop down view
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.spinnerYears.setAdapter(arrayAdapter);
+    }
+
+    /**
+     * Helper method that will display a toast message with a specified string of text
+     */
+    private void displayErrorToastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * This method will test to ensure that all of the information entered by the user is valid. If
+     * the infromation is valid, then return the information in a CalculationInformation calss and if
+     * the information is invalid, a InvalidCalculationValuesException will be thrown with a message
+     * saying which field is invalid.
+     *
+     * @return
+     * @throws InvalidCalculationValuesException
+     */
+    private CalculationInformation validateAndRetrieveValues() throws InvalidCalculationValuesException {
+        double amount = 0;
+        double interestRate = 0;
+        double minPayment = 0;
+        int years = Integer.parseInt(spinnerYears.getSelectedItem().toString());
+
+        //The string value checked is used to keep track of what was the field that caused the exception
+        //to be thrown, in order to tell the user which field has the error
+        String valueChecked = "amount";
+
+        try {
+            amount = Double.parseDouble(this.amountView.getText().toString());
+
+            valueChecked = "interest rate";
+            interestRate = Double.parseDouble(this.interestRateView.getText().toString());
+
+            valueChecked = "minimum payment";
+            minPayment = Double.parseDouble(this.minPaymentView.getText().toString());
+        } catch (NumberFormatException exception) {
+            throw new InvalidCalculationValuesException("Opps, looks like the value you placed in " + valueChecked
+                    + " is not valid. Please change that value.", this);
+        }
+
+        return new CalculationInformation(amount, interestRate, minPayment, years);
     }
 }
