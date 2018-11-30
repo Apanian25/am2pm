@@ -16,7 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Hints.FinancialHintsActivity"></activity>
-    </application>
+        <activity android:name=".Hints.FinancialHintsActivity" />
+        <activity android:name=".Messaging.Messaging"></activity>
 
+        <service android:name=".Messaging.StockersFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
 </manifest>
