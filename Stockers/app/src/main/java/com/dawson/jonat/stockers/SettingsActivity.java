@@ -179,7 +179,7 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
         ((EditText)findViewById(R.id.password)).setText(prefs.getString("password", null));
         ((Spinner)findViewById(R.id.pref_curr)).setSelection(prefs.getInt("curr", 0));
         ((Spinner)findViewById(R.id.pref_stock)).setSelection(prefs.getInt("stock", 0));
-        ((TextView)findViewById(R.id.date)).setText(R.string.date +  " " + prefs.getString("date", null));
+        ((TextView)findViewById(R.id.date)).setText(getString(R.string.date) +  " " + prefs.getString("date", null));
     }
 
 }

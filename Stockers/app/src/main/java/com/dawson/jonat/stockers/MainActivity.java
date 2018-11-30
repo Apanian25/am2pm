@@ -29,12 +29,7 @@ public class MainActivity extends Menus {
         setContentView(R.layout.activity_main);
     }
 
-    public void goToNoteActivity(View view) {
-        Intent intent = new Intent(MainActivity.this, NoteActivity.class);
-        startActivity(intent);
-    }
     public void foreignExchangeClick(View v){
-
     }
 
     public void financialHintsClick(View v){
@@ -46,7 +41,8 @@ public class MainActivity extends Menus {
     }
 
     public void notesClick(View v){
-
+        Intent intent = new Intent(MainActivity.this, NoteActivity.class);
+        startActivity(intent);
     }
 
     public void loanCalculatorClick(View v){
