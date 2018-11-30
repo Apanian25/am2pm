@@ -17,6 +17,10 @@ import android.widget.Toast;
 
 import com.dawson.jonat.stockers.Menu.Menus;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * Class responsible for letting the user enter info such as: first name, last name, email, password
  * and lets the user to chose the preferred currency and the preferred stock.
@@ -26,16 +30,22 @@ import com.dawson.jonat.stockers.Menu.Menus;
  * @version 1.0
  */
 public class SettingsActivity extends Menus  implements AdapterView.OnItemSelectedListener{
-    private String fname, lname, email, password, curr, stock, date;
+    private String fname, lname, email, password, date;
+    private int curr, stock;
+    private Spinner spinner_curr, spinner_stock;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         //initialize spinner
-        createSpinner(R.id.pref_curr, R.array.spinner_values_currency); //params: id of the spinner, string-array with values
-        createSpinner(R.id.pref_stock, R.array.spinner_values_stock); //params: id of the spinner, string-array with values
+        Spinner spinner_curr = findViewById(R.id.pref_curr);
+        Spinner spinner_stock = findViewById(R.id.pref_stock);
+        createSpinner(spinner_curr, R.array.spinner_values_currency); //params: spinner, string-array with values
+        createSpinner(spinner_stock, R.array.spinner_values_stock); //params: spinner, string-array with values
+
 
         //get values from shared preferences
+        loadInfo();
     }
 
     /**
@@ -97,11 +107,10 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
 
     /**
      * Helper method to create a spinner
-     * @param id -> spinner id (either currency spinner or stock spinner)
+     * @param spinner -> either currency spinner or stock spinner)
      * @param array -> spinner string-array items that represent either the currencies or the stocks
      */
-    private void createSpinner(int id, int array){
-        Spinner spinner = findViewById(id); //find
+    private void createSpinner(Spinner spinner, int array){
         //create an array adapter using the pre-defined spinner layout in android
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, array, android.R.layout.simple_spinner_item);
         //init
@@ -127,15 +136,17 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
      * For ex: this method wont be called if no changed were detected
      */
     public void saveInfo(View view){
-       SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-       SharedPreferences.Editor editor = prefs.edit();
+        SharedPreferences prefs = getSharedPreferences("name", MODE_PRIVATE); //to change string
+        SharedPreferences.Editor editor = prefs.edit();
+        Spinner spinner_curr = findViewById(R.id.pref_curr);
+        Spinner spinner_stock = findViewById(R.id.pref_stock); ////////////ASK WHY HERE?
         fname = ((EditText)findViewById(R.id.fname)).getText().toString();
         lname = ((EditText)findViewById(R.id.lname)).getText().toString();
         email = ((EditText)findViewById(R.id.email)).getText().toString();
         password = ((EditText)findViewById(R.id.password)).getText().toString();
-        curr = ((Spinner)findViewById(R.id.pref_curr)).getSelectedItem().toString();
-        stock = ((Spinner)findViewById(R.id.pref_stock)).getSelectedItem().toString();
-        date = ((TextView)findViewById(R.id.date)).getText().toString();
+        curr = spinner_curr.getSelectedItemPosition(); // we are storing the position and not the string
+        stock = spinner_stock.getSelectedItemPosition(); // we are storing the position and not the string
+        date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
         //store first name
         editor.putString("fname", fname);
@@ -146,11 +157,29 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
         // store password
         editor.putString("password", password);
         // store currency
-        editor.putString("curr", fname);
+        editor.putInt("curr", curr);
         // store stock
-        editor.putString("stock", fname);
+        editor.putInt("stock", stock);
         // store date
-        editor.putString("date", fname);
+        editor.putString("date", date);
+
+       editor.commit();
+
+        Toast.makeText(this, R.string.data_saved, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Helper method used to load shared preferences
+     */
+    private void loadInfo(){
+        SharedPreferences prefs = getSharedPreferences("name", MODE_PRIVATE); //to change string
+        ((EditText)findViewById(R.id.fname)).setText(prefs.getString("fname", null));
+        ((EditText)findViewById(R.id.lname)).setText(prefs.getString("lname", null));
+        ((EditText)findViewById(R.id.email)).setText(prefs.getString("email", null));
+        ((EditText)findViewById(R.id.password)).setText(prefs.getString("password", null));
+        ((Spinner)findViewById(R.id.pref_curr)).setSelection(prefs.getInt("curr", 0));
+        ((Spinner)findViewById(R.id.pref_stock)).setSelection(prefs.getInt("stock", 0));
+        ((TextView)findViewById(R.id.date)).setText(prefs.getString("date", null));
     }
 
 }
