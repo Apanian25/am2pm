@@ -15,6 +15,7 @@ public class StockersFirebaseMessagingService extends FirebaseMessagingService {
      */
     @Override
     public void onNewToken(String token) {
+        super.onNewToken(token);
         Log.i(TAG, "Refresehed Token: " + token);
         //Send the token to the server
         //TODO sendRegistrationToServer(token);
@@ -22,7 +23,13 @@ public class StockersFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+            super.onMessageReceived(remoteMessage);
 
+            String title = remoteMessage.getNotification().getTitle();
+            String text = remoteMessage.getNotification().getBody();
+
+            NotificationUtilities notificationUtilities = new NotificationUtilities(getApplicationContext());
+            notificationUtilities.displayNotification(title, text);
 
     }
 
