@@ -60,19 +60,20 @@ public class AboutActivity extends Menus {
         builder.setTitle(R.string.about_dialog_title);
 
         switch (view.getId()){
-            case R.id.john:
-                builder.setMessage(R.string.git_john);
-                break;
-            case R.id.lara:
-                builder.setMessage(R.string.git_lara);
-                break;
 
-            case R.id.nick:
-                builder.setMessage(R.string.git_nick);
-                break;
-            case R.id.danny:
-                builder.setMessage(R.string.git_danny);
-                break;
+//            case R.id.john:
+//                builder.setMessage(R.string.git_john);
+//                break;
+//            case R.id.lara:
+//                builder.setMessage(R.string.git_lara);
+//                break;
+//
+//            case R.id.nick:
+//                builder.setMessage(R.string.git_nick);
+//                break;
+//            case R.id.danny:
+//                builder.setMessage(R.string.git_danny);
+//                break;
         }
 
         //close alert when user clicks ok

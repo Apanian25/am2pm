@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,6 +34,8 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
     private String fname, lname, email, password, date;
     private int curr, stock;
     private Spinner spinner_curr, spinner_stock;
+    protected boolean isBackKey;
+    protected boolean prefChanged;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,13 +59,29 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
      */
     @Override
     public void onPause(){
-        //dialog will launch if some changes were detected todo
         super.onPause();
-        showDialog();
-        //ask how to cancle - finish
-        //todo ask tricia and my team
+        //check if user quits the page by selecting another option on the menu or back button
+        Log.i("TGA", "Those are the values--->" + isOptionSelected +" option selected" + isBackKey + " is back key" + prefChanged + "are prefs changed");
+        if((isOptionSelected || isBackKey)){
+            //check if something has changes
+            if(checkIfChanged()){
+                showDialog();
+            }
+            else{
+                finish();
+            }
+        }
     }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        super.onKeyDown(keyCode, event);
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Log.d(this.getClass().getName(), "back button pressed");
+            isBackKey = true;
+
+        }
+        return isBackKey;
+    }
     /**
      * Must override the option menu items - don't let the user click on the setting option to launch
      * the setting activity from the setting page itself
@@ -182,4 +201,31 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
         ((TextView)findViewById(R.id.date)).setText(getString(R.string.date) +  " " + prefs.getString("date", null));
     }
 
+    private boolean checkIfChanged() {
+        //todo make better synatx
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //get everything
+        if (!((EditText) findViewById(R.id.fname)).getText().toString().equals(prefs.getString("fname", null))) {
+            return true;
+        }
+       return false;
+    }
+
+//        }
+//        ((EditText)findViewById(R.id.fname)).setText(prefs.getString("fname", null));
+//        ((EditText)findViewById(R.id.lname)).setText(prefs.getString("lname", null));
+//        ((EditText)findViewById(R.id.email)).setText(prefs.getString("email", null));
+//        ((EditText)findViewById(R.id.password)).setText(prefs.getString("password", null));
+//        ((Spinner)findViewById(R.id.pref_curr)).setSelection(prefs.getInt("curr", 0));
+//        ((Spinner)findViewById(R.id.pref_stock)).setSelection(prefs.getInt("stock", 0));
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+//
+//        ((EditText)findViewById(R.id.fname)).setText(prefs.getString("fname", null));
+//        ((EditText)findViewById(R.id.lname)).setText(prefs.getString("lname", null));
+//        ((EditText)findViewById(R.id.email)).setText(prefs.getString("email", null));
+//        ((EditText)findViewById(R.id.password)).setText(prefs.getString("password", null));
+//        ((Spinner)findViewById(R.id.pref_curr)).setSelection(prefs.getInt("curr", 0));
+//        ((Spinner)findViewById(R.id.pref_stock)).setSelection(prefs.getInt("stock", 0));
+//
+//    }
 }
