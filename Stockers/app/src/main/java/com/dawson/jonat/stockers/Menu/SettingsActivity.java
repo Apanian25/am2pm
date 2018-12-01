@@ -20,6 +20,7 @@ import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -164,7 +165,7 @@ public class SettingsActivity extends Menus {
         // store stock
         editor.putInt("stock", spinner_stock.getSelectedItemPosition());
         // store date
-        editor.putString("date", last_mod_date.getText().toString());
+        editor.putString("date", new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime()));
 
         editor.commit();
 
@@ -183,7 +184,7 @@ public class SettingsActivity extends Menus {
         password.setText(prefs.getString("password", null));
         spinner_curr.setSelection(prefs.getInt("curr", 0));
         spinner_stock.setSelection(prefs.getInt("stock", 0));
-        last_mod_date.setText(prefs.getString("date", null));
+        last_mod_date.setText(" " + prefs.getString("date", null));
     }
 
     /**
