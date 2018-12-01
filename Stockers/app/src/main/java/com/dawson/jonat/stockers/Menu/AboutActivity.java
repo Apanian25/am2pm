@@ -1,4 +1,4 @@
-package com.dawson.jonat.stockers;
+package com.dawson.jonat.stockers.Menu;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.View;
 
 import com.dawson.jonat.stockers.Menu.Menus;
+import com.dawson.jonat.stockers.R;
+
 /**
  * Class responsible for displaying information about the app,
  * how to use, the apps purpose and its developers

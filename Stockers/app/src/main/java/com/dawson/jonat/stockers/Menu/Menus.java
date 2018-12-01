@@ -1,18 +1,13 @@
 package com.dawson.jonat.stockers.Menu;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 
-import com.dawson.jonat.stockers.AboutActivity;
 import com.dawson.jonat.stockers.R;
-import com.dawson.jonat.stockers.SettingsActivity;
 
-import java.net.URI;
 /**
  * Class responsible for displaying an Options menu with
  * 3 choices: About --> info about app and the team

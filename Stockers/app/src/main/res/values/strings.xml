@@ -83,4 +83,5 @@
     <string name="no_internet_message">The following page requires network connection</string>
     <string name="error_server">503 Service Unavailable</string>
     <string name="wrong_url">Something went wrong went wrong, please try again!</string>
+    <string name="no_results_found">No results found for ticker symbol --> </string>
 </resources>

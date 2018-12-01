@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".AboutActivity"
+    tools:context=".Menu.AboutActivity"
     android:textSize="15sp"
     android:layout_gravity="center"
     android:orientation="vertical">

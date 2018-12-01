@@ -1,4 +1,4 @@
-package com.dawson.jonat.stockers;
+package com.dawson.jonat.stockers.Menu;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dawson.jonat.stockers.Menu.Menus;
+import com.dawson.jonat.stockers.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -185,6 +186,8 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
        editor.commit();
 
         Toast.makeText(this, R.string.data_saved, Toast.LENGTH_SHORT).show();
+
+        loadInfo(); //to show new
     }
 
     /**

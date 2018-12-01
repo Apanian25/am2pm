@@ -26,7 +26,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ShowStockActivity extends Menus {
-    TextView ticker,companyName, price, currency, stockExcahnge;
+    TextView ticker,companyName, price, stockExcahnge;
     ConnectivityManager connectionManager; //Class that answers queries about the state of network connectivity.
     NetworkInfo netInfo;
     String tickerText;
@@ -40,7 +40,6 @@ public class ShowStockActivity extends Menus {
             ticker = findViewById(R.id.ticker);
             companyName = findViewById(R.id.companyName);
             price = findViewById(R.id.currentPrice);
-            currency= findViewById(R.id.currencyType);
             stockExcahnge = findViewById(R.id.stockExchange);
             tickerText = getIntent().getExtras().getString("ticker");
             showStockQuotes();
@@ -70,7 +69,6 @@ public class ShowStockActivity extends Menus {
         }
 
         protected void onPostExecute(String[] result) {
-            //what to do? if(result.equals(null))
             /**
              * Assume array stores the following values - structure:
              * 0 - company name
@@ -78,11 +76,15 @@ public class ShowStockActivity extends Menus {
              * 2- currency
              * 3 - stock exchange
              */
-            ticker.setText(tickerText);
-            companyName.setText(result[0]);
-            price.setText(result[1]);
-            currency.setText(result[2]);
-            stockExcahnge.setText(result[3]);
+           try{
+                ticker.setText(tickerText);
+                companyName.setText(result[0]);
+                price.setText(result[1] + " " +  result[2]);
+                stockExcahnge.setText(result[3]);
+            }
+            catch (NullPointerException np){
+                ticker.setText(getString(R.string.no_results_found) + "  " + tickerText);
+            }
         }
 
 
@@ -128,18 +130,22 @@ public class ShowStockActivity extends Menus {
                 //if still here, the response was fine
                 //get the stream to the input
                 input = httpUrlCon.getInputStream();
-
-                JSONObject json = new JSONObject(convertResponseToString(input));
                 String[] results = new String[4]; //assume - company name  --> 0, price --> 1 currency at --> 2, stock ex -->3
-                JSONObject resultsToReturn = json.getJSONArray("data").getJSONObject(0);
-                results[0] = resultsToReturn.getString("name");
-                results[1] = resultsToReturn.getString("price");
-                results[2] = resultsToReturn.getString("currency");
-                results[3] = resultsToReturn.getString("stock_exchange_long") + " ( " + resultsToReturn.getString("stock_exchange_short") + " )";
-                return results;
+                try {
+                    JSONObject json = new JSONObject(convertResponseToString(input));
+                    JSONObject resultsToReturn = json.getJSONArray("data").getJSONObject(0);
+                    results[0] = resultsToReturn.getString("name");
+                    results[1] = resultsToReturn.getString("price");
+                    results[2] = resultsToReturn.getString("currency");
+                    results[3] = resultsToReturn.getString("stock_exchange_long") + " ( " + resultsToReturn.getString("stock_exchange_short") + " )";
+                    return results;
+
+                }
+                catch (JSONException np){
+                    return null;
+                }
+
             } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
                 e.printStackTrace();
             }
             httpUrlCon.disconnect();
