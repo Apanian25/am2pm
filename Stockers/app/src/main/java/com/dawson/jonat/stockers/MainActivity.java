@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.dawson.jonat.stockers.Hints.FinancialHintsActivity;
 import com.dawson.jonat.stockers.Hints.HintsFragmentPagerAdapter;
+import com.dawson.jonat.stockers.StockQuote.ShowStockActivity;
 import com.dawson.jonat.stockers.StockQuote.StockQuotesActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -38,7 +39,10 @@ public class MainActivity extends Menus {
     }
 
     public void stockQuoteClick(View v){
-        Intent intent = new Intent(MainActivity.this,StockQuotesActivity.class);
+//        Intent intent = new Intent(MainActivity.this,StockQuotesActivity.class);
+//        startActivity(intent);
+        Intent intent = new Intent(MainActivity.this,ShowStockActivity.class); //TO PUT IN ADAPTER LATER
+        intent.putExtra("ticker","ABC"); //HARD CODED FOR TESTING
         startActivity(intent);
     }
 

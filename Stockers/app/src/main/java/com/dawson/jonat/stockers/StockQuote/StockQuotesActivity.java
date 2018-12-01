@@ -9,11 +9,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
 
 import java.util.ArrayList;
 
-public class StockQuotesActivity extends AppCompatActivity {
+public class StockQuotesActivity extends Menus {
     ArrayList<Ticker> list;
     EditText ed;
 

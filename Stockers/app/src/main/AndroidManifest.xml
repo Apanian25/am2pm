@@ -19,6 +19,7 @@
         <activity android:name=".AboutActivity"></activity>
         <activity android:name=".SettingsActivity"></activity>
         <activity android:name=".StockQuote.StockQuotesActivity"></activity>
+        <activity android:name=".StockQuote.ShowStockActivity"></activity>
         <activity
             android:name=".NoteActivity"
             android:label="@string/title_activity_note"></activity>
