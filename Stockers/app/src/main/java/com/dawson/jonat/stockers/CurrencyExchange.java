@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -33,11 +35,11 @@ import java.util.Map;
 public class CurrencyExchange extends Activity {
 
     private TextView connectivity;
-    private EditText amount;
     private Spinner currencySpinner;
+    private EditText amount;
     ArrayList<String> currencies;
     ArrayList<Double> rates;
-    private static final String TAG = "CurrecnyExcahnge";
+    private static final String TAG = "CurrencyExchange";
 
 
     @Override
@@ -55,9 +57,11 @@ public class CurrencyExchange extends Activity {
      *
      */
     private void instantiatePrivateFields() {
-        connectivity = (TextView) findViewById(R.id.connectivity);
-        amount = (EditText) findViewById(R.id.amount);
-        currencySpinner = (Spinner) findViewById(R.id.currencies);
+        connectivity = findViewById(R.id.connectivity);
+        amount = findViewById(R.id.amount);
+        //will be changed to users preference after
+        ((TextView)findViewById(R.id.userCurrency)).setText("USD");
+        currencySpinner = findViewById(R.id.currencies);
 
         getExchangeRates();
 
@@ -70,13 +74,13 @@ public class CurrencyExchange extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Double doubleAmount = Double.valueOf(s.toString());
+                Double doubleAmount;
+                if(s.toString().isEmpty())
+                    doubleAmount = 0.0;
+                else
+                    doubleAmount = Double.valueOf(s.toString());
+
                 performExchange(doubleAmount);
-            }
-
-            private void performExchange(Double doubleAmount) {
-
-
             }
 
             @Override
@@ -87,6 +91,13 @@ public class CurrencyExchange extends Activity {
 
     }
 
+    private void performExchange(Double doubleAmount) {
+        TextView exchangedAmount = findViewById(R.id.result);
+        String selected = currencySpinner.getSelectedItem().toString();
+        int index = currencies.lastIndexOf(selected);
+        exchangedAmount.setText(String.format("%s", doubleAmount * rates.get(index)));
+    }
+
 
     private void createSpinner(){
         //create an array adapter using the pre-defined spinner layout in android
@@ -95,7 +106,20 @@ public class CurrencyExchange extends Activity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         currencySpinner.setAdapter(adapter);
-//        currencySpinner.setOnItemSelectedListener(this);
+        currencySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                String value = amount.getText().toString();
+
+                if(value.isEmpty())
+                    performExchange(0.0);
+                else
+                    performExchange(Double.valueOf(value));
+
+            } // to close the onItemSelected
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
     }
 
 
@@ -197,8 +221,10 @@ public class CurrencyExchange extends Activity {
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
-        httpUrlCon.disconnect();
-        input.close();
+        if(httpUrlCon != null)
+            httpUrlCon.disconnect();
+        if(input != null)
+            input.close();
         return false;
     }
 
