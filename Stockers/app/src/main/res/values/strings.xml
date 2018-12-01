@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Stockers</string>
+    <string name="calculate">Calculate</string>
+    <string name="amount_hint">1000</string>
 </resources>
