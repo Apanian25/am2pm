@@ -1,12 +1,12 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme"> <!--ask todo -->
+    <style name="AppTheme"  parent="Theme.AppCompat.Light.DarkActionBar"> <!--ask todo -->
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">18sp</item>
 
     </style>
 
@@ -15,7 +15,7 @@
     Style is based off code from:
     https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#9
     -->
-    <style name="word_title">
+    <style name="word_title"  parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">26dp</item>
         <item name="android:textSize">24sp</item>

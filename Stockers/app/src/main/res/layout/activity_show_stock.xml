@@ -17,33 +17,31 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ABC"
+            android:id="@+id/ticker"
             style="@style/text_style"
             android:layout_gravity="center"/>
         <!-- actual data -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="companyName"/>
+            android:id="@+id/companyName"/>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2.56 - as current price"/>
+            android:id="@+id/currentPrice"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="currencyType"/>
-
+            android:id="@+id/currencyType"/>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="stock exchange"/>
-
+            android:id="@+id/stockExchange"/>
     </LinearLayout>
 </ScrollView>
 
