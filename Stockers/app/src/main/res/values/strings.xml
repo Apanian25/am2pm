@@ -45,6 +45,13 @@
     </string-array>
     <string name="choose_curr">Choose currency</string>
     <string name="choose_stock">Choose stock</string>
+<string-array name="spinner_values_curr">
+     <item>TSX</item>
+     <item>NYSE</item>
+     <item>NASDAQ</item>
+    </string-array>
+    <string name="chose_curr">Chose currency</string>
+    <string name="chose_stock">Chose stock</string>
     <string name="btn_text_settings">Save</string>
 
     <!--DIALOGS IN SETTINGS ACTIVITY-->

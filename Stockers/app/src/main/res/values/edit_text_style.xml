@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="edit_text" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:maxLines">1</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:background">@drawable/rounded_border</item>
+        <item name="android:paddingLeft">3dp</item>
+    </style>
+
+</resources>

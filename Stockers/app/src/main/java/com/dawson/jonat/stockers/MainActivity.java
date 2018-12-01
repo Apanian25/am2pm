@@ -14,7 +14,9 @@ import com.dawson.jonat.stockers.Hints.HintsFragmentPagerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
-public class MainActivity extends Activity {
+import com.dawson.jonat.stockers.Menu.Menus;
+
+public class MainActivity extends Menus {
 
 
     private FirebaseAuth mAuth;
@@ -27,12 +29,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
-    public void goToNoteActivity(View view) {
-        Intent intent = new Intent(MainActivity.this, NoteActivity.class);
-        startActivity(intent);
-    }
     public void foreignExchangeClick(View v){
-
     }
 
     public void financialHintsClick(View v){
@@ -44,7 +41,8 @@ public class MainActivity extends Activity {
     }
 
     public void notesClick(View v){
-
+        Intent intent = new Intent(MainActivity.this, NoteActivity.class);
+        startActivity(intent);
     }
 
     public void loanCalculatorClick(View v){

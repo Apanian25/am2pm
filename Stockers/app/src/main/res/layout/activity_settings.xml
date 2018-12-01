@@ -26,9 +26,7 @@
             android:text="@string/settings_title"
             style="@style/text_style"
             android:layout_gravity="center"/>
-
     <!-- actual data -->
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
