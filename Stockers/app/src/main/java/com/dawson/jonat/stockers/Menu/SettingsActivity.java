@@ -31,38 +31,43 @@ import java.util.Locale;
  * @author Lara Mezirovsky
  * @version 1.0
  */
-public class SettingsActivity extends Menus  implements AdapterView.OnItemSelectedListener{
-    private String fname, lname, email, password, date;
-    private int curr, stock;
-    private Spinner spinner_curr, spinner_stock;
+public class SettingsActivity extends Menus {
     protected boolean isBackKey;
-    protected boolean prefChanged;
+    Spinner spinner_curr, spinner_stock;
+    EditText fname, lname, email, password;
+    TextView last_mod_date;
+    SharedPreferences.Editor editor;
+    SharedPreferences prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        //initialize spinner
-        Spinner spinner_curr = findViewById(R.id.pref_curr);
-        Spinner spinner_stock = findViewById(R.id.pref_stock);
+        //initialize
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        fname = findViewById(R.id.fname);
+        lname = findViewById(R.id.lname);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        spinner_curr = findViewById(R.id.pref_curr);
+        spinner_stock = findViewById(R.id.pref_stock);
         createSpinner(spinner_curr, R.array.spinner_values_currency); //params: spinner, string-array with values
         createSpinner(spinner_stock, R.array.spinner_values_stock); //params: spinner, string-array with values
-
-
+        last_mod_date = findViewById(R.id.date);
         //get values from shared preferences
         loadInfo();
     }
 
     /**
-     *  Must override the onPause method - the about activity will create/recreate
-     * an instance of it self when clicking on the settings option.
-     * As soon as the user clicks back, the activity will close itself, asking the user
-     * if he/she wishes to save his changes/if applicable
+     *  Must override the onPause method - As soon as the user clicks back or on another
+     *  menu option, the activity will askt the user if he wishes to save his changes (if any were detected)
+     *  As well, the current activity will close itself in order not to pile up the back stack.\
      */
     @Override
     public void onPause(){
         super.onPause();
         //check if user quits the page by selecting another option on the menu or back button
-        Log.i("TGA", "Those are the values--->" + isOptionSelected +" option selected" + isBackKey + " is back key" + prefChanged + "are prefs changed");
         if((isOptionSelected || isBackKey)){
             //check if something has changes
             if(checkIfChanged()){
@@ -74,15 +79,6 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
         }
     }
 
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        super.onKeyDown(keyCode, event);
-        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            Log.d(this.getClass().getName(), "back button pressed");
-            isBackKey = true;
-
-        }
-        return isBackKey;
-    }
     /**
      * Must override the option menu items - don't let the user click on the setting option to launch
      * the setting activity from the setting page itself
@@ -110,14 +106,13 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
             builder.setPositiveButton(R.string.btn_text, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    //will be saved in shared pref
+                    saveInfoHelper();
                 }
             });
             builder.setNegativeButton(R.string.btn_text_settings_cancle, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    //will cancle
-                    Log.i("CANCLED", "Cancel");
+                    //todo: nothing?
                 }
             });
 
@@ -132,22 +127,14 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
      */
     private void createSpinner(Spinner spinner, int array){
         //create an array adapter using the pre-defined spinner layout in android
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                                                                                     array,
+                                                                                     android.R.layout.simple_spinner_item);
         //init
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-       //store in shared pref.
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-    //log nothing was selected
-    }
 
     /**
      * As soon as the user clicks on the save button/ or on the OK option in the dialog before quiting the page,
@@ -156,79 +143,80 @@ public class SettingsActivity extends Menus  implements AdapterView.OnItemSelect
      * For ex: this method wont be called if no changed were detected
      */
     public void saveInfo(View view){
-        SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = prefs.edit();
-        Spinner spinner_curr = findViewById(R.id.pref_curr);
-        Spinner spinner_stock = findViewById(R.id.pref_stock); ////////////ASK WHY HERE?
-        fname = ((EditText)findViewById(R.id.fname)).getText().toString();
-        lname = ((EditText)findViewById(R.id.lname)).getText().toString();
-        email = ((EditText)findViewById(R.id.email)).getText().toString();
-        password = ((EditText)findViewById(R.id.password)).getText().toString();
-        curr = spinner_curr.getSelectedItemPosition(); // we are storing the position and not the string
-        stock = spinner_stock.getSelectedItemPosition(); // we are storing the position and not the string
-        date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+       saveInfoHelper();
+    }
 
+    /**
+     * Private helper method to save fname, lname, email, password, currency, stock exchange and date in
+     * shared preferences
+     */
+    private void saveInfoHelper(){
         //store first name
-        editor.putString("fname", fname);
+        editor.putString("fname", fname.getText().toString());
         // store last name
-        editor.putString("lname", lname);
+        editor.putString("lname", lname.getText().toString());
         // store email
-        editor.putString("email", email);
+        editor.putString("email", email.getText().toString());
         // store password
-        editor.putString("password", password);
+        editor.putString("password", password.getText().toString());
         // store currency
-        editor.putInt("curr", curr);
+        editor.putInt("curr", spinner_curr.getSelectedItemPosition());
         // store stock
-        editor.putInt("stock", stock);
+        editor.putInt("stock", spinner_stock.getSelectedItemPosition());
         // store date
-        editor.putString("date", date);
+        editor.putString("date", last_mod_date.getText().toString());
 
-       editor.commit();
+        editor.commit();
 
         Toast.makeText(this, R.string.data_saved, Toast.LENGTH_SHORT).show();
 
-        loadInfo(); //to show new
+        loadInfo(); //to show new data immediately without refreshing the page
     }
 
     /**
      * Helper method used to load shared preferences
      */
     private void loadInfo(){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        ((EditText)findViewById(R.id.fname)).setText(prefs.getString("fname", null));
-        ((EditText)findViewById(R.id.lname)).setText(prefs.getString("lname", null));
-        ((EditText)findViewById(R.id.email)).setText(prefs.getString("email", null));
-        ((EditText)findViewById(R.id.password)).setText(prefs.getString("password", null));
-        ((Spinner)findViewById(R.id.pref_curr)).setSelection(prefs.getInt("curr", 0));
-        ((Spinner)findViewById(R.id.pref_stock)).setSelection(prefs.getInt("stock", 0));
-        ((TextView)findViewById(R.id.date)).setText(getString(R.string.date) +  " " + prefs.getString("date", null));
+        fname.setText(prefs.getString("fname", null));
+        lname.setText(prefs.getString("lname", null));
+        email.setText(prefs.getString("email", null));
+        password.setText(prefs.getString("password", null));
+        spinner_curr.setSelection(prefs.getInt("curr", 0));
+        spinner_stock.setSelection(prefs.getInt("stock", 0));
+        last_mod_date.setText(prefs.getString("date", null));
     }
 
+    /**
+     * Private helper method that checks if user's input is different from what is stored in shared pref.
+     * @return
+     */
     private boolean checkIfChanged() {
         //todo make better synatx
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         //get everything
-        if (!((EditText) findViewById(R.id.fname)).getText().toString().equals(prefs.getString("fname", null))) {
+        if (!(fname.getText().toString().equals(prefs.getString("fname", null)) ||
+                lname.getText().toString().equals(prefs.getString("lname", null)) ||
+                email.getText().toString().equals(prefs.getString("email", null)) ||
+                password.getText().toString().equals(prefs.getString("password", null)) ||
+                spinner_curr.getSelectedItemPosition() == (prefs.getInt("curr", 0)) ||
+                spinner_stock.getSelectedItemPosition() == (prefs.getInt("stock", 0)))) {
             return true;
         }
        return false;
     }
 
-//        }
-//        ((EditText)findViewById(R.id.fname)).setText(prefs.getString("fname", null));
-//        ((EditText)findViewById(R.id.lname)).setText(prefs.getString("lname", null));
-//        ((EditText)findViewById(R.id.email)).setText(prefs.getString("email", null));
-//        ((EditText)findViewById(R.id.password)).setText(prefs.getString("password", null));
-//        ((Spinner)findViewById(R.id.pref_curr)).setSelection(prefs.getInt("curr", 0));
-//        ((Spinner)findViewById(R.id.pref_stock)).setSelection(prefs.getInt("stock", 0));
-//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-//
-//        ((EditText)findViewById(R.id.fname)).setText(prefs.getString("fname", null));
-//        ((EditText)findViewById(R.id.lname)).setText(prefs.getString("lname", null));
-//        ((EditText)findViewById(R.id.email)).setText(prefs.getString("email", null));
-//        ((EditText)findViewById(R.id.password)).setText(prefs.getString("password", null));
-//        ((Spinner)findViewById(R.id.pref_curr)).setSelection(prefs.getInt("curr", 0));
-//        ((Spinner)findViewById(R.id.pref_stock)).setSelection(prefs.getInt("stock", 0));
-//
-//    }
+
+    /**
+     * Helper method that will determine if the back key was pressed
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        super.onKeyDown(keyCode, event);
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Log.d(this.getClass().getName(), "back button pressed");
+            isBackKey = true;
+        }
+        return isBackKey;
+    }
 }

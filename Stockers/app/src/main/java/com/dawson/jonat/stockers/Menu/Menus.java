@@ -42,16 +42,21 @@ public class Menus extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+          Intent intent;
          isOptionSelected = true;
         switch (item.getItemId()) {
             case R.id.about:
-                launchAboutActivity();
+                intent = new Intent(this, AboutActivity.class);
+                launchActivity(intent);
                 return isOptionSelected;
             case R.id.dawson_website:
-                launchDawsonWebsiteActivity();
+                intent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(this.getString(R.string.urlToDawson)));
+                launchActivity(intent);
                 return isOptionSelected;
             case R.id.settings:
-                launchSettingsActivity();
+                 intent = new Intent(this, SettingsActivity.class);
+                launchActivity(intent);
                 return isOptionSelected;
             default:
                 isOptionSelected = super.onOptionsItemSelected(item);
@@ -60,27 +65,9 @@ public class Menus extends AppCompatActivity {
     }
 
     /**
-     * Helper method to launch an explicit intent - about activity
+     * Helper method to launch an intent
      */
-    private void launchAboutActivity() {
-        Intent i = new Intent(this, AboutActivity.class);
+    private void launchActivity(Intent i) {
         startActivity(i);
     }
-
-    /**
-     * Helper method to launch an implicit intent - dawson college official website
-     */
-    private void launchDawsonWebsiteActivity() {
-        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(this.getString(R.string.urlToDawson)));
-        startActivity(i);
-    }
-
-    /**
-     * Helper method to launch an implicit intent - setting activity
-     * todo: put about and settings in one method to avoid repetition!
-     */
-    private void launchSettingsActivity(){
-        Intent i = new Intent(this, SettingsActivity.class);
-        startActivity(i);
-    }
-}//end class
+}

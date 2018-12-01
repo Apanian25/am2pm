@@ -12,7 +12,7 @@ import com.dawson.jonat.stockers.R;
 /**
  * Class responsible for displaying information about the app,
  * how to use, the apps purpose and its developers
- * By cliking on a developer, a dialog will pop up with the git name of that developer
+ * By clicking on a developer, a dialog will pop up with the git name of that developer
  *
  * @author Lara Mezirovsky
  * @version 1.0
@@ -26,9 +26,8 @@ public class AboutActivity extends Menus {
     }
 
     /**
-     * Must override the onPause method - the about activity will create/recreate
-     * an instance of it self when clicking on the about option.
-     * As soon as the user clicks back, the activity will close itself
+     * Must override the onPause method - soon as the user clicks back or clicks on
+     * another menu item, the activity will close itself
      */
     @Override
     public void onPause(){
@@ -36,7 +35,6 @@ public class AboutActivity extends Menus {
         //only if another item on the menu is selected
         if(isOptionSelected)
             finish();
-
     }
 
     /**
@@ -63,19 +61,19 @@ public class AboutActivity extends Menus {
 
         switch (view.getId()){
 
-//            case R.id.john:
-//                builder.setMessage(R.string.git_john);
-//                break;
-//            case R.id.lara:
-//                builder.setMessage(R.string.git_lara);
-//                break;
-//
-//            case R.id.nick:
-//                builder.setMessage(R.string.git_nick);
-//                break;
-//            case R.id.danny:
-//                builder.setMessage(R.string.git_danny);
-//                break;
+            case R.id.john:
+                builder.setMessage(R.string.git_john);
+                break;
+            case R.id.lara:
+                builder.setMessage(R.string.git_lara);
+                break;
+
+            case R.id.nick:
+                builder.setMessage(R.string.git_nick);
+                break;
+            case R.id.danny:
+                builder.setMessage(R.string.git_danny);
+                break;
         }
 
         //close alert when user clicks ok

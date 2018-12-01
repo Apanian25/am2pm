@@ -31,7 +31,7 @@
     <string name="password"><b>Password:</b></string>
     <string name="pref_curr"><b>Preferred Currency:</b></string>
     <string name="pref_stock"><b>Preferred Stock Exchange:</b></string>
-    <string name="date">Last Updated: </string>
+    <string name="label_date">Last Updated: </string>
     <string-array name="spinner_values_currency">
         <item>CAD</item>
         <item>USD</item>

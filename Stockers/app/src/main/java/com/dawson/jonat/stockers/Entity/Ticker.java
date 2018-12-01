@@ -1,10 +1,10 @@
-package com.dawson.jonat.stockers.StockQuote;
+package com.dawson.jonat.stockers.Entity;
 
 public class Ticker {
         private String symbol;
         private int image;
 
-        Ticker(String s, int image) {
+        public Ticker(String s, int image) {
             symbol = s;
             this.image = image;
         }

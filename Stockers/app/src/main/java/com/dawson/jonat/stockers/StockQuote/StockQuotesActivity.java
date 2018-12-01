@@ -1,7 +1,6 @@
 package com.dawson.jonat.stockers.StockQuote;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.dawson.jonat.stockers.Entity.Ticker;
 import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
 
