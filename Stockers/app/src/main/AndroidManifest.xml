@@ -20,7 +20,7 @@
 
         </activity>
         <activity android:name=".Hints.FinancialHintsActivity" />
-        <activity android:name=".CurrencyExchange">
+        <activity android:name=".CurrecnyExchange.CurrencyExchangeActivity">
             <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
