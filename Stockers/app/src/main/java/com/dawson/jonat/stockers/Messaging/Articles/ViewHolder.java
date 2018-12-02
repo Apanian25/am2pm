@@ -1,6 +1,8 @@
 package com.dawson.jonat.stockers.Messaging.Articles;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,7 +18,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     String url;
 
     /**
-     * Users
+     * Constructor that initializes the view holder
      *
      * @param view
      * @param context
@@ -29,11 +31,13 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     }
 
     /**
-     * When an view holder is clicked, it will launch an intent to send an email
+     * When an view holder is clicked, it will launch an to the url of the activity
      * @param v
      */
     @Override
     public void onClick(View v) {
-        //Here the article link should be sent
+        Intent urlIntent = new Intent(Intent.ACTION_VIEW);
+        urlIntent.setData(Uri.parse(url));
+        contextOfView.startActivity(urlIntent);
     }
 }
