@@ -44,7 +44,7 @@ public class StockQuotesActivity extends Menus {
             String text = ed.getText().toString();
             //check if not empty string
             if((!text.equals("")) || (!text.equals(null))){
-                list.add(new Ticker(text, R.drawable.trash));
+                list.add(new Ticker(text, R.drawable.trash, R.drawable.search));
                 return list;
             }
             else{

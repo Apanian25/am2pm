@@ -47,8 +47,8 @@ public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHold
     public void onBindViewHolder(final TickerHolder tickerHolder, int i) {
        Ticker t = tickers.get(i);
        tickerHolder.tickerSymbol.setText(t.getSymbol());
-       tickerHolder.sub.setImageResource(t.getImageSource());
-        tickerHolder.layout.setOnClickListener(new View.OnClickListener() {
+       tickerHolder.sub.setImageResource(t.getImageSourceDelete());
+       tickerHolder.search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i("Tag", "HEREEEEEEEEEEE");//todo to fix:(
@@ -57,6 +57,8 @@ public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHold
             }
         });
     }
+
+    //todo add to delete!
 
     @Override
     public int getItemCount() {
@@ -68,12 +70,12 @@ public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHold
 
         TextView tickerSymbol;
         ImageView sub;
-        LinearLayout layout;
+        ImageView search; //todo: add event to open new intent
         public TickerHolder(View itemView) {
             super(itemView);
             tickerSymbol = itemView.findViewById(R.id.tickerSymbol);
             sub = itemView.findViewById(R.id.sub);
-            layout = itemView.findViewById(R.id.view);
+            search = itemView.findViewById(R.id.search);
         }
     }
 }

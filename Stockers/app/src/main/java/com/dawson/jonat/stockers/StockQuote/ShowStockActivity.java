@@ -60,7 +60,7 @@ public class ShowStockActivity extends Menus {
         //get the url
         String url = "https://www.worldtradingdata.com/api/v1/stock?symbol="+tickerText+"&api_token=Qqn56QrK7FSkUbQxb3OFnZAqzKdAZ7NrMiGjPJgg2ky1qPywjPtETg81lbcB";
             new StocksThread().execute(url);
-        
+
     }
     /**
      * Inner class to represent my thread

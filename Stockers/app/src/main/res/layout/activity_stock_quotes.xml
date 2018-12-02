@@ -9,45 +9,44 @@
     tools:showIn="@layout/activity_stock_quotes"
     android:layout_gravity="center"
     android:orientation="vertical">
-        <ImageView
+    <!-- title -->
+    <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:paddingTop="10dp"
             android:src="@drawable/graph"
             android:layout_gravity="center"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/stock_quotes_title"
-            style="@style/text_style"
-            android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stock_quotes_title"
+        style="@style/text_style"
+        android:layout_gravity="center"/>
 
-        <!-- actual data -->
-
-        <TextView
-            android:layout_width="wrap_content"
+    <!-- actual data -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ticker_input"
+        android:layout_gravity="center"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <EditText
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="@string/ticker_input"
-            android:layout_gravity="center"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-            <EditText
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/tickerInput"
-                android:backgroundTint="@color/colorPrimary"
-                style="@style/edit_text"/>
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="2dp"
-                android:src="@drawable/ic_add_circle_black_24dp"
-                android:onClick="addTicker"/>
-        </LinearLayout>
+            android:id="@+id/tickerInput"
+            android:backgroundTint="@color/colorPrimary"
+            style="@style/edit_text"/>
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="2dp"
+            android:src="@drawable/add"
+            android:onClick="addTicker"/>
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

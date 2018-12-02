@@ -2,19 +2,25 @@ package com.dawson.jonat.stockers.Entity;
 
 public class Ticker {
         private String symbol;
-        private int image;
+        private int delete;
+        private int search;
 
-        public Ticker(String s, int image) {
+        public Ticker(String s, int delete, int search) {
             symbol = s;
-            this.image = image;
+            this.delete = delete;
+            this.search = search;
         }
 
         public String getSymbol(){
             return this.symbol;
         }
 
-        public int getImageSource(){
-            return this.image;
+        public int getImageSourceDelete(){
+            return this.delete;
         }
+        public int getImageSourceSearch(){
+        return this.search;
     }
+
+}
 
