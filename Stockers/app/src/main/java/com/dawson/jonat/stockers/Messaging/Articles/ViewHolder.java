@@ -13,6 +13,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     TextView textViewTitle;
     TextView textViewDescription;
+    String url;
 
     /**
      * Users
