@@ -15,12 +15,23 @@ import com.dawson.jonat.stockers.Entity.Ticker;
 import com.dawson.jonat.stockers.R;
 
 import java.util.ArrayList;
-
+/**
+ * Adapter responsible to create a recycler view holding up to 5 ticker symbols
+ * If user clicks on trash - will delete that item + update the list
+ * If user clicks on the view - an intent will get launched to see more info about that stock
+ * @author Lara Mezirovsky
+ * @version 1.0
+ */
 public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHolder>{
 
     Context c;
     ArrayList<Ticker> tickers;
 
+    /**
+     * Init context (StockQuotesActivity) and list of ticker symbols from the user
+     * @param context
+     * @param list
+     */
     public TickerAdapter(Context context, ArrayList<Ticker> list){
         c = context;
         tickers = list;
@@ -40,7 +51,7 @@ public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHold
         tickerHolder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Tag", "HEREEEEEEEEEEE");
+                Log.i("Tag", "HEREEEEEEEEEEE");//todo to fix:(
                 Intent i = new Intent(c,ShowStockActivity.class);
                 i.putExtra("ticker", tickers.get(tickerHolder.getAdapterPosition()).getSymbol());
             }

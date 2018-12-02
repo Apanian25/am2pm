@@ -13,20 +13,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingLeft="4dp">
+        <!--title-->
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:paddingTop="10dp"
             android:src="@drawable/settings_icon"
             android:layout_gravity="center"/>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings_title"
             style="@style/text_style"
             android:layout_gravity="center"/>
-    <!-- actual data -->
+        <!-- actual data -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,9 +36,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/fname"
             style="@style/edit_text"/>
-
-
-    <TextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lname"/>
@@ -47,9 +45,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/lname"
             style="@style/edit_text"/>
-
-
-    <TextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/email"/>
@@ -58,51 +54,48 @@
             android:layout_height="wrap_content"
             android:id="@+id/email"
             style="@style/edit_text"/>
-
-    <TextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/password"/>
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/password"
             style="@style/edit_text"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_margin="5dp">
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pref_curr"
-            android:layout_marginRight="5dp"/>
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/pref_curr"/>
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pref_curr"
+                android:layout_marginRight="5dp"/>
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pref_curr"/>
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_margin="5dp">
-        <TextView
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pref_stock"
             android:layout_marginRight="5dp"/>
-        <Spinner
+         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/pref_stock"/>
-    </LinearLayout>
+        </LinearLayout>
 
-
-    <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -115,9 +108,9 @@
                 android:onClick="saveInfo"
                 android:layout_gravity="center"/>
         <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -13,7 +13,13 @@ import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
 
 import java.util.ArrayList;
-
+/**
+ * Class responsible for displaying for creating a recycler View that
+ * gathers up to 5 ticker symbols that the user can view
+ *
+ * @author Lara Mezirovsky
+ * @version 1.0
+ */
 public class StockQuotesActivity extends Menus {
     ArrayList<Ticker> list;
     EditText ed;
@@ -28,14 +34,16 @@ public class StockQuotesActivity extends Menus {
     }
 
     /**
-     * private helper method that generates an array list
+     * private helper method that generates an array  of tickers
+     * Max length: 5 tickers symbols inputed by the user
+     * Cant input "" or space
      */
     private ArrayList<Ticker> getData() {
         //will be adding to array if size is less than 5
         if (list.size() < 5) {
             String text = ed.getText().toString();
             //check if not empty string
-            if(!(text.equals("") || text.equals(null))){
+            if((!text.equals("")) || (!text.equals(null))){
                 list.add(new Ticker(text, R.drawable.trash));
                 return list;
             }

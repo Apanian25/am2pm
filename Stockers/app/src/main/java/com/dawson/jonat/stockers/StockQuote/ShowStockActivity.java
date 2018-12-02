@@ -24,13 +24,19 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
+/**
+ * Class responsible for displaying information about a stock
+ * which is presented by the ticker symbol the user inputs
+ *
+ * @author Lara Mezirovsky
+ * @version 1.0
+ */
+//todo nicholas and I use the same methods since we both query an api, to create a util class to avoid repetition!
 public class ShowStockActivity extends Menus {
     TextView ticker,companyName, price, stockExcahnge;
     ConnectivityManager connectionManager; //Class that answers queries about the state of network connectivity.
     NetworkInfo netInfo;
     String tickerText;
-    //Describes the status of a network interface.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +51,7 @@ public class ShowStockActivity extends Menus {
             showStockQuotes();
         }
         else{
+            //redirection to error page (503 error)
             setContentView(R.layout.error_page);
         }
     }
@@ -155,6 +162,7 @@ public class ShowStockActivity extends Menus {
 
         /**
          * Private helper method to get inputStream to json object
+         * @author Patricia Campbell, faculty at Dawson College in the Computer Science departement
          */
         private String convertResponseToString(InputStream input) throws IOException {
             int bytesRead, totalRead=0;
@@ -194,8 +202,7 @@ public class ShowStockActivity extends Menus {
          * uses-permission -> requests some permission
          * permission -> what allows
          */
-        if (netInfo != null /**has been instantiated**/ && netInfo.isConnected()) {
-            Log.i("Tag", "This is our net info--->    " + netInfo);
+        if (netInfo != null && netInfo.isConnected()) {
             return true;
 
 
@@ -204,5 +211,4 @@ public class ShowStockActivity extends Menus {
             return false;
         }
     }
-
 }
