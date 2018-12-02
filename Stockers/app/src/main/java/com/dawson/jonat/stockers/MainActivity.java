@@ -39,11 +39,6 @@ public class MainActivity extends Activity {
             }
         });
 
-        NotificationUtilities n = new NotificationUtilities(this);
-        n.displayNotification("Nick Look at this", "You have a new update: wait...");
-        Intent intent = new Intent(this, NewsArticles.class);
-        startActivity(intent);
-
         FirebaseMessaging.getInstance().subscribeToTopic("News")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
