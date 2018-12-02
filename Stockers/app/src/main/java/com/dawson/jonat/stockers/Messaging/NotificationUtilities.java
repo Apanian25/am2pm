@@ -28,7 +28,7 @@ public class NotificationUtilities {
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setDefaults(Notification.DEFAULT_ALL);
 
-        Intent intent = new Intent(context, Messaging.class);
+        Intent intent = new Intent(context, NewsArticles.class);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 

@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.dawson.jonat.stockers.R;
 
-public class Messaging extends Activity {
+public class NewsArticles extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
