@@ -38,15 +38,10 @@ public class MainActivity extends Menus {
         startActivity(new Intent(getApplicationContext(), FinancialHintsActivity.class));
     }
 
-    public void stockQuoteClick(View v){
-        Intent intent = new Intent(MainActivity.this,StockQuotesActivity.class);
+    public void stockQuoteClick(View v) {
+        // what would usally be clicked
+        Intent intent = new Intent(MainActivity.this, StockQuotesActivity.class);
         startActivity(intent);
-//        Intent intent = new Intent(MainActivity.this,ShowStockActivity.class); //TO PUT IN ADAPTER LATER
-//        intent.putExtra("ticker","ABC"); //HARD CODED FOR TESTING
-//
-//        Intent intent = new Intent(MainActivity.this,ShowStockActivity.class); //TO PUT IN ADAPTER LATER
-//        intent.putExtra("ticker","ABjjjjjjC"); //HARD CODED FOR TESTING
-//        startActivity(intent);
     }
 
     public void notesClick(View v){

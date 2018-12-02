@@ -2,6 +2,7 @@ package com.dawson.jonat.stockers.StockQuote;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,17 +49,23 @@ public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHold
        Ticker t = tickers.get(i);
        tickerHolder.tickerSymbol.setText(t.getSymbol());
        tickerHolder.sub.setImageResource(t.getImageSourceDelete());
-       tickerHolder.search.setOnClickListener(new View.OnClickListener() {
+        tickerHolder.search.setImageResource(t.getImageSourceSearch());
+        tickerHolder.search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Tag", "HEREEEEEEEEEEE");//todo to fix:(
                 Intent i = new Intent(c,ShowStockActivity.class);
                 i.putExtra("ticker", tickers.get(tickerHolder.getAdapterPosition()).getSymbol());
+                c.startActivity(i);
+            }
+        });
+
+        tickerHolder.sub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tickers.remove(tickerHolder.getAdapterPosition());
             }
         });
     }
-
-    //todo add to delete!
 
     @Override
     public int getItemCount() {

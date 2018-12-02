@@ -4,14 +4,18 @@
     android:layout_height="wrap_content"
     android:id="@+id/view"
     android:layout_gravity="center|top">
-    <TextView
-        android:id="@+id/tickerSymbol"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:id="@+id/sub"/>
+        android:id="@+id/sub"
+        android:onClick="deleteTicker"/>
+
+    <TextView
+        android:id="@+id/tickerSymbol"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"/>
+
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"

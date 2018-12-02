@@ -2,8 +2,7 @@ package com.dawson.jonat.stockers.Entity;
 
 public class Ticker {
         private String symbol;
-        private int delete;
-        private int search;
+        private int delete, search;
 
         public Ticker(String s, int delete, int search) {
             symbol = s;
@@ -14,7 +13,6 @@ public class Ticker {
         public String getSymbol(){
             return this.symbol;
         }
-
         public int getImageSourceDelete(){
             return this.delete;
         }
