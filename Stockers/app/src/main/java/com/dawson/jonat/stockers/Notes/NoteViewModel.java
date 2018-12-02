@@ -1,4 +1,4 @@
-package com.dawson.jonat.stockers;
+package com.dawson.jonat.stockers.Notes;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
