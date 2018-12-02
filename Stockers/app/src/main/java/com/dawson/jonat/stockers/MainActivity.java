@@ -8,27 +8,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.dawson.jonat.stockers.Hints.Hints;
-import com.dawson.jonat.stockers.Messaging.Messaging;
+import com.dawson.jonat.stockers.Messaging.NewsArticles;
 import com.dawson.jonat.stockers.Messaging.NotificationUtilities;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
 
 public class MainActivity extends Activity {
 
@@ -52,16 +41,16 @@ public class MainActivity extends Activity {
 
         NotificationUtilities n = new NotificationUtilities(this);
         n.displayNotification("Nick Look at this", "You have a new update: wait...");
-        Intent intent = new Intent(this, Messaging.class);
+        Intent intent = new Intent(this, NewsArticles.class);
         startActivity(intent);
 
         FirebaseMessaging.getInstance().subscribeToTopic("News")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        String msg = ("SUB worked");
+                        String msg = getString(R.string.subSuccess);
                         if (!task.isSuccessful()) {
-                            msg = "sub failed";
+                            msg = getString(R.string.subFailed);
                         }
                         Log.d("SUB", msg);
                         Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
