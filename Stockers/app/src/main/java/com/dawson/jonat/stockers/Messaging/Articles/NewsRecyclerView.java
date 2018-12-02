@@ -22,8 +22,8 @@ public class NewsRecyclerView extends RecyclerView.Adapter<ViewHolder> {
     private LayoutInflater inflater;
 
     /**
-     * Initialize the Context that launced the recycler view, the contacts to be displayed and the
-     * LoanPayoutSummary to be sent in the email
+     * Initialize the Context that launced the recycler view, the list of newsInformation to be
+     * displayed
      *
      * @param context
      */
@@ -43,7 +43,7 @@ public class NewsRecyclerView extends RecyclerView.Adapter<ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = inflater.inflate(R.layout.activity_article, viewGroup, false);
+        View view = inflater.inflate(R.layout.article_layout, viewGroup, false);
         return new ViewHolder(view, context);
     }
 
