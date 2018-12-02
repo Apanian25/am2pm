@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import com.dawson.jonat.stockers.Hints.FinancialHintsActivity;
 import com.dawson.jonat.stockers.Hints.HintsFragmentPagerAdapter;
+import android.widget.Toast;
 import com.dawson.jonat.stockers.Hints.Hints;
 import com.dawson.jonat.stockers.Messaging.Messaging;
 import com.dawson.jonat.stockers.Messaging.NotificationUtilities;
@@ -22,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,6 +53,19 @@ public class MainActivity extends Activity {
         n.displayNotification("Nick Look at this", "You have a new update: wait...");
         Intent intent = new Intent(this, Messaging.class);
         startActivity(intent);
+
+        FirebaseMessaging.getInstance().subscribeToTopic("News")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = ("SUB worked");
+                        if (!task.isSuccessful()) {
+                            msg = "sub failed";
+                        }
+                        Log.d("SUB", msg);
+                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     public void goToNoteActivity(View view) {
