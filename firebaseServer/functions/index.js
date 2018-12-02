@@ -10,9 +10,15 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
   response.send("Hello from Firebase!");
  });
 
-exports.newNewsArticle = functions.database.ref('/newArticles').onWrite((event) => {
+exports.newNewsArticle = functions.database.ref('/newArticles/{id}').onCreate((snapshot, event) => {
     console.log('This got triggerd');
-
+	
+	var message = {
+		"notification": {
+		  "title": "New article uploaded!!!",
+		  "body": snapshot._data.title
+		}
+	};
 
     return admin.messaging().sendToTopic("News", message)
     .then((response) => {
