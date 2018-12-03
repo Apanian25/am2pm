@@ -17,8 +17,6 @@ public class StockersFirebaseMessagingService extends FirebaseMessagingService {
     public void onNewToken(String token) {
         super.onNewToken(token);
         Log.i(TAG, "Refresehed Token: " + token);
-        //Send the token to the server
-        //TODO sendRegistrationToServer(token);
     }
 
     @Override

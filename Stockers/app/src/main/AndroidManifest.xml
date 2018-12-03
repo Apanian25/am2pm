@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Hints.FinancialHintsActivity" />
-        <activity android:name=".Messaging.NewsArticles"></activity>
+        <activity android:name=".Messaging.NewsArticlesActivity"></activity>
 
         <service android:name=".Messaging.StockersFirebaseMessagingService">
             <intent-filter>
