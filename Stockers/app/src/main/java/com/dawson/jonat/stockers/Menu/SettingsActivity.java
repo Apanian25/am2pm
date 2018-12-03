@@ -2,12 +2,15 @@ package com.dawson.jonat.stockers.Menu;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -60,24 +63,35 @@ public class SettingsActivity extends Menus {
         loadInfo();
     }
 
-    /**
-     *  Must override the onPause method - As soon as the user clicks back or on another
-     *  menu option, the activity will askt the user if he wishes to save his changes (if any were detected)
-     *  As well, the current activity will close itself in order not to pile up the back stack.\
-     */
     @Override
-    public void onPause(){
-        super.onPause();
-        //check if user quits the page by selecting another option on the menu or back button
-        if((isOptionSelected || isBackKey)){
-            //check if something has changes
-            if(checkIfChanged()){
-                showDialog();
-            }
-            else{
-                finish();
-            }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        isOptionSelected = true;
+        switch (item.getItemId()) {
+            case R.id.about:
+                intent = new Intent(this, AboutActivity.class);
+                break;
+            case R.id.dawson_website:
+                intent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(this.getString(R.string.urlToDawson)));
+                break;
+            case R.id.settings:
+                intent = new Intent(this, SettingsActivity.class);
+                break;
+            default:
+                isOptionSelected = super.onOptionsItemSelected(item);
+                return isOptionSelected;
         }
+        //will onyl reach here is isOptionsSelected = true;
+        if(checkIfChanged()) {
+            showDialog(intent);
+            return true;
+        }
+        else {
+            launchActivity(intent);
+            return true;
+        }
+
     }
 
     /**
@@ -98,7 +112,7 @@ public class SettingsActivity extends Menus {
      * private helper method to show a dialog asking a user if
      * they wish to save their changes when quiting the activity/without pressing on the save btn
      */
-    private void showDialog(){
+    private void showDialog(final Intent intent){
             //declare a dialog
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.setting_dialog_title);
@@ -108,12 +122,23 @@ public class SettingsActivity extends Menus {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     saveInfoHelper();
+                    if(intent != null) {
+                        launchActivity(intent);
+                    } else {
+                        finish();
+                    }
+
                 }
             });
             builder.setNegativeButton(R.string.btn_text_settings_cancle, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    //todo: nothing?
+                    dialog.dismiss();
+                    if(intent != null) {
+                        launchActivity(intent);
+                    } else {
+                        finish();
+                    }
                 }
             });
 
@@ -222,4 +247,25 @@ public class SettingsActivity extends Menus {
         }
         return isBackKey;
     }
+
+    @Override
+    public void onBackPressed() {
+        if(checkIfChanged()) {
+            showDialog(null);
+        } else {
+            super.onBackPressed();
+        }
+
+    }
 }
+
+
+// ABC ""
+// bbc
+// ASD
+
+//onpause-> on shared:)
+//add on shared
+//delete remove
+
+

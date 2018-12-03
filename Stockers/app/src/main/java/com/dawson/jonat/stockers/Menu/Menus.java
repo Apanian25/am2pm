@@ -67,7 +67,7 @@ public class Menus extends AppCompatActivity {
     /**
      * Helper method to launch an intent
      */
-    private void launchActivity(Intent i) {
+    protected void launchActivity(Intent i) {
         startActivity(i);
     }
 }
