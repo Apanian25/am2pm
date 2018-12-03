@@ -48,14 +48,6 @@ public class MainActivity extends Activity {
             }
         });
 
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this,  new OnSuccessListener<InstanceIdResult>() {
-            @Override
-            public void onSuccess(InstanceIdResult instanceIdResult) {
-                String newToken = instanceIdResult.getToken();
-                Log.d("newToken",newToken);
-            }
-        });
-
         //This needs to be called everytime
         SubscriptionManager.sub("News", this, false);
     }
