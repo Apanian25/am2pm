@@ -1,4 +1,4 @@
-package com.dawson.jonat.stockers.Messaging.Articles;
+package com.dawson.jonat.stockers.Messaging.ArticlesRecyclerView;
 
 public class NewsInformation {
 

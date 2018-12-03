@@ -1,12 +1,9 @@
 package com.dawson.jonat.stockers;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
-
 import com.dawson.jonat.stockers.Notes.NoteActivity;
 import com.dawson.jonat.stockers.Hints.FinancialHintsActivity;
 import com.dawson.jonat.stockers.Hints.HintsFragmentPagerAdapter;
@@ -14,6 +11,7 @@ import com.dawson.jonat.stockers.Hints.Hints;
 import com.dawson.jonat.stockers.Messaging.Messaging;
 import com.dawson.jonat.stockers.Messaging.NewsArticles;
 import com.dawson.jonat.stockers.Messaging.NotificationUtilities;
+import com.dawson.jonat.stockers.Messaging.SubscriptionManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -44,6 +42,13 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Instantiate firebase auth
+        mAuth = FirebaseAuth.getInstance();
+
+        //Sign the user in with the predefined authentication identification
+        mAuth.signInAnonymously();
+
+
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this,  new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
@@ -52,18 +57,8 @@ public class MainActivity extends Activity {
             }
         });
 
-        FirebaseMessaging.getInstance().subscribeToTopic("News")
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        String msg = getString(R.string.subSuccess);
-                        if (!task.isSuccessful()) {
-                            msg = getString(R.string.subFailed);
-                        }
-                        Log.d("SUB", msg);
-                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                });
+        //This needs to be called everytime
+        SubscriptionManager.sub("News", this, false);
     }
 
     public void goToNoteActivity(View view) {
