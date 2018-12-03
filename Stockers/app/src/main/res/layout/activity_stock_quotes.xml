@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/stock_quotes_title"
-        style="@style/text_style"
+        style="@style/purple_text_header"
         android:layout_gravity="center"/>
 
     <!-- actual data -->
@@ -50,6 +50,7 @@
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tickerList"/>
+        android:id="@+id/tickerList"
+        android:layout_gravity="center_vertical"/>
 </LinearLayout>
 

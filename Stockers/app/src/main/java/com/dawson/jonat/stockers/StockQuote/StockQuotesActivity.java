@@ -1,7 +1,9 @@
 package com.dawson.jonat.stockers.StockQuote;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,6 +31,8 @@ public class StockQuotesActivity extends Menus {
     EditText ed;
     RecyclerView rv;
     private TickerAdapter tickerAdapter;
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,8 @@ public class StockQuotesActivity extends Menus {
         ed = findViewById(R.id.tickerInput);
         rv = findViewById(R.id.tickerList);
         rv.setLayoutManager(new LinearLayoutManager(this));
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
     }
 
     /**
@@ -70,8 +76,6 @@ public class StockQuotesActivity extends Menus {
     }
 
 
-    public void deleteTicker(View v) {
-    }
 }
 
 

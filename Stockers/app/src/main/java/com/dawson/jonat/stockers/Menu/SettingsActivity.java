@@ -192,24 +192,26 @@ public class SettingsActivity extends Menus {
      * @return
      */
     private boolean checkIfChanged() {
-        //todo make better synatx
         //get everything
-        if (!(fname.getText().toString().equals(prefs.getString("fname", null)) ||
-                lname.getText().toString().equals(prefs.getString("lname", null)) ||
-                email.getText().toString().equals(prefs.getString("email", null)) ||
-                password.getText().toString().equals(prefs.getString("password", null)) ||
-                spinner_curr.getSelectedItemPosition() == (prefs.getInt("curr", 0)) ||
-                spinner_stock.getSelectedItemPosition() == (prefs.getInt("stock", 0)))) {
+        if ((!fname.getText().toString().equals(prefs.getString("fname", null)) ||
+                (!lname.getText().toString().equals(prefs.getString("lname", null))) ||
+                (!email.getText().toString().equals(prefs.getString("email", null))) ||
+                (!password.getText().toString().equals(prefs.getString("password", null))) ||
+                (!(spinner_curr.getSelectedItemPosition() == (prefs.getInt("curr", 0)))) ||
+        (!(spinner_stock.getSelectedItemPosition() == (prefs.getInt("stock", 0)))))) {
+
             return true;
         }
-       return false;
+        return false;
     }
+
 
 
     /**
      * Helper method that will determine if the back key was pressed
      * @param keyCode
      * @param event
+     *
      * @return
      */
     public boolean onKeyDown(int keyCode, KeyEvent event) {

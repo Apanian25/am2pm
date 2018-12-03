@@ -25,17 +25,18 @@ import java.util.ArrayList;
  * @author Lara Mezirovsky
  * @version 1.0
  */
-public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHolder>{
+public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHolder> {
 
     Context c;
     ArrayList<Ticker> tickers;
 
     /**
      * Init context (StockQuotesActivity) and list of ticker symbols from the user
+     *
      * @param context
      * @param list
      */
-    public TickerAdapter(Context context, ArrayList<Ticker> list){
+    public TickerAdapter(Context context, ArrayList<Ticker> list) {
         c = context;
         tickers = list;
     }
@@ -49,13 +50,13 @@ public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHold
     @Override
     public void onBindViewHolder(final TickerHolder tickerHolder, int i) {
         Ticker t = tickers.get(i);
-       tickerHolder.tickerSymbol.setText(t.getSymbol());
-       tickerHolder.sub.setBackgroundResource(t.getImageSourceDelete());
+        tickerHolder.tickerSymbol.setText(t.getSymbol());
+        tickerHolder.sub.setBackgroundResource(t.getImageSourceDelete());
         tickerHolder.search.setBackgroundResource(t.getImageSourceSearch());
         tickerHolder.search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(c,ShowStockActivity.class);
+                Intent i = new Intent(c, ShowStockActivity.class);
                 i.putExtra("ticker", tickers.get(tickerHolder.getAdapterPosition()).getSymbol());
                 c.startActivity(i);
             }
@@ -67,22 +68,29 @@ public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHold
                 tickers.remove(tickerHolder.getAdapterPosition());
                 notifyItemRemoved(tickerHolder.getAdapterPosition());
                 notifyItemRangeChanged(tickerHolder.getAdapterPosition(), getItemCount());
-//                notifyItemChanged(tickerHolder.getAdapterPosition());
             }
         });
     }
 
+    /**
+     * Get the amount of items in the list of tickers, can't surpass 5
+     *
+     * @return
+     */
     @Override
     public int getItemCount() {
         return tickers.size();
     }
 
-
-    public class TickerHolder extends RecyclerView.ViewHolder{
+    /**
+     * Inner ticker holder class that represents a viewitem in a recycler view
+     */
+    public class TickerHolder extends RecyclerView.ViewHolder {
 
         TextView tickerSymbol;
         ImageButton sub;
         ImageButton search;
+
         public TickerHolder(View itemView) {
             super(itemView);
             tickerSymbol = itemView.findViewById(R.id.tickerSymbol);

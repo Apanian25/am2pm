@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/error_server"
-        style="@style/text_style"/>
+        style="@style/purple_text_header"/>
 
     <ImageView
         android:layout_width="match_parent"

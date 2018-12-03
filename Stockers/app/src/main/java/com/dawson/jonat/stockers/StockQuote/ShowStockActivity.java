@@ -31,7 +31,6 @@ import java.net.URL;
  * @author Lara Mezirovsky
  * @version 1.0
  */
-//todo nicholas and I use the same methods since we both query an api, to create a util class to avoid repetition!
 public class ShowStockActivity extends Menus {
     TextView ticker,companyName, price, stockExcahnge;
     ConnectivityManager connectionManager; //Class that answers queries about the state of network connectivity.
