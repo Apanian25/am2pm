@@ -27,6 +27,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         textViewTitle = (TextView)view.findViewById(R.id.title);
         textViewDescription = (TextView)view.findViewById(R.id.shortDescription);
         view.setOnClickListener(this);
+        this.contextOfView = context;
     }
 
     /**
