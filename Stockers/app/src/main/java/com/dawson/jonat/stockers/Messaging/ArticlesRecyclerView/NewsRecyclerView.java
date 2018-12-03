@@ -1,16 +1,12 @@
-package com.dawson.jonat.stockers.Messaging.Articles;
+package com.dawson.jonat.stockers.Messaging.ArticlesRecyclerView;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.dawson.jonat.stockers.LoanCalculator.LoanPayoutSummary;
 import com.dawson.jonat.stockers.R;
 
 import java.util.List;

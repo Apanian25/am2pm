@@ -25,7 +25,8 @@
         <activity android:name=".Hints.FinancialHintsActivity"></activity>
     </application>
         <activity android:name=".Hints.FinancialHintsActivity" />
-        <activity android:name=".Messaging.NewsArticles"></activity>
+        <activity android:name=".Messaging.NewsArticlesActivity"></activity>
+
         <service android:name=".Messaging.StockersFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
