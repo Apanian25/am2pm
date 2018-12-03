@@ -1,6 +1,8 @@
 package com.dawson.jonat.stockers;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -10,6 +12,8 @@ import com.dawson.jonat.stockers.Hints.HintsFragmentPagerAdapter;
 import com.dawson.jonat.stockers.Hints.Hints;
 import com.dawson.jonat.stockers.Messaging.Messaging;
 import com.dawson.jonat.stockers.Messaging.NewsArticles;
+import com.dawson.jonat.stockers.Messaging.ArticlesRecyclerView.NewsRecyclerView;
+import com.dawson.jonat.stockers.Messaging.NewsArticlesActivity;
 import com.dawson.jonat.stockers.Messaging.NotificationUtilities;
 import com.dawson.jonat.stockers.Messaging.SubscriptionManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,19 +39,25 @@ public class MainActivity extends Activity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private Context context;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = this;
 
         //Instantiate firebase auth
         mAuth = FirebaseAuth.getInstance();
 
         //Sign the user in with the predefined authentication identification
-        mAuth.signInAnonymously();
-
+        mAuth.signInAnonymously().addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                Toast.makeText(context, "This Worked", Toast.LENGTH_LONG).show();
+            }
+        });
 
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this,  new OnSuccessListener<InstanceIdResult>() {
             @Override
