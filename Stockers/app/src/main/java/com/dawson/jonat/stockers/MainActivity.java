@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.dawson.jonat.stockers.Hints.Hints;
 import com.dawson.jonat.stockers.Messaging.Messaging;
 import com.dawson.jonat.stockers.Messaging.NewsArticles;
+import android.widget.Toast;
 import com.dawson.jonat.stockers.Messaging.ArticlesRecyclerView.NewsRecyclerView;
 import com.dawson.jonat.stockers.Messaging.NewsArticlesActivity;
 import com.dawson.jonat.stockers.Messaging.NotificationUtilities;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+
 
 public class MainActivity extends Activity {
 
