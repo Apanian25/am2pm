@@ -4,8 +4,12 @@ import android.os.Bundle;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageSwitcher;
 import android.widget.Toast;
 
 import com.dawson.jonat.stockers.Entity.Ticker;
@@ -23,6 +27,8 @@ import java.util.ArrayList;
 public class StockQuotesActivity extends Menus {
     ArrayList<Ticker> list;
     EditText ed;
+    RecyclerView rv;
+    private TickerAdapter tickerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,8 @@ public class StockQuotesActivity extends Menus {
         list = new ArrayList<>();
         //find edit text
         ed = findViewById(R.id.tickerInput);
+        rv = findViewById(R.id.tickerList);
+        rv.setLayoutManager(new LinearLayoutManager(this));
     }
 
     /**
@@ -57,9 +65,12 @@ public class StockQuotesActivity extends Menus {
     }
 
     public void addTicker(View view) {
-        RecyclerView rv = findViewById(R.id.tickerList);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(new TickerAdapter(this, getData()));
+        tickerAdapter = new TickerAdapter(this, getData());
+        rv.setAdapter(tickerAdapter);
+    }
+
+
+    public void deleteTicker(View v) {
     }
 }
 

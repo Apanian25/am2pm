@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -46,10 +48,10 @@ public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHold
 
     @Override
     public void onBindViewHolder(final TickerHolder tickerHolder, int i) {
-       Ticker t = tickers.get(i);
+        Ticker t = tickers.get(i);
        tickerHolder.tickerSymbol.setText(t.getSymbol());
-       tickerHolder.sub.setImageResource(t.getImageSourceDelete());
-        tickerHolder.search.setImageResource(t.getImageSourceSearch());
+       tickerHolder.sub.setBackgroundResource(t.getImageSourceDelete());
+        tickerHolder.search.setBackgroundResource(t.getImageSourceSearch());
         tickerHolder.search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +65,9 @@ public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHold
             @Override
             public void onClick(View v) {
                 tickers.remove(tickerHolder.getAdapterPosition());
+                notifyItemRemoved(tickerHolder.getAdapterPosition());
+                notifyItemRangeChanged(tickerHolder.getAdapterPosition(), getItemCount());
+//                notifyItemChanged(tickerHolder.getAdapterPosition());
             }
         });
     }
@@ -76,8 +81,8 @@ public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHold
     public class TickerHolder extends RecyclerView.ViewHolder{
 
         TextView tickerSymbol;
-        ImageView sub;
-        ImageView search; //todo: add event to open new intent
+        ImageButton sub;
+        ImageButton search;
         public TickerHolder(View itemView) {
             super(itemView);
             tickerSymbol = itemView.findViewById(R.id.tickerSymbol);
