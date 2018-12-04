@@ -59,24 +59,32 @@ public class CurrencyExchangeActivity extends Menus {
         addTextChangedListenerToAmount();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        instantiatePrivateFields();
+    }
+
     /**
      * Instantiates the private fields for the Class to use.
      */
     private void instantiatePrivateFields() {
+        getCurrency();
+
         amount = findViewById(R.id.amount);
         //will be changed to users preference after
         ((TextView)findViewById(R.id.userCurrency)).setText(currency);
         currencySpinner = findViewById(R.id.currencies);
         currencies = new ArrayList<>();
         rates = new ArrayList<>();
-        getCurrency();
+
         checkConnectivity();
     }
 
     /**
      * Gets the
      *
-     * @author Niholas, Lara
+     * @author Nicholas, Lara
      */
     private void getCurrency(){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -120,7 +128,7 @@ public class CurrencyExchangeActivity extends Menus {
         TextView exchangedAmount = findViewById(R.id.result);
         int index = currencies.indexOf(currencySpinner.getSelectedItem().toString());
         exchangedAmount.setText(
-                String.format("%s", doubleAmount * rates.get(index)));
+                String.format("%s", Math.round(doubleAmount * rates.get(index) * 100)/100.0));
     }
 
     /**
@@ -129,7 +137,7 @@ public class CurrencyExchangeActivity extends Menus {
      */
     private void createSpinner(){
         //create an array adapter using the pre-defined spinner layout in android
-        ArrayAdapter<String> adapter= new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, currencies);
+        ArrayAdapter<String> adapter= new ArrayAdapter<>(this,R.layout.text_view_for_spinner, currencies);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 

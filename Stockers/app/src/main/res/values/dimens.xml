@@ -2,5 +2,5 @@
 <resources>
     <dimen name="small_padding">6dp</dimen>
     <dimen name="big_padding">16dp</dimen>
-    <dimen name="CurrencyExchangeText">30sp</dimen>
+    <dimen name="CurrencyExchangeText">25sp</dimen>
 </resources>
