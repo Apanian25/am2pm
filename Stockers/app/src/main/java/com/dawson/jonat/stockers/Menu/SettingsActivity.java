@@ -260,12 +260,3 @@ public class SettingsActivity extends Menus {
 }
 
 
-// ABC ""
-// bbc
-// ASD
-
-//onpause-> on shared:)
-//add on shared
-//delete remove
-
-

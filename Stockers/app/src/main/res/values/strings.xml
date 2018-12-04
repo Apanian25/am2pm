@@ -69,11 +69,7 @@
     <string name="interestRate">Interest Rate (%):</string>
     <string name="minPayment">Minimum Payment:</string>
     <string name="years">Years:</string>
-<<<<<<< HEAD
-=======
-    <string name="calculate">Calculate</string>
     <string name="result">Results:</string>
->>>>>>> dd1d033a4762c13a00a1df62d5fd92b8dd4c160c
 
     <!--Strings For Loan Calculator Results Table-->
     <string name="timeToPay">Time to pay off:</string>

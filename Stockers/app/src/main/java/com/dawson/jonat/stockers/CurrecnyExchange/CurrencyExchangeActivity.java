@@ -2,10 +2,12 @@ package com.dawson.jonat.stockers.CurrecnyExchange;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -17,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
 
 import org.json.JSONException;
@@ -39,10 +42,11 @@ import java.util.Map;
  * @author Nicholas Apanian
  *
  */
-public class CurrencyExchangeActivity extends Activity {
+public class CurrencyExchangeActivity extends Menus {
 
     private Spinner currencySpinner;
     private EditText amount;
+    private String currency;
     ArrayList<String> currencies;
     ArrayList<Double> rates;
 
@@ -61,12 +65,23 @@ public class CurrencyExchangeActivity extends Activity {
     private void instantiatePrivateFields() {
         amount = findViewById(R.id.amount);
         //will be changed to users preference after
-        ((TextView)findViewById(R.id.userCurrency)).setText("USD");
+        ((TextView)findViewById(R.id.userCurrency)).setText(currency);
         currencySpinner = findViewById(R.id.currencies);
         currencies = new ArrayList<>();
         rates = new ArrayList<>();
-
+        getCurrency();
         checkConnectivity();
+    }
+
+    /**
+     * Gets the
+     *
+     * @author Niholas, Lara
+     */
+    private void getCurrency(){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        int currencyPosition = prefs.getInt("curr", 0);
+        currency = getResources().getStringArray(R.array.spinner_values_currency)[currencyPosition];
     }
 
     /**
@@ -130,6 +145,9 @@ public class CurrencyExchangeActivity extends Activity {
                 else
                     performExchange(Double.valueOf(value));
 
+                ((TextView)findViewById(R.id.convertedCurrency)).
+                        setText((String)currencySpinner.getSelectedItem());
+
             } // to close the onItemSelected
             public void onNothingSelected(AdapterView<?> parent) {}
         });
@@ -168,7 +186,7 @@ public class CurrencyExchangeActivity extends Activity {
         if (networkInfo != null && networkInfo.isConnected()) {
             //Connection is established
             //the base rate will change when using the user preferences
-            String url = "https://api.exchangeratesapi.io/latest?base=" + "USD";
+            String url = "https://api.exchangeratesapi.io/latest?base=" + currency;
             new getExchange().execute(url);
         } else {
             //There is no Connection

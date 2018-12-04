@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.widget.ListView;
 import com.dawson.jonat.stockers.ContactDialog.ContactInformation;
+import com.dawson.jonat.stockers.CurrecnyExchange.CurrencyExchangeActivity;
 import com.dawson.jonat.stockers.LoanCalculator.LoanCalculatorActivity;
 import java.io.InputStream;
 import android.content.Intent;
@@ -59,7 +60,7 @@ public class MainActivity extends Menus {
             }
         });
 
-        SubscriptionManager.sub("News", this, false);
+        startActivity(new Intent(this, CurrencyExchangeActivity.class));
     }
 
     public void financialHintsClick(View v) {
