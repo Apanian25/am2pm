@@ -1,4 +1,4 @@
-package com.dawson.jonat.stockers;
+package com.dawson.jonat.stockers.Notes;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 import com.dawson.jonat.stockers.Entity.Note;
+import com.dawson.jonat.stockers.R;
 
 /**
  * @author Nicholas Apanian
