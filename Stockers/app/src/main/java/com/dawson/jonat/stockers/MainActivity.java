@@ -1,11 +1,27 @@
 package com.dawson.jonat.stockers;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
+import android.widget.ListView;
+import com.dawson.jonat.stockers.ContactDialog.ContactInformation;
+import com.dawson.jonat.stockers.LoanCalculator.LoanCalculatorActivity;
+import java.io.InputStream;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.dawson.jonat.stockers.Menu.SettingsActivity;
+import com.dawson.jonat.stockers.Messaging.NewsArticlesActivity;
 import com.dawson.jonat.stockers.Messaging.SubscriptionManager;
 import com.dawson.jonat.stockers.Notes.NoteActivity;
 import com.dawson.jonat.stockers.Hints.FinancialHintsActivity;
@@ -29,10 +45,16 @@ public class MainActivity extends Menus {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Check if first visit
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);;
+        String email = sp.getString("email", null);
+        if(email == null){
+            Intent intent = new Intent(this, SettingsActivity.class);
+            launchActivity(intent);
+        }
+
         context = this;
-
-
-
         //Instantiate firebase auth
         mAuth = FirebaseAuth.getInstance();
 
@@ -40,15 +62,17 @@ public class MainActivity extends Menus {
         mAuth.signInAnonymously().addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                Toast.makeText(context, "This Worked", Toast.LENGTH_LONG).show();
+//                Toast.makeText(context, "This Worked", Toast.LENGTH_LONG).show();
             }
         });
 
         SubscriptionManager.sub("News", this, false);
 
+
     }
 
     public void foreignExchangeClick(View v) {
+
     }
 
     public void financialHintsClick(View v) {
@@ -67,14 +91,16 @@ public class MainActivity extends Menus {
     }
 
     public void loanCalculatorClick(View v) {
-
+        Intent intent = new Intent(this, LoanCalculatorActivity.class);
+        startActivity(intent);
     }
 
     public void portfolioClick(View v) {
 
     }
 
-    public void messageClick(View v) {
-
+    public void messageClick(View v){
+        Intent intent = new Intent(this, NewsArticlesActivity.class);
+        startActivity(intent);
     }
 }

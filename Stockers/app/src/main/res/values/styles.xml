@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme"  parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -35,4 +34,7 @@
         <item name="android:paddingLeft">8dp</item>
     </style>
 
+    <style name="tableContent">
+       <item name="android:textSize">20sp</item>
+    </style>
 </resources>

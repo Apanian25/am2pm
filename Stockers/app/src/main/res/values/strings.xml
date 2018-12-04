@@ -74,6 +74,31 @@
     <string name="setting_dialog_message">Are you sure you want to quit wihtout saving?</string>
     <string name="btn_text_settings_cancle">Cancle</string>
     <string name="data_saved">Successfully modified your settings</string>
+
+
+    <!--Strings For Loan Calculator Activity-->
+    <string name="amount">Amount:</string>
+    <string name="interestRate">Interest Rate (%):</string>
+    <string name="minPayment">Minimum Payment:</string>
+    <string name="years">Years:</string>
+    <string name="calculate">Calculate</string>
+    <string name="result">Results:</string>
+
+
+    <!--Strings For Loan Calculator Results Table-->
+    <string name="timeToPay">Time to pay off:</string>
+    <string name="ogBalance">Original Balance:</string>
+    <string name="interestAccumulated">Interest Accumulated:</string>
+    <string name="totalPaid">Total Amount Paid:</string>
+    <string name="amountLeft">Balance Left:</string>
+
+    <string-array name="yearOptions">
+        <item>1</item>
+        <item>5</item>
+        <item>10</item>
+    </string-array>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="learn_more">Learn More</string>
@@ -92,6 +117,7 @@
     <string name="stock_quotes_title">Stock Quotes</string>
     <string name="more_than_five">Can view maximum 5 stocks at a time</string>
     <string name="empty_string">Ticker symbol does not consist of space only</string>
+
 
     <!--SHOW STOCK-->
     <string name="no_internet">The following page requires network connection</string>

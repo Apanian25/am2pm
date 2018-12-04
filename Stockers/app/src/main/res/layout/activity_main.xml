@@ -25,7 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp">
 
-        <LinearLayout
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -126,7 +126,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="270dp"
+                android:layout_height="220dp"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
                 android:padding="10dp">
@@ -149,8 +149,6 @@
                         android:src="@drawable/ic_launcher_foreground_loan_calculator"
                         android:tint="@color/dark_orange" />
                 </LinearLayout>
-
-
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -178,6 +176,7 @@
                 android:layout_height="58dp"
                 android:layout_weight="1"
                 android:clickable="true"
+                android:onClick="stockQuoteClick"
                 android:src="@drawable/ic_launcher_foreground_search" />
 
             <ImageView
@@ -194,6 +193,7 @@
                 android:layout_height="58dp"
                 android:layout_weight="1"
                 android:clickable="true"
+                android:onClick="messageClick"
                 android:src="@drawable/ic_launcher_foreground" />
 
         </LinearLayout>
