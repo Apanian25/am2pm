@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.dawson.jonat.stockers.Entity.Hint;
 import com.dawson.jonat.stockers.R;
 
 public class HintsFragment extends Fragment {

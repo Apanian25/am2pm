@@ -1,4 +1,4 @@
-package com.dawson.jonat.stockers.Hints;
+package com.dawson.jonat.stockers.Entity;
 
 public class Hint {
     private String hint;

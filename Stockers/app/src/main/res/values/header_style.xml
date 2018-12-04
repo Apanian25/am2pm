@@ -1,0 +1,10 @@
+<resources>
+
+    <style name="purple_text_header" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:fontFamily">casual</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+</resources>
