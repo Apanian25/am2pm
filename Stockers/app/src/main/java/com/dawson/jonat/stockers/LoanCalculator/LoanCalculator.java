@@ -6,7 +6,7 @@ public class LoanCalculator {
     /**
      * Generates a Loan Payout Summary based on the amount is owed, the interest rate, the minPayment amount
      * and on the amount of years in the future to see.
-     * 
+     *
      * @param debt
      * @param rate
      * @param minPayment
