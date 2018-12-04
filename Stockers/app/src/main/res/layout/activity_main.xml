@@ -180,6 +180,7 @@
                 android:layout_height="58dp"
                 android:layout_weight="1"
                 android:clickable="true"
+                android:onClick="messageClick"
                 android:src="@drawable/ic_launcher_foreground" />
 
         </LinearLayout>
