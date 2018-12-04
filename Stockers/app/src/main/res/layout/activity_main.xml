@@ -25,7 +25,17 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp">
 
-        <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/BottomToolBar"
+        android:translationZ="10dp">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
