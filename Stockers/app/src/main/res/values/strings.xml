@@ -60,7 +60,6 @@
     <string name="btn_text_settings_cancle">Cancle</string>
     <string name="data_saved">Successfully modified your settings</string>
     <string name="app_name">Stockers</string>
-<<<<<<< HEAD
 
     <!--Strings For Loan Calculator Activity-->
     <string name="amount">Amount:</string>
@@ -81,7 +80,7 @@
         <item>5</item>
         <item>10</item>
     </string-array>
-=======
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="learn_more">Learn More</string>
@@ -110,5 +109,4 @@
     <string name="subSuccess">You are successfully subscribed to the news articles!!!</string>
     <string name="subFailed">Something went wrong, try again later</string>
     <string name="unSubSuccess">You are unsubscribed from the best news outlet</string>
->>>>>>> d0340797f95811f57b21d7b112a457b6563dd7da
 </resources>

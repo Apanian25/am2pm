@@ -77,7 +77,8 @@ public class MainActivity extends Menus {
     }
 
     public void loanCalculatorClick(View v) {
-
+        Intent intent = new Intent(this, LoanCalculatorActivity.class);
+        startActivity(intent);
     }
 
     public void portfolioClick(View v) {
