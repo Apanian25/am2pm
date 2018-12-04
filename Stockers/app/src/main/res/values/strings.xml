@@ -1,7 +1,88 @@
 <resources>
+    <!-- IMPLICIT INTENT TO DAWSON WEBSITE -->
+    <string name="urlToDawson">https://www.dawsoncollege.qc.ca</string>
+    <!-- ABOUT ACTIVITY STRINGS -->
+    <string name="desc_title">About the app</string>
+    <string name="desc">This app is intended to be an educational tool for learning a bit about finances (loans, currency exchange and stocks)  The purpose of this project is to create an application that will exercise what our team (see below) have learned about the Android framework and Mobile software development</string>
+    <string name="names_title">Meet our awesome developers</string>
+    <string name="team">Lara M, Nicholas A, John P, Danny M</string>
+    <string name="why_title">Purpose of the app</string>
+    <string name="why">Final project for the Android Course(420-517-DW) with Patricia Campbell, Dawson College</string>
+    <string name="git_john">Get to know John Pesce more at @johnPesce on gitlab</string>
+    <string name="git_lara">Get to know Lara Mezirovsky more at @Mosh_La on gitlab</string>
+    <string name="git_nick">Get to know Nick more at @Apanian25 on gitlab</string>
+    <string name="git_danny">Get to know Danny more at @danny on gitlab</string>
+    <string name="john"><b>John Pesce</b></string>
+    <string name="about_john_short">19 years old, loves math and algorithms, can solve any problem</string>
+    <string name="nick"><b>Nicholas Apanian</b></string>
+    <string name="about_nick_short">20 years old, codes with in a fast an efficient manner in multiple languages</string>
+    <string name="lara"><b>Lara Mezirovsky</b></string>
+    <string name="about_lara_short">19 years old, loves design and creating websites/apps on any platform</string>
+    <string name="danny"><b>Danny Manzano</b></string>
+    <string name="about_danny_short">21 years old, great with logic and data structures</string>
+    <!--DIALOGS IN ABOUT ACTIVITY-->
+    <string name="about_dialog_title">More about us</string>
+    <string name="btn_text">OK</string>
+    <!-- SETTING ACTIVITY STRINGS -->
+    <string name="settings_title">Settings</string>
+    <string name="fname"><b>First Name:</b></string>
+    <string name="lname"><b>Last Name:</b></string>
+    <string name="email"><b>Email:</b></string>
+    <string name="password"><b>Password:</b></string>
+    <string name="pref_curr"><b>Preferred Currency:</b></string>
+    <string name="pref_stock"><b>Preferred Stock Exchange:</b></string>
+    <string name="label_date">Last Updated: </string>
+    <string-array name="spinner_values_currency">
+        <item>CAD</item>
+        <item>USD</item>
+        <item>BTC</item>
+    </string-array>
+
+    <string-array name="spinner_values_stock">
+        <item>TSX</item>
+        <item>NYSE</item>
+        <item>NASDAQ</item>
+    </string-array>
+    <string name="choose_curr">Choose currency</string>
+    <string name="choose_stock">Choose stock</string>
+<string-array name="spinner_values_curr">
+     <item>TSX</item>
+     <item>NYSE</item>
+     <item>NASDAQ</item>
+    </string-array>
+    <string name="chose_curr">Chose currency</string>
+    <string name="chose_stock">Chose stock</string>
+    <string name="btn_text_settings">Save</string>
+
+    <!--DIALOGS IN SETTINGS ACTIVITY-->
+    <string name="setting_dialog_title">Save your changes</string>
+    <string name="setting_dialog_message">Are you sure you want to quit wihtout saving?</string>
+    <string name="btn_text_settings_cancle">Cancle</string>
+    <string name="data_saved">Successfully modified your settings</string>
     <string name="app_name">Stockers</string>
     <string name="calculate">Calculate</string>
     <string name="amount_hint">1000</string>
+
+
+    <!--Strings For Loan Calculator Activity-->
+    <string name="amount">Amount:</string>
+    <string name="interestRate">Interest Rate (%):</string>
+    <string name="minPayment">Minimum Payment:</string>
+    <string name="years">Years:</string>
+
+    <!--Strings For Loan Calculator Results Table-->
+    <string name="timeToPay">Time to pay off:</string>
+    <string name="ogBalance">Original Balance:</string>
+    <string name="interestAccumulated">Interest Accumulated:</string>
+    <string name="totalPaid">Total Amount Paid:</string>
+    <string name="amountLeft">Balance Left:</string>
+
+    <string-array name="yearOptions">
+        <item>1</item>
+        <item>5</item>
+        <item>10</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="learn_more">Learn More</string>
@@ -12,4 +93,22 @@
     <string name="button_delete">Delete</string>
     <string name="item_deleted">The note has been deleted</string>
     <string name="not_saved">Note not saved</string>
+    <string name="title_activity_stock_quotes">StockQuotesActivity</string>
+
+    <!--STOCK QUOTE-->
+    <string name="ticker_input">Enter a ticker symbol of your choice:</string>
+    <string name="stock_quotes_title">Stock Quotes</string>
+    <string name="more_than_five">Can view maximum 5 stocks at a time</string>
+    <string name="empty_string">Ticker symbol does not consist of space only</string>
+
+    <!--SHOW STOCK-->
+    <string name="no_internet">The following page requires network connection</string>
+    <string name="no_internet_message">The following page requires network connection</string>
+    <string name="error_server">503 Service Unavailable</string>
+    <string name="wrong_url">Something went wrong went wrong, please try again!</string>
+    <string name="no_results_found">No results found for ticker symbol --> </string>
+    <string name="newsTitle">News Articles</string>
+    <string name="subSuccess">You are successfully subscribed to the news articles!!!</string>
+    <string name="subFailed">Something went wrong, try again later</string>
+    <string name="unSubSuccess">You are unsubscribed from the best news outlet</string>
 </resources>

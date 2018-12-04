@@ -3,6 +3,9 @@ package com.dawson.jonat.stockers.Hints;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.dawson.jonat.stockers.Entity.Hint;
+
 import java.util.List;
 
 public class HintsFragmentPagerAdapter extends FragmentPagerAdapter{
