@@ -164,6 +164,7 @@
                 android:layout_height="58dp"
                 android:layout_weight="1"
                 android:clickable="true"
+                android:onClick="stockQuoteClick"
                 android:src="@drawable/ic_launcher_foreground" />
 
             <ImageView

@@ -38,7 +38,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:id="@+id/tickerInput"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/textColor"
             style="@style/edit_text"/>
         <ImageView
             android:layout_width="40dp"
