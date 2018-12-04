@@ -15,4 +15,6 @@
     <color name="gainsboro">#dfe2d8</color>
     <color name="foreground_material_light">#ffffff</color>
     <color name="sandy_brown">#dfe2d8</color>
+    <color name="orange">#fa8b60</color>
+    <color name="dark_orange">#b7512e</color>
 </resources>
