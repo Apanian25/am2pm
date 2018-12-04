@@ -84,4 +84,8 @@
     <string name="error_server">503 Service Unavailable</string>
     <string name="wrong_url">Something went wrong went wrong, please try again!</string>
     <string name="no_results_found">No results found for ticker symbol --> </string>
+    <string name="newsTitle">News Articles</string>
+    <string name="subSuccess">You are successfully subscribed to the news articles!!!</string>
+    <string name="subFailed">Something went wrong, try again later</string>
+    <string name="unSubSuccess">You are unsubscribed from the best news outlet</string>
 </resources>

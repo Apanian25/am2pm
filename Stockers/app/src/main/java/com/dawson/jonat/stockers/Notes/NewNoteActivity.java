@@ -1,4 +1,4 @@
-package com.dawson.jonat.stockers;
+package com.dawson.jonat.stockers.Notes;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.dawson.jonat.stockers.R;
 
 public class NewNoteActivity extends AppCompatActivity {
 
@@ -27,7 +29,7 @@ public class NewNoteActivity extends AppCompatActivity {
         final Intent intent = getIntent();
 
         if(intent.getExtras() == null) {
-            loadNewNote(intent);
+            loadNewNote();
         } else {
             loadEditNote(intent);
         }
@@ -63,7 +65,7 @@ public class NewNoteActivity extends AppCompatActivity {
 
     }
 
-    private void loadNewNote(final Intent intent) {
+    private void loadNewNote() {
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent replyIntent = new Intent();
