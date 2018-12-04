@@ -85,10 +85,12 @@ public class SettingsActivity extends Menus {
         //will onyl reach here is isOptionsSelected = true;
         if(checkIfChanged()) {
             showDialog(intent);
+            finish();
             return true;
         }
         else {
             launchActivity(intent);
+            finish();
             return true;
         }
 
