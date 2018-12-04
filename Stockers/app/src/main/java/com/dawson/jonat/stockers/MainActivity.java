@@ -12,6 +12,16 @@ import com.dawson.jonat.stockers.Hints.HintsFragmentPagerAdapter;
 import com.dawson.jonat.stockers.Hints.Hints;
 import com.dawson.jonat.stockers.Messaging.Messaging;
 import com.dawson.jonat.stockers.Messaging.NewsArticles;
+import android.support.annotation.NonNull;
+import android.util.Log;
+import android.view.View;
+import com.dawson.jonat.stockers.Hints.FinancialHintsActivity;
+import com.dawson.jonat.stockers.Hints.HintsFragmentPagerAdapter;
+import android.widget.Toast;
+import com.dawson.jonat.stockers.Hints.Hints;
+import com.dawson.jonat.stockers.Messaging.Messaging;
+import com.dawson.jonat.stockers.Messaging.NewsArticles;
+import android.widget.Toast;
 import com.dawson.jonat.stockers.Messaging.ArticlesRecyclerView.NewsRecyclerView;
 import com.dawson.jonat.stockers.Messaging.NewsArticlesActivity;
 import com.dawson.jonat.stockers.Messaging.NotificationUtilities;
@@ -33,6 +43,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+
 
 public class MainActivity extends Activity {
 
@@ -59,15 +70,6 @@ public class MainActivity extends Activity {
             }
         });
 
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this,  new OnSuccessListener<InstanceIdResult>() {
-            @Override
-            public void onSuccess(InstanceIdResult instanceIdResult) {
-                String newToken = instanceIdResult.getToken();
-                Log.d("newToken",newToken);
-            }
-        });
-
-        //This needs to be called everytime
         SubscriptionManager.sub("News", this, false);
     }
 
