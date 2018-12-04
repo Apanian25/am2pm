@@ -10,4 +10,8 @@
     <string name="button_delete">Delete</string>
     <string name="item_deleted">The note has been deleted</string>
     <string name="not_saved">Note not saved</string>
+    <string name="newsTitle">News Articles</string>
+    <string name="subSuccess">You are successfully subscribed to the news articles!!!</string>
+    <string name="subFailed">Something went wrong, try again later</string>
+    <string name="unSubSuccess">You are unsubscribed from the best news outlet</string>
 </resources>
