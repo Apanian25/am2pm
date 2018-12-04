@@ -1,10 +1,21 @@
 package com.dawson.jonat.stockers;
 
 import android.app.Activity;
-import android.content.Context;
+import android.app.Dialog;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.widget.ListView;
+import com.dawson.jonat.stockers.ContactDialog.ContactInformation;
+import com.dawson.jonat.stockers.LoanCalculator.LoanCalculatorActivity;
+import java.io.InputStream;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.content.Context;
 import android.widget.Toast;
 
 import com.dawson.jonat.stockers.Messaging.NewsArticlesActivity;
@@ -33,6 +44,10 @@ public class MainActivity extends Menus {
         setContentView(R.layout.activity_main);
         context = this;
 
+
+    }
+
+    public void foreignExchangeClick(View v) {
         //Instantiate firebase auth
         mAuth = FirebaseAuth.getInstance();
 
@@ -47,10 +62,7 @@ public class MainActivity extends Menus {
         SubscriptionManager.sub("News", this, false);
     }
 
-    public void foreignExchangeClick(View v){
-    }
-
-    public void financialHintsClick(View v){
+    public void financialHintsClick(View v) {
         startActivity(new Intent(getApplicationContext(), FinancialHintsActivity.class));
     }
 
@@ -60,16 +72,17 @@ public class MainActivity extends Menus {
         startActivity(intent);
     }
 
-    public void notesClick(View v){
+    public void notesClick(View v) {
         Intent intent = new Intent(MainActivity.this, NoteActivity.class);
         startActivity(intent);
     }
 
-    public void loanCalculatorClick(View v){
-
+    public void loanCalculatorClick(View v) {
+        Intent intent = new Intent(this, LoanCalculatorActivity.class);
+        startActivity(intent);
     }
 
-    public void portfolioClick(View v){
+    public void portfolioClick(View v) {
 
     }
 
