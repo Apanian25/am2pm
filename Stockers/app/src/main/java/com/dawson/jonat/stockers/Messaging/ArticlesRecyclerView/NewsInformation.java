@@ -1,5 +1,8 @@
 package com.dawson.jonat.stockers.Messaging.ArticlesRecyclerView;
 
+/**
+ * This class is used to hold the information of a news article
+ */
 public class NewsInformation {
 
     private String title;

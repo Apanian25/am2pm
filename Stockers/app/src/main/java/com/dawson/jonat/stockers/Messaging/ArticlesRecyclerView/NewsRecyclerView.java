@@ -11,6 +11,9 @@ import com.dawson.jonat.stockers.R;
 
 import java.util.List;
 
+/**
+ * Recycler view that is used to display the articles (in form of a List<NewsInformation>)
+ */
 public class NewsRecyclerView extends RecyclerView.Adapter<ViewHolder> {
 
     private Context context;
@@ -55,6 +58,10 @@ public class NewsRecyclerView extends RecyclerView.Adapter<ViewHolder> {
         viewHolder.url = articles.get(position).getUrlToArticle();
     }
 
+    /**
+     * Return number of elements within the recycler view
+     * @return
+     */
     @Override
     public int getItemCount() {
         return articles.size();

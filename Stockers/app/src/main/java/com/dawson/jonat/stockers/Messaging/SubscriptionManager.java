@@ -51,7 +51,7 @@ public class SubscriptionManager {
                     public void onComplete(@NonNull Task<Void> task) {
                         String msg = context.getString(R.string.subSuccess);
                         if (!task.isSuccessful()) {
-                            msg = context.getString(R.string.subFailed);
+                                    msg = context.getString(R.string.subFailed);
                         }
                         Log.d("SUB", msg);
 

@@ -25,6 +25,12 @@ public class NewsArticlesActivity extends Activity {
     private DatabaseReference databaseReference;
     private Context context;
 
+    /**
+     * Initializes the context of the class, being the class itself, and calls on the method to fill
+     * and display the recycler view for the articles.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

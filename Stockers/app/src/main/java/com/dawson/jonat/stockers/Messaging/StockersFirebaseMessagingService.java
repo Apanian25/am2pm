@@ -11,7 +11,8 @@ public class StockersFirebaseMessagingService extends FirebaseMessagingService {
 
 
     /**
-     *This method is called everytime the instance id token is updated.
+     *This method is called everytime the instance id token is updated. For now it is not used, but
+     * would be usefull if we needed to send the token to the server
      */
     @Override
     public void onNewToken(String token) {
@@ -19,6 +20,12 @@ public class StockersFirebaseMessagingService extends FirebaseMessagingService {
         Log.i(TAG, "Refresehed Token: " + token);
     }
 
+    /**
+     * Event listiner that listens for a RemoteMessage (notificaition) to be send to the application,
+     * and then extracts the title and text from it, in order to display it to the user on the screen.
+     *
+     * @param remoteMessage
+     */
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);

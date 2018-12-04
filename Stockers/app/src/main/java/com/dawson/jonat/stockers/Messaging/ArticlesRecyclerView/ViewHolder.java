@@ -17,7 +17,8 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     String url;
 
     /**
-     * Constructor that initializes the view holder
+     * Constructor that initializes the view holder setting the values of the three views and the
+     * context of the view holder.
      *
      * @param view
      * @param context
@@ -31,7 +32,9 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     }
 
     /**
-     * When an view holder is clicked, it will launch an to the url of the activity
+     * Add onclick listener to launch an intent to launch a brower to the link of the article that
+     * was clicked.
+     *
      * @param v
      */
     @Override
