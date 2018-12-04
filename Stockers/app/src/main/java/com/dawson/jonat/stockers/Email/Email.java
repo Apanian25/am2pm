@@ -23,38 +23,49 @@ public class Email {
         }
     }
 
-    /**
-     * Transforms a LoanPayoutSummary into a html table with all of the LoanPayoutSummary properties
-     * displayed as the table rows.
-     *
-     * @param results
-     * @return
-     */
     private static String formatText(LoanPayoutSummary results) {
-        String text = "<html><body>";
-        text += "<table>";
-        text += genearateRow("Original Balance:", results.getOriginalAmountOwed() + "");
-        text += genearateRow("Time to pay off:", results.getMonthsToPayOff() + "");
-        text += genearateRow("Interest Accumulated:", results.getInterestAccumulated() + "");
-        text += genearateRow("Total Amount Paid:", results.getTotalPaid() + "");
-        text += genearateRow("Balance Left:", results.getAmountLeftToPay() + "");
-        text += "</table></body></html>";
+
+        String text = "Results\n"
+                + "Original Balance:" + results.getOriginalAmountOwed() + "\n"
+                + "Time to pay off:" + results.getMonthsToPayOff() + "\n"
+                + "Total Amount Paid:" + results.getTotalPaid() + "\n"
+                + "Balance Left:" + results.getAmountLeftToPay();
+
 
         return text;
     }
-
-    /**
-     * Takes in a title and results and will return a string formated html table row
-     * with the title and the results within it.
-     *
-     * @param title
-     * @param result
-     * @return
-     */
-    private static String genearateRow(String title, String result) {
-        return  "<tr>" +
-                "<td>" + title + "</td>" +
-                "<td>" + result + "</td>" +
-                "</tr>";
-    }
+//    /**
+//     * Transforms a LoanPayoutSummary into a html table with all of the LoanPayoutSummary properties
+//     * displayed as the table rows.
+//     *
+//     * @param results
+//     * @return
+//     */
+//    private static String formatText(LoanPayoutSummary results) {
+//        String text = "<html><body>";
+//        text += "<table>";
+//        text += genearateRow("Original Balance:", results.getOriginalAmountOwed() + "");
+//        text += genearateRow("Time to pay off:", results.getMonthsToPayOff() + "");
+//        text += genearateRow("Interest Accumulated:", results.getInterestAccumulated() + "");
+//        text += genearateRow("Total Amount Paid:", results.getTotalPaid() + "");
+//        text += genearateRow("Balance Left:", results.getAmountLeftToPay() + "");
+//        text += "</table></body></html>";
+//
+//        return text;
+//    }
+//
+//    /**
+//     * Takes in a title and results and will return a string formated html table row
+//     * with the title and the results within it.
+//     *
+//     * @param title
+//     * @param result
+//     * @return
+//     */
+//    private static String genearateRow(String title, String result) {
+//        return  "<tr>" +
+//                "<td>" + title + "</td>" +
+//                "<td>" + result + "</td>" +
+//                "</tr>";
+//    }
 }
