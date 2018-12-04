@@ -1,4 +1,4 @@
-package com.dawson.jonat.stockers;
+package com.dawson.jonat.stockers.Notes;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -8,12 +8,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import java.util.List;
 import com.dawson.jonat.stockers.Entity.Note;
+import com.dawson.jonat.stockers.R;
 
 public class NoteActivity extends AppCompatActivity {
 
