@@ -8,6 +8,9 @@
     <string name="app_name_team">FEAM2PM</string>
 
 
+    <!--Hints Activity String-->
+    <string name="learn_more">Learn More</string>
+
     <!-- IMPLICIT INTENT TO DAWSON WEBSITE -->
     <string name="urlToDawson">https://www.dawsoncollege.qc.ca</string>
 
@@ -98,10 +101,8 @@
         <item>10</item>
     </string-array>
 
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <!--Notes-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="learn_more">Learn More</string>
     <string name="title_activity_note">Note</string>
     <string name="hint_word">Enter Text here…</string>
     <string name="button_save">Save</string>
