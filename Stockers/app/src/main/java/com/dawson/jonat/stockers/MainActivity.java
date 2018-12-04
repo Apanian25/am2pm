@@ -1,5 +1,17 @@
 package com.dawson.jonat.stockers;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.widget.ListView;
+import com.dawson.jonat.stockers.ContactDialog.ContactInformation;
+import com.dawson.jonat.stockers.LoanCalculator.LoanCalculatorActivity;
+import java.io.InputStream;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -65,7 +77,8 @@ public class MainActivity extends Menus {
     }
 
     public void loanCalculatorClick(View v) {
-
+        Intent intent = new Intent(this, LoanCalculatorActivity.class);
+        startActivity(intent);
     }
 
     public void portfolioClick(View v) {
