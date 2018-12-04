@@ -16,13 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Menu.AboutActivity"></activity>
+        <activity android:name=".Menu.SettingsActivity"></activity>
+        <activity android:name=".StockQuote.StockQuotesActivity"></activity>
+        <activity android:name=".StockQuote.ShowStockActivity"></activity>
         <activity
-            android:name=".NoteActivity"
+            android:name=".Notes.NoteActivity"
             android:label="@string/title_activity_note"></activity>
         <activity
-            android:name=".NewNoteActivity"
+            android:name=".Notes.NewNoteActivity"
             android:label="@string/title_activity_new_note"></activity>
         <activity android:name=".Hints.FinancialHintsActivity"></activity>
+        <activity android:name=".Messaging.NewsArticlesActivity"></activity>
+        <service android:name=".Messaging.StockersFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
-
 </manifest>

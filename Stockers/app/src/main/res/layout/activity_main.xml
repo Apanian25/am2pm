@@ -8,7 +8,6 @@
     android:theme="@style/AppTheme"
     tools:context=".MainActivity">
 
-
     <TextView
         android:id="@+id/usernameLbl"
         android:layout_width="match_parent"
@@ -52,7 +51,7 @@
                         android:layout_weight="1"
                         android:clickable="true"
                         android:onClick="foreignExchangeClick"
-                        android:src="@drawable/ic_currency_exchange_icon" />
+                        android:src="@mipmap/ic_currency_exchange_icon" />
 
                 </LinearLayout>
 
@@ -70,7 +69,7 @@
                         android:layout_weight="1"
                         android:clickable="true"
                         android:onClick="financialHintsClick"
-                        android:src="@drawable/ic_hint_icon" />
+                        android:src="@mipmap/ic_hints_icon" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -94,7 +93,7 @@
                         android:layout_weight="1"
                         android:clickable="true"
                         android:onClick="notesClick"
-                        android:src="@drawable/ic_notes_icon" />
+                        android:src="@mipmap/ic_notes_icon" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -110,7 +109,7 @@
                         android:layout_weight="1"
                         android:clickable="true"
                         android:onClick="loanCalculatorClick"
-                        android:src="@drawable/ic_loan_calculator_icon" />
+                        android:src="@mipmap/ic_loan_calculator_icon" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -135,7 +134,7 @@
                         android:layout_weight="1"
                         android:clickable="true"
                         android:onClick="portfolioClick"
-                        android:src="@drawable/ic_loan_calculator_icon" />
+                        android:src="@mipmap/ic_loan_calculator_icon_round" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -173,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:src="@drawable/ic_stockers_logo_textless" />
+                android:src="@mipmap/ic_stockers_textless_logo_round" />
 
             <ImageView
                 android:id="@+id/messageBtn"
