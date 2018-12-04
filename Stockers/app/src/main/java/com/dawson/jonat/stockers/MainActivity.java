@@ -18,6 +18,7 @@ import android.view.View;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.dawson.jonat.stockers.Messaging.NewsArticlesActivity;
 import com.dawson.jonat.stockers.Messaging.SubscriptionManager;
 import com.dawson.jonat.stockers.Notes.NoteActivity;
 import com.dawson.jonat.stockers.Hints.FinancialHintsActivity;
@@ -85,7 +86,8 @@ public class MainActivity extends Menus {
 
     }
 
-    public void messageClick(View v) {
-
+    public void messageClick(View v){
+        Intent intent = new Intent(this, NewsArticlesActivity.class);
+        startActivity(intent);
     }
 }

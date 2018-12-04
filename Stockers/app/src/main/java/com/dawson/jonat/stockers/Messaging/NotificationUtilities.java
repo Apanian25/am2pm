@@ -21,7 +21,7 @@ public class NotificationUtilities {
 
         //Channel Id can be null since it is only used on Oreo and above (todo later)
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, null)
-                .setSmallIcon(R.drawable.temp)
+                .setSmallIcon(R.drawable.ic_stockers_logo)
                 .setContentTitle(title)
                 .setContentText(text)
                 //This allows for the notification to pop up

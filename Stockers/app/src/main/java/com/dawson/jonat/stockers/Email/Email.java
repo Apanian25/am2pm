@@ -7,6 +7,7 @@ import android.text.Html;
 import android.text.Spanned;
 
 import com.dawson.jonat.stockers.LoanCalculator.LoanPayoutSummary;
+import com.dawson.jonat.stockers.R;
 
 public class Email {
 
@@ -17,19 +18,19 @@ public class Email {
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
-        emailIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(formatText(results)));
+        emailIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(formatText(results, context)));
         if (emailIntent.resolveActivity(context.getPackageManager()) != null) {
             context.startActivity(Intent.createChooser(emailIntent, "Email:"));
         }
     }
 
-    private static String formatText(LoanPayoutSummary results) {
+    private static String formatText(LoanPayoutSummary results, Context context) {
 
-        String text = "Results\n"
-                + "Original Balance:" + results.getOriginalAmountOwed() + "\n"
-                + "Time to pay off:" + results.getMonthsToPayOff() + "\n"
-                + "Total Amount Paid:" + results.getTotalPaid() + "\n"
-                + "Balance Left:" + results.getAmountLeftToPay();
+        String text = context.getResources().getString(R.string.result) + "\n"
+                + context.getResources().getString(R.string.ogBalance) + results.getOriginalAmountOwed() + "\n"
+                + context.getResources().getString(R.string.timeToPay) + results.getMonthsToPayOff() + "\n"
+                + context.getResources().getString(R.string.totalPaid) + results.getTotalPaid() + "\n"
+                + context.getResources().getString(R.string.amountLeft) + results.getAmountLeftToPay();
 
 
         return text;
