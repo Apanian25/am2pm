@@ -67,6 +67,7 @@
     <string name="minPayment">Minimum Payment:</string>
     <string name="years">Years:</string>
     <string name="calculate">Calculate</string>
+    <string name="result">Results:</string>
 
     <!--Strings For Loan Calculator Results Table-->
     <string name="timeToPay">Time to pay off:</string>
