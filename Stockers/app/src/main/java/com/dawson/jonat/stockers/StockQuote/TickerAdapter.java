@@ -66,8 +66,9 @@ public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHold
             @Override
             public void onClick(View v) {
                 tickers.remove(tickerHolder.getAdapterPosition());
-                notifyItemRemoved(tickerHolder.getAdapterPosition());
-                notifyItemRangeChanged(tickerHolder.getAdapterPosition(), getItemCount());
+                notifyDataSetChanged();
+//                notifyItemRemoved(tickerHolder.getAdapterPosition());
+//                notifyItemRangeChanged(tickerHolder.getAdapterPosition(), getItemCount());
             }
         });
     }

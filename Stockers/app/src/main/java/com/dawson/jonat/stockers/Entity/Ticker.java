@@ -1,13 +1,17 @@
 package com.dawson.jonat.stockers.Entity;
 
-public class Ticker {
+import com.dawson.jonat.stockers.R;
+
+import java.io.Serializable;
+
+public class Ticker implements Serializable{
         private String symbol;
         private int delete, search;
 
-        public Ticker(String s, int delete, int search) {
+        public Ticker(String s) {
             symbol = s;
-            this.delete = delete;
-            this.search = search;
+            this.delete = R.drawable.trash;
+            this.search = R.drawable.search;
         }
 
         public String getSymbol(){
