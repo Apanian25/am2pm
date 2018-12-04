@@ -1,7 +1,33 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme">
+    <style name="AppTheme"  parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/gray_purple</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/gray_purple</item>
+        <item name="android:colorBackground">@color/background_material_light</item>
+        <item name="android:windowBackground">@color/gainsboro</item>
+        <item name="android:colorForeground">@color/foreground_material_dark</item>
+        <item name="android:colorAccent">@color/gray_purple</item>
+        <item name="android:statusBarColor">@color/gray_purple</item>
+    </style>
+
+
+    <style name="BottomToolBar">
+        <item name="colorPrimary">@color/gray_purple</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/gray_purple</item>
+        <item name="android:background">@color/gray_purple</item>
+    </style>
+
+    <!-- The default font for RecyclerView items is too small.
+    The margin is a simple delimiter between the words.
+    Style is based off code from:
+    https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#9
+    -->
+    <style name="word_title"  parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:layout_margin">6dp</item>
+        <item name="android:paddingLeft">8dp</item>
     </style>
 
     <style name="tableContent">
