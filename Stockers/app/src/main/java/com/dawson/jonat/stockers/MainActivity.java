@@ -86,7 +86,6 @@ public class MainActivity extends Menus {
 
     public void foreignExchangeClick(View v) {
         startActivity(new Intent(getApplicationContext(), CurrencyExchangeActivity.class));
-
     }
 
     public void financialHintsClick(View v) {

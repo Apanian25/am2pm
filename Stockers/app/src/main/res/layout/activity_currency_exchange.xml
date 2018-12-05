@@ -47,26 +47,13 @@
             android:textSize="@dimen/CurrencyExchangeText"/>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+
 
         <TextView
             android:id="@+id/result"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_gravity="bottom"
             android:textSize="@dimen/CurrencyExchangeText" />
-
-        <TextView
-            android:id="@+id/convertedCurrency"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="2dp"
-            android:textSize="@dimen/CurrencyExchangeText" />
-
-    </LinearLayout>
     </LinearLayout>
 </LinearLayout>
