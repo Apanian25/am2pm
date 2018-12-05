@@ -15,17 +15,15 @@
         android:orientation="vertical">
 
 
-        <TextView
-            android:id="@+id/userCurrency"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="@dimen/CurrencyExchangeText"/>
-
         <Spinner
-            android:id="@+id/currencies"
+            android:id="@+id/from_currencies"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_gravity="center"
+            />
+        <Spinner
+            android:id="@+id/to_currencies"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             />
 
 
