@@ -77,10 +77,7 @@
     <string name="setting_dialog_message">Are you sure you want to quit without saving?</string>
     <string name="btn_text_settings_cancel">Cancel</string>
     <string name="data_saved">Successfully modified your settings</string>
-<<<<<<< HEAD
     <string name="data_empty">You need to fill the settings input</string>
-=======
->>>>>>> 83d0def7e4befa047a5d50e1840f51e280f35024
     <string name="calculate">Calculate</string>
     <string name="amount_hint">1000</string>
     <string name="na">N/A</string>
