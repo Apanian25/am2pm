@@ -43,12 +43,15 @@ public class LoanCalculatorActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
 
-        LoanPayoutSummary summary = (LoanPayoutSummary)resultsTable.getTag();
-        savedInstanceState.putDouble("ogBalance", summary.getOriginalAmountOwed());
-        savedInstanceState.putDouble("amoutLeft", summary.getAmountLeftToPay());
-        savedInstanceState.putDouble("interestAccumulated", summary.getInterestAccumulated());
-        savedInstanceState.putDouble("totalAmountPaid", summary.getTotalPaid());
-        savedInstanceState.putInt("timeToPayOff", summary.getMonthsToPayOff());
+        if (resultsTable != null) {
+            LoanPayoutSummary summary = (LoanPayoutSummary) resultsTable.getTag();
+            savedInstanceState.putDouble("ogBalance", summary.getOriginalAmountOwed());
+            savedInstanceState.putDouble("amoutLeft", summary.getAmountLeftToPay());
+            savedInstanceState.putDouble("interestAccumulated", summary.getInterestAccumulated());
+            savedInstanceState.putDouble("totalAmountPaid", summary.getTotalPaid());
+            savedInstanceState.putInt("timeToPayOff", summary.getMonthsToPayOff());
+        }
+        savedInstanceState = null;
     }
 
     /**
