@@ -43,6 +43,8 @@ public class FinancialHintsActivity extends Menus {
     private ViewPager hintsViewPager;
     private ProgressBar progressBar;
 
+    private List<Hint> hintList;
+
     /**
      * Loads the hints view pager
      *
@@ -72,7 +74,7 @@ public class FinancialHintsActivity extends Menus {
                     mDatabase.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            List<Hint> hintList = new ArrayList<>();
+                            hintList = new ArrayList<>();
                             for(DataSnapshot child :  dataSnapshot.child("hints").getChildren()){
                                 hintList.add(child.getValue(Hint.class));
                             }
