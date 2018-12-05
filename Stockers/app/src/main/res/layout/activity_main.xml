@@ -22,28 +22,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="24dp">
+        android:layout_alignParentTop="true">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:onClick="foreignExchangeClick">
+                    android:padding="20dp">
 
                     <ImageView
                         android:id="@+id/foreignExchangeBtn"
@@ -51,46 +50,56 @@
                         android:layout_height="125dp"
                         android:background="@drawable/round_background"
                         android:clickable="true"
+                        android:onClick="foreignExchangeClick"
                         android:src="@drawable/ic_launcher_foreground_currency_exchange"
                         android:tint="@color/dark_orange"
-                        android:translationZ="20dp"/>
+                        android:translationZ="20dp" />
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        style="@style/purple_text_header"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="19dp"
+                        android:minHeight="125dp"
                         android:text="@string/foreignEx"
-                        style="@style/purple_text_header"/>
+                        android:textAlignment="center" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:onClick="financialHintsClick">
+                    android:padding="20dp">
 
                     <ImageView
                         android:id="@+id/financialHintsBtn"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
-                        android:background="@drawable/round_background"
                         android:clickable="true"
+                        android:onClick="financialHintsClick"
+                        android:background="@drawable/round_background"
                         android:src="@drawable/ic_launcher_foreground_hints"
                         android:tint="@color/dark_orange"
                         android:translationZ="20dp" />
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        style="@style/purple_text_header"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="19dp"
+                        android:minHeight="125dp"
                         android:text="@string/hints"
-                        style="@style/purple_text_header"/>
+                        android:textAlignment="center" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 android:padding="10dp">
 
@@ -98,49 +107,56 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:onClick="notesClick">
+                    android:padding="20dp">
 
                     <ImageView
                         android:id="@+id/notesBtn"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
-                        android:background="@drawable/round_background"
                         android:clickable="true"
+                        android:onClick="notesClick"
+                        android:background="@drawable/round_background"
                         android:src="@drawable/ic_launcher_foreground_notes"
                         android:tint="@color/dark_orange"
-                        android:translationZ="20dp"/>
+                        android:translationZ="20dp" />
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        style="@style/purple_text_header"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minHeight="125dp"
                         android:text="@string/notes"
-                        style="@style/purple_text_header"/>
+                        android:textAlignment="center" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:onClick="loanCalculatorClick">
+                    android:padding="20dp">
 
                     <ImageView
                         android:id="@+id/loanCalculatorBtn"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
-                        android:background="@drawable/round_background"
                         android:clickable="true"
+                        android:onClick="loanCalculatorClick"
+                        android:background="@drawable/round_background"
                         android:src="@drawable/ic_launcher_foreground_loan_calculator"
                         android:tint="@color/dark_orange"
                         android:translationZ="20dp" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        style="@style/purple_text_header"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minHeight="125dp"
                         android:text="@string/loanCal"
-                        style="@style/purple_text_header"/>
+                        android:textAlignment="center" />
                 </LinearLayout>
 
 
@@ -148,11 +164,11 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal"
-                android:padding="10dp"
-                android:onClick="portfolioClick">
+                android:padding="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -160,23 +176,25 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:paddingBottom="30dp">
+                    android:paddingBottom="60dp">
 
                     <ImageView
                         android:id="@+id/portfolioBtn"
-                        android:translationZ="20dp"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:background="@drawable/round_background"
                         android:clickable="true"
+                        android:onClick="portfolioClick"
                         android:src="@drawable/ic_launcher_foreground_loan_calculator"
-                        android:tint="@color/dark_orange"/>
+                        android:tint="@color/dark_orange"
+                        android:translationZ="20dp" />
 
                     <TextView
+                        style="@style/purple_text_header"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/portfolio"
-                        style="@style/purple_text_header"/>
+                        android:textAlignment="viewStart" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
