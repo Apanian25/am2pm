@@ -2,11 +2,14 @@ package com.dawson.jonat.stockers.Hints;
 
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.dawson.jonat.stockers.Entity.Hint;
+import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,20 +25,43 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class FinancialHintsActivity extends AppCompatActivity {
+/**
+ * Base activity for the view pager and the hint fragments
+ *
+ * @author Danny
+ */
+public class FinancialHintsActivity extends Menus {
 
-
-    private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
-    private ViewPager hintsViewPager;
+    //Logging tag
     private final String TAG = "FinancialHintsActivity";
 
+    //Firebase
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
+
+    //Views in layout
+    private ViewPager hintsViewPager;
+    private ProgressBar progressBar;
+
+    /**
+     * Loads the hints view pager
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_financial_hints);
 
+        //Display loading bar due to delay in getting the hints
+        RelativeLayout hintsLayout = findViewById(R.id.hints_layout);
+        progressBar = new ProgressBar(FinancialHintsActivity.this, null, android.R.attr.progressBarStyleHorizontal);
+        hintsLayout.addView(progressBar, new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.VISIBLE);
 
+
+        //Fetch hints list and displays it
         mAuth = FirebaseAuth.getInstance();
         mAuth.signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -56,6 +82,7 @@ public class FinancialHintsActivity extends AppCompatActivity {
 
                             hintsViewPager = (ViewPager) findViewById(R.id.hintsViewPager);
                             HintsFragmentPagerAdapter pagerAdapter = new HintsFragmentPagerAdapter(getSupportFragmentManager(), hintList);
+                            progressBar.setVisibility(View.GONE);
                             hintsViewPager.setAdapter(pagerAdapter);
                         }
 

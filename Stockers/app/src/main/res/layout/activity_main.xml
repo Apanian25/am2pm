@@ -52,7 +52,8 @@
                         android:clickable="true"
                         android:onClick="foreignExchangeClick"
                         android:src="@drawable/ic_launcher_foreground_currency_exchange"
-                        android:tint="@color/dark_orange" />
+                        android:tint="@color/dark_orange"
+                        android:translationZ="20dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -64,14 +65,14 @@
 
                     <ImageView
                         android:id="@+id/financialHintsBtn"
-                        style="@style/BackgroundImageView"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:background="@drawable/round_background"
                         android:clickable="true"
                         android:onClick="financialHintsClick"
                         android:src="@drawable/ic_launcher_foreground_hints"
-                        android:tint="@color/dark_orange" />
+                        android:tint="@color/dark_orange"
+                        android:translationZ="20dp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -92,14 +93,14 @@
 
                     <ImageView
                         android:id="@+id/notesBtn"
-                        style="@style/BackgroundImageView"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:background="@drawable/round_background"
                         android:clickable="true"
                         android:onClick="notesClick"
                         android:src="@drawable/ic_launcher_foreground_notes"
-                        android:tint="@color/dark_orange" />
+                        android:tint="@color/dark_orange"
+                        android:translationZ="20dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -111,14 +112,14 @@
 
                     <ImageView
                         android:id="@+id/loanCalculatorBtn"
-                        style="@style/BackgroundImageView"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:background="@drawable/round_background"
                         android:clickable="true"
                         android:onClick="loanCalculatorClick"
                         android:src="@drawable/ic_launcher_foreground_loan_calculator"
-                        android:tint="@color/dark_orange" />
+                        android:tint="@color/dark_orange"
+                        android:translationZ="20dp" />
                 </LinearLayout>
 
 
@@ -136,18 +137,19 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingBottom="30dp">
 
                     <ImageView
                         android:id="@+id/portfolioBtn"
-                        style="@style/BackgroundImageView"
+                        android:translationZ="20dp"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:background="@drawable/round_background"
                         android:clickable="true"
                         android:onClick="portfolioClick"
                         android:src="@drawable/ic_launcher_foreground_loan_calculator"
-                        android:tint="@color/dark_orange" />
+                        android:tint="@color/dark_orange"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
