@@ -132,7 +132,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:onClick="calculateAndDisplayResults"
-            android:text="@string/calculate"/>
+            android:text="@string/calculate"
+            android:layout_marginBottom="20dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -155,6 +156,7 @@
         android:layout_gravity="center"
         android:orientation="horizontal">
     </LinearLayout>
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -164,6 +166,6 @@
         android:clickable="true"
         android:onClick="displayContacts"
         android:src="@drawable/send_icon"
+        android:layout_margin="17dp"
         />
-    </LinearLayout>
 </LinearLayout>
