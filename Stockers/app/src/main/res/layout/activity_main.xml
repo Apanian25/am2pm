@@ -185,7 +185,7 @@
                         android:background="@drawable/round_background"
                         android:clickable="true"
                         android:onClick="portfolioClick"
-                        android:src="@drawable/ic_launcher_foreground_loan_calculator"
+                        android:src="@mipmap/ic_launcher_foreground_portfolio_logo"
                         android:tint="@color/dark_orange"
                         android:translationZ="20dp" />
 
@@ -242,7 +242,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:onClick="messageClick"
-                android:src="@drawable/ic_launcher_foreground" />
+                android:src="@mipmap/ic_launcher_foreground_news_logo" />
 
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
