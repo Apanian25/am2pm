@@ -15,7 +15,6 @@ public class HintsFragmentPagerAdapter extends FragmentPagerAdapter{
     public HintsFragmentPagerAdapter(FragmentManager fm, List<Hint> hintList) {
         super(fm);
         this.hintList = hintList;
-
     }
 
     @Override

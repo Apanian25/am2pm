@@ -177,6 +177,7 @@ public class SettingsActivity extends Menus {
      * shared preferences
      */
     private void saveInfoHelper(){
+        boolean firstSave = (prefs.getString("email", null) == null);
         //store first name
         editor.putString("fname", fname.getText().toString());
         // store last name
@@ -197,6 +198,10 @@ public class SettingsActivity extends Menus {
         Toast.makeText(this, R.string.data_saved, Toast.LENGTH_SHORT).show();
 
         loadInfo(); //to show new data immediately without refreshing the page
+
+        if(firstSave){
+            finish();
+        }
     }
 
     /**
