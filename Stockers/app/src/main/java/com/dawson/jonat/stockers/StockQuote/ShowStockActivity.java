@@ -24,22 +24,25 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 /**
- * Class responsible for displaying information about a stock
- * which is presented by the ticker symbol the user inputs
+ * Class responsible for displaying information about a stock which is presented
+ * by the ticker symbol the user inputs
  *
  * @author Lara Mezirovsky
  * @version 1.0
  */
 public class ShowStockActivity extends Menus {
-    TextView ticker,companyName, price, stockExcahnge;
+
+    TextView ticker, companyName, price, stockExcahnge;
     ConnectivityManager connectionManager; //Class that answers queries about the state of network connectivity.
     NetworkInfo netInfo;
     String tickerText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(checkNetwrok()) {
+        if (checkNetwrok()) {
             setContentView(R.layout.activity_show_stock);
             //get all the elements needed
             ticker = findViewById(R.id.ticker);
@@ -48,23 +51,24 @@ public class ShowStockActivity extends Menus {
             stockExcahnge = findViewById(R.id.stockExchange);
             tickerText = getIntent().getExtras().getString("ticker");
             showStockQuotes();
-        }
-        else{
+        } else {
             //redirection to error page (503 error)
             setContentView(R.layout.error_page);
         }
     }
 
-    public void showStockQuotes(){
+    public void showStockQuotes() {
         //get the url
-        String url = "https://www.worldtradingdata.com/api/v1/stock?symbol="+tickerText+"&api_token=Qqn56QrK7FSkUbQxb3OFnZAqzKdAZ7NrMiGjPJgg2ky1qPywjPtETg81lbcB";
-            new StocksThread().execute(url);
+        String url = "https://www.worldtradingdata.com/api/v1/stock?symbol=" + tickerText + "&api_token=Qqn56QrK7FSkUbQxb3OFnZAqzKdAZ7NrMiGjPJgg2ky1qPywjPtETg81lbcB";
+        new StocksThread().execute(url);
 
     }
+
     /**
      * Inner class to represent my thread
      */
     private class StocksThread extends AsyncTask<String, Void, String[]> {
+
         @Override
         protected String[] doInBackground(String... strings) {
             try {
@@ -76,23 +80,18 @@ public class ShowStockActivity extends Menus {
 
         protected void onPostExecute(String[] result) {
             /**
-             * Assume array stores the following values - structure:
-             * 0 - company name
-             * 1 - price
-             * 2- currency
-             * 3 - stock exchange
+             * Assume array stores the following values - structure: 0 - company
+             * name 1 - price 2- currency 3 - stock exchange
              */
-           try{
+            try {
                 ticker.setText(tickerText);
                 companyName.setText(result[0]);
-                price.setText(result[1] + " " +  result[2]);
+                price.setText(result[1] + " " + result[2]);
                 stockExcahnge.setText(result[3]);
-            }
-            catch (NullPointerException np){
+            } catch (NullPointerException np) {
                 ticker.setText(getString(R.string.no_results_found) + "  " + tickerText);
             }
         }
-
 
         /**
          * Private helper method to create a a connection with the API
@@ -110,7 +109,8 @@ public class ShowStockActivity extends Menus {
         }
 
         /**
-         * Calls helper method to return the appropriate text from the api if connection is OK
+         * Calls helper method to return the appropriate text from the api if
+         * connection is OK
          *
          * @param urlText
          * @return
@@ -146,8 +146,7 @@ public class ShowStockActivity extends Menus {
                     results[3] = resultsToReturn.getString("stock_exchange_long") + " ( " + resultsToReturn.getString("stock_exchange_short") + " )";
                     return results;
 
-                }
-                catch (JSONException np){
+                } catch (JSONException np) {
                     return null;
                 }
 
@@ -161,10 +160,12 @@ public class ShowStockActivity extends Menus {
 
         /**
          * Private helper method to get inputStream to json object
-         * @author Patricia Campbell, faculty at Dawson College in the Computer Science departement
+         *
+         * @author Patricia Campbell, faculty at Dawson College in the Computer
+         * Science departement todo: add git lab repo link
          */
         private String convertResponseToString(InputStream input) throws IOException {
-            int bytesRead, totalRead=0;
+            int bytesRead, totalRead = 0;
             byte[] buffer = new byte[1024];
 
             // for data from the server
@@ -184,7 +185,6 @@ public class ShowStockActivity extends Menus {
 
             return new String(byteArrayOutputStream.toString());
 
-
         }
     }
 
@@ -197,13 +197,11 @@ public class ShowStockActivity extends Menus {
         //We dont care if its is wifi or mobile, we want to user the available network for us
         netInfo = connectionManager.getActiveNetworkInfo();
         /**
-         * About permission:
-         * uses-permission -> requests some permission
+         * About permission: uses-permission -> requests some permission
          * permission -> what allows
          */
         if (netInfo != null && netInfo.isConnected()) {
             return true;
-
 
         } else {
             Toast.makeText(this, R.string.no_internet, Toast.LENGTH_LONG).show();
@@ -211,3 +209,4 @@ public class ShowStockActivity extends Menus {
         }
     }
 }
+

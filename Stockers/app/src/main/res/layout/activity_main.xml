@@ -42,7 +42,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:onClick="foreignExchangeClick">
 
                     <ImageView
                         android:id="@+id/foreignExchangeBtn"
@@ -50,10 +51,14 @@
                         android:layout_height="125dp"
                         android:background="@drawable/round_background"
                         android:clickable="true"
-                        android:onClick="foreignExchangeClick"
                         android:src="@drawable/ic_launcher_foreground_currency_exchange"
                         android:tint="@color/dark_orange"
                         android:translationZ="20dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/foreignEx"
+                        style="@style/purple_text_header"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -61,7 +66,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:onClick="financialHintsClick">
 
                     <ImageView
                         android:id="@+id/financialHintsBtn"
@@ -69,10 +75,14 @@
                         android:layout_height="125dp"
                         android:background="@drawable/round_background"
                         android:clickable="true"
-                        android:onClick="financialHintsClick"
                         android:src="@drawable/ic_launcher_foreground_hints"
                         android:tint="@color/dark_orange"
                         android:translationZ="20dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hints"
+                        style="@style/purple_text_header"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -89,7 +99,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:onClick="notesClick">
 
                     <ImageView
                         android:id="@+id/notesBtn"
@@ -97,10 +108,14 @@
                         android:layout_height="125dp"
                         android:background="@drawable/round_background"
                         android:clickable="true"
-                        android:onClick="notesClick"
                         android:src="@drawable/ic_launcher_foreground_notes"
                         android:tint="@color/dark_orange"
                         android:translationZ="20dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/notes"
+                        style="@style/purple_text_header"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -108,7 +123,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:onClick="loanCalculatorClick">
 
                     <ImageView
                         android:id="@+id/loanCalculatorBtn"
@@ -116,10 +132,15 @@
                         android:layout_height="125dp"
                         android:background="@drawable/round_background"
                         android:clickable="true"
-                        android:onClick="loanCalculatorClick"
                         android:src="@drawable/ic_launcher_foreground_loan_calculator"
                         android:tint="@color/dark_orange"
                         android:translationZ="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loanCal"
+                        style="@style/purple_text_header"/>
                 </LinearLayout>
 
 
@@ -130,7 +151,8 @@
                 android:layout_height="220dp"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:onClick="portfolioClick">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -147,9 +169,14 @@
                         android:layout_height="125dp"
                         android:background="@drawable/round_background"
                         android:clickable="true"
-                        android:onClick="portfolioClick"
                         android:src="@drawable/ic_launcher_foreground_loan_calculator"
                         android:tint="@color/dark_orange"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/portfolio"
+                        style="@style/purple_text_header"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -187,6 +214,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:clickable="true"
+                android:onClick="onClickAboutPage"
                 android:src="@mipmap/ic_stockers_textless_logo_round" />
 
             <ImageView
