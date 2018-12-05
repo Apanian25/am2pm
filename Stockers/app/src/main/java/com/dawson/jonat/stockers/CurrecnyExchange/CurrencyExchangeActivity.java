@@ -170,8 +170,6 @@ public class CurrencyExchangeActivity extends Menus {
                 else
                     performExchange(Double.valueOf(value));
 
-                ((TextView)findViewById(R.id.convertedCurrency)).
-                        setText((String)toCurrencySpinner.getSelectedItem());
 
             } // to close the onItemSelected
             public void onNothingSelected(AdapterView<?> parent) {}
