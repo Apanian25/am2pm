@@ -154,6 +154,6 @@
         android:clickable="true"
         android:onClick="displayContacts"
         android:src="@drawable/send_icon"
-        />
+        android:layout_margin="17dp"/>
 
 </LinearLayout>
