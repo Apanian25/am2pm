@@ -1,24 +1,17 @@
 package com.dawson.jonat.stockers;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.content.ContentResolver;
+
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.widget.ListView;
-import com.dawson.jonat.stockers.ContactDialog.ContactInformation;
+import android.preference.PreferenceManager;
 import com.dawson.jonat.stockers.LoanCalculator.LoanCalculatorActivity;
-import java.io.InputStream;
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.content.Context;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.dawson.jonat.stockers.Menu.AboutActivity;
+import com.dawson.jonat.stockers.Menu.SettingsActivity;
 import com.dawson.jonat.stockers.Messaging.NewsArticlesActivity;
 import com.dawson.jonat.stockers.Messaging.SubscriptionManager;
 import com.dawson.jonat.stockers.Notes.NoteActivity;
@@ -45,24 +38,42 @@ public class MainActivity extends Menus {
         setContentView(R.layout.activity_main);
         context = this;
 
+        //Check if first visit
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String email = sp.getString("email", null);
+        if(email == null){
+            Intent intent = new Intent(this, SettingsActivity.class);
+            launchActivity(intent);
+        }
 
+        TextView userTV = findViewById(R.id.usernameLbl);
+        userTV.setText(sp.getString("fname" , "") + " " + sp.getString("lname", null));
 
         //Instantiate firebase auth
         mAuth = FirebaseAuth.getInstance();
 
         //Sign the user in with the predefined authentication identification
-        mAuth.signInAnonymously().addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                Toast.makeText(context, "This Worked", Toast.LENGTH_LONG).show();
-            }
-        });
-
+        mAuth.signInAnonymously();
+        //Subscribe to news service
         SubscriptionManager.sub("News", this, false);
+
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        //To set after setting has been saved
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        TextView userTV = findViewById(R.id.usernameLbl);
+        userTV.setText(sp.getString("fname" , "") + " " + sp.getString("lname", null));
+    }
+
+    //Start activities when the corresponding button is clicked
+
     public void foreignExchangeClick(View v) {
+
     }
 
     public void financialHintsClick(View v) {

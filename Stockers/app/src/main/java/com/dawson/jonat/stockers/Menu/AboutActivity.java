@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ScrollView;
 
 import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
@@ -23,6 +24,8 @@ public class AboutActivity extends Menus {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        ScrollView sv = findViewById(R.id.about_scroll);
+
     }
 
     /**
