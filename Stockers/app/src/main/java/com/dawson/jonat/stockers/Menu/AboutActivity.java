@@ -24,8 +24,6 @@ public class AboutActivity extends Menus {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        ScrollView sv = findViewById(R.id.about_scroll);
-
     }
 
     /**

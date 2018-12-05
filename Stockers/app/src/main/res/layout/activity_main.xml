@@ -40,9 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:clickable="true"
                     android:gravity="center_horizontal"
-                    android:onClick="foreignExchangeClick"
                     android:orientation="vertical"
                     android:padding="20dp">
 
@@ -51,6 +49,8 @@
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:background="@drawable/round_background"
+                        android:clickable="true"
+                        android:onClick="foreignExchangeClick"
                         android:src="@drawable/ic_launcher_foreground_currency_exchange"
                         android:tint="@color/dark_orange"
                         android:translationZ="20dp" />
@@ -69,9 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="true"
                     android:gravity="center_horizontal"
-                    android:onClick="financialHintsClick"
                     android:orientation="vertical"
                     android:padding="20dp">
 
@@ -79,6 +77,8 @@
                         android:id="@+id/financialHintsBtn"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
+                        android:clickable="true"
+                        android:onClick="financialHintsClick"
                         android:background="@drawable/round_background"
                         android:src="@drawable/ic_launcher_foreground_hints"
                         android:tint="@color/dark_orange"
@@ -107,9 +107,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="true"
                     android:gravity="center_horizontal"
-                    android:onClick="notesClick"
                     android:orientation="vertical"
                     android:padding="20dp">
 
@@ -117,6 +115,8 @@
                         android:id="@+id/notesBtn"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
+                        android:clickable="true"
+                        android:onClick="notesClick"
                         android:background="@drawable/round_background"
                         android:src="@drawable/ic_launcher_foreground_notes"
                         android:tint="@color/dark_orange"
@@ -135,9 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="true"
                     android:gravity="center_horizontal"
-                    android:onClick="loanCalculatorClick"
                     android:orientation="vertical"
                     android:padding="20dp">
 
@@ -145,6 +143,8 @@
                         android:id="@+id/loanCalculatorBtn"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
+                        android:clickable="true"
+                        android:onClick="loanCalculatorClick"
                         android:background="@drawable/round_background"
                         android:src="@drawable/ic_launcher_foreground_loan_calculator"
                         android:tint="@color/dark_orange"
@@ -167,7 +167,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center_horizontal"
-                android:onClick="portfolioClick"
                 android:orientation="horizontal"
                 android:padding="20dp">
 
@@ -185,6 +184,7 @@
                         android:layout_height="125dp"
                         android:background="@drawable/round_background"
                         android:clickable="true"
+                        android:onClick="portfolioClick"
                         android:src="@drawable/ic_launcher_foreground_loan_calculator"
                         android:tint="@color/dark_orange"
                         android:translationZ="20dp" />
