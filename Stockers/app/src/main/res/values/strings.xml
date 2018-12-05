@@ -80,7 +80,7 @@
     <string name="data_empty">You need to fill the settings input</string>
     <string name="calculate">Calculate</string>
     <string name="amount_hint">1000</string>
-
+    <string name="na">N/A</string>
 
     <!--Strings For Loan Calculator Activity-->
     <string name="amount">Amount:</string>

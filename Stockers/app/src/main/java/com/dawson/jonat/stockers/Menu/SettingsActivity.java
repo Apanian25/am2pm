@@ -245,7 +245,7 @@ public class SettingsActivity extends Menus {
         password.setText(prefs.getString("password", null));
         spinner_curr.setSelection(prefs.getInt("curr", 0));
         spinner_stock.setSelection(prefs.getInt("stock", 0));
-        last_mod_date.setText(" " + prefs.getString("date", "N/A"));
+        last_mod_date.setText(" " + prefs.getString("date", getString(R.string.na)));
     }
 
     /**
