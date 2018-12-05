@@ -96,7 +96,6 @@ public class SettingsActivity extends Menus {
         //will only reach here is isOptionsSelected = true;
         if (checkIfChanged()) {
             showDialog(intent);
-            finish(); //todo
             return true;
         } else {
             launchActivity(intent);
@@ -136,11 +135,11 @@ public class SettingsActivity extends Menus {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 saveInfoHelper();
-                if (intent != null) {
+                if (intent != null)
                     launchActivity(intent);
-                } else {
+                
                     finish();
-                }
+
 
             }
         });
@@ -262,7 +261,6 @@ public class SettingsActivity extends Menus {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         super.onKeyDown(keyCode, event);
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            Log.d(this.getClass().getName(), "back button pressed");
             isBackKey = true;
         }
         return isBackKey;
