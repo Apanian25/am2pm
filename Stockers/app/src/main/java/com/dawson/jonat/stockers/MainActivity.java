@@ -46,9 +46,7 @@ public class MainActivity extends Menus {
         context = this;
 
 
-    }
 
-    public void foreignExchangeClick(View v) {
         //Instantiate firebase auth
         mAuth = FirebaseAuth.getInstance();
 
@@ -61,6 +59,11 @@ public class MainActivity extends Menus {
         });
 
         startActivity(new Intent(this, CurrencyExchangeActivity.class));
+        SubscriptionManager.sub("News", this, false);
+
+    }
+
+    public void foreignExchangeClick(View v) {
     }
 
     public void financialHintsClick(View v) {
