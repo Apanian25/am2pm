@@ -60,12 +60,7 @@ public class MainActivity extends Menus {
         mAuth = FirebaseAuth.getInstance();
 
         //Sign the user in with the predefined authentication identification
-        mAuth.signInAnonymously().addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                Toast.makeText(context, "This Worked", Toast.LENGTH_LONG).show();
-            }
-        });
+        mAuth.signInAnonymously();
 
         mAuth.signInAnonymously();
 

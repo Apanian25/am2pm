@@ -6,7 +6,8 @@
     android:orientation="vertical"
     android:layout_marginBottom="30dp"
     android:padding="10dp"
-    android:background="@color/gray_purple">
+    android:background="@color/orange"
+    android:translationZ="10dp">
 
     <TextView
         android:layout_width="match_parent"
