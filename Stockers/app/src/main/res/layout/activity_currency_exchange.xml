@@ -46,9 +46,6 @@
             android:inputType="numberDecimal"
             android:textSize="@dimen/CurrencyExchangeText"/>
 
-
-
-
         <TextView
             android:id="@+id/result"
             android:layout_width="wrap_content"
