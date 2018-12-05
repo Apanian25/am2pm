@@ -56,8 +56,8 @@
 
     <!--DIALOGS IN SETTINGS ACTIVITY-->
     <string name="setting_dialog_title">Save your changes</string>
-    <string name="setting_dialog_message">Are you sure you want to quit wihtout saving?</string>
-    <string name="btn_text_settings_cancle">Cancle</string>
+    <string name="setting_dialog_message">Are you sure you want to quit without saving?</string>
+    <string name="btn_text_settings_cancel">Cancel</string>
     <string name="data_saved">Successfully modified your settings</string>
     <string name="app_name">Stockers</string>
 
@@ -98,7 +98,9 @@
     <string name="ticker_input">Enter a ticker symbol of your choice:</string>
     <string name="stock_quotes_title">Stock Quotes</string>
     <string name="more_than_five">Can view maximum 5 stocks at a time</string>
-    <string name="empty_string">Ticker symbol does not consist of space only</string>
+    <string name="empty_or_there">Invalid input or already exists</string>
+    <string name="already_exists">Ticker symbol already exists in the search list</string>
+
 
     <!--SHOW STOCK-->
     <string name="no_internet">The following page requires network connection</string>
@@ -110,4 +112,13 @@
     <string name="subSuccess">You are successfully subscribed to the news articles!!!</string>
     <string name="subFailed">Something went wrong, try again later</string>
     <string name="unSubSuccess">You are unsubscribed from the best news outlet</string>
+
+
+    <!--Main Layout-->
+    <string name="foreignEx">Foreign Exchange</string>
+    <string name="notes">Notes</string>
+    <string name="hints">Hints</string>
+    <string name="loanCal">Loan Calculator</string>
+    <string name="portfolio">Your Portfolio</string>
+
 </resources>

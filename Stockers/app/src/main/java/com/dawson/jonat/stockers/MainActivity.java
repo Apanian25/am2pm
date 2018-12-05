@@ -18,6 +18,7 @@ import android.view.View;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.dawson.jonat.stockers.Menu.AboutActivity;
 import com.dawson.jonat.stockers.Messaging.NewsArticlesActivity;
 import com.dawson.jonat.stockers.Messaging.SubscriptionManager;
 import com.dawson.jonat.stockers.Notes.NoteActivity;
@@ -69,27 +70,26 @@ public class MainActivity extends Menus {
     }
 
     public void stockQuoteClick(View v) {
-        // what would usally be clicked
-        Intent intent = new Intent(MainActivity.this, StockQuotesActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(MainActivity.this, StockQuotesActivity.class));
     }
 
     public void notesClick(View v) {
-        Intent intent = new Intent(MainActivity.this, NoteActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(MainActivity.this, NoteActivity.class));
     }
 
     public void loanCalculatorClick(View v) {
-        Intent intent = new Intent(this, LoanCalculatorActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, LoanCalculatorActivity.class));
     }
 
     public void portfolioClick(View v) {
-
+            //todo
     }
 
     public void messageClick(View v){
-        Intent intent = new Intent(this, NewsArticlesActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, NewsArticlesActivity.class));
+    }
+
+    public void onClickAboutPage(View view) {
+        startActivity(new Intent(this, AboutActivity.class));
     }
 }

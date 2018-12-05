@@ -28,14 +28,17 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Class responsible for letting the user enter info such as: first name, last name, email, password
- * and lets the user to chose the preferred currency and the preferred stock.
- * The user will be able to see the date he last modified his personal information, if he never modified it, the date
- * will be the "registration" date
+ * Class responsible for letting the user enter info such as: first name, last
+ * name, email, password and lets the user to chose the preferred currency and
+ * the preferred stock. The user will be able to see the date he last modified
+ * his personal information, if he never modified it, the date will be the
+ * "registration" date
+ *
  * @author Lara Mezirovsky
  * @version 1.0
  */
 public class SettingsActivity extends Menus {
+
     protected boolean isBackKey;
     Spinner spinner_curr, spinner_stock;
     EditText fname, lname, email, password;
@@ -63,6 +66,14 @@ public class SettingsActivity extends Menus {
         loadInfo();
     }
 
+    /**
+     * Overriding the on option menu item selected so it shows a dialog if the
+     * user wants to save the changes, if there are any, before launching a new
+     * activity from the menu
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
@@ -82,13 +93,12 @@ public class SettingsActivity extends Menus {
                 isOptionSelected = super.onOptionsItemSelected(item);
                 return isOptionSelected;
         }
-        //will onyl reach here is isOptionsSelected = true;
-        if(checkIfChanged()) {
+        //will only reach here is isOptionsSelected = true;
+        if (checkIfChanged()) {
             showDialog(intent);
-            finish();
+            finish(); //todo
             return true;
-        }
-        else {
+        } else {
             launchActivity(intent);
             finish();
             return true;
@@ -97,88 +107,91 @@ public class SettingsActivity extends Menus {
     }
 
     /**
-     * Must override the option menu items - don't let the user click on the setting option to launch
-     * the setting activity from the setting page itself
+     * Must override the option menu items - don't let the user click on the
+     * setting option to launch the setting activity from the setting page
+     * itself
+     *
      * @param
      * @param menu
      * @return
      */
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         menu.getItem(2).setEnabled(false);
         return true;
     }
 
     /**
-     * private helper method to show a dialog asking a user if
-     * they wish to save their changes when quiting the activity/without pressing on the save btn
+     * private helper method to show a dialog asking a user if they wish to save
+     * their changes when quiting the activity/without pressing on the save btn
      */
-    private void showDialog(final Intent intent){
-            //declare a dialog
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.setting_dialog_title);
-            builder.setMessage(R.string.setting_dialog_message);
-            //close alert when user clicks ok
-            builder.setPositiveButton(R.string.btn_text, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    saveInfoHelper();
-                    if(intent != null) {
-                        launchActivity(intent);
-                    } else {
-                        finish();
-                    }
-
+    private void showDialog(final Intent intent) {
+        //declare a dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.setting_dialog_title);
+        builder.setMessage(R.string.setting_dialog_message);
+        //close alert when user clicks ok
+        builder.setPositiveButton(R.string.btn_text, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                saveInfoHelper();
+                if (intent != null) {
+                    launchActivity(intent);
+                } else {
+                    finish();
                 }
-            });
-            builder.setNegativeButton(R.string.btn_text_settings_cancle, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                    if(intent != null) {
-                        launchActivity(intent);
-                    } else {
-                        finish();
-                    }
+
+            }
+        });
+        builder.setNegativeButton(R.string.btn_text_settings_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                if (intent != null) {
+                    launchActivity(intent);
+                } else {
+                    finish();
                 }
-            });
+            }
+        });
 
-            builder.show(); //todo ask
+        builder.show(); //todo ask
 
-        }
+    }
 
     /**
      * Helper method to create a spinner
+     *
      * @param spinner -> either currency spinner or stock spinner)
-     * @param array -> spinner string-array items that represent either the currencies or the stocks
+     * @param array -> spinner string-array items that represent either the
+     * currencies or the stocks
      */
-    private void createSpinner(Spinner spinner, int array){
+    private void createSpinner(Spinner spinner, int array) {
         //create an array adapter using the pre-defined spinner layout in android
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                                                                                     array,
-                                                                                     android.R.layout.simple_spinner_item);
+                array,
+                android.R.layout.simple_spinner_item);
         //init
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
 
-
     /**
-     * As soon as the user clicks on the save button/ or on the OK option in the dialog before quiting the page,
-     * the information will be stored in the shared preference
-     * A method from the outside will check if to call this method
-     * For ex: this method wont be called if no changed were detected
+     * As soon as the user clicks on the save button/ or on the OK option in the
+     * dialog before quiting the page, the information will be stored in the
+     * shared preference A method from the outside will check if to call this
+     * method For ex: this method wont be called if no changed were detected
      */
-    public void saveInfo(View view){
-       saveInfoHelper();
+    public void saveInfo(View view) {
+        saveInfoHelper();
     }
 
     /**
-     * Private helper method to save fname, lname, email, password, currency, stock exchange and date in
-     * shared preferences
+     * Private helper method to save fname, lname, email, password, currency,
+     * stock exchange and date in shared preferences
      */
-    private void saveInfoHelper(){
+    private void saveInfoHelper() {
         //store first name
         editor.putString("fname", fname.getText().toString());
         // store last name
@@ -204,38 +217,38 @@ public class SettingsActivity extends Menus {
     /**
      * Helper method used to load shared preferences
      */
-    private void loadInfo(){
+    private void loadInfo() {
         fname.setText(prefs.getString("fname", null));
         lname.setText(prefs.getString("lname", null));
         email.setText(prefs.getString("email", null));
         password.setText(prefs.getString("password", null));
         spinner_curr.setSelection(prefs.getInt("curr", 0));
         spinner_stock.setSelection(prefs.getInt("stock", 0));
-        last_mod_date.setText(" " + prefs.getString("date", null));
+        last_mod_date.setText(" " + prefs.getString("date", "N/A"));
     }
 
     /**
-     * Private helper method that checks if user's input is different from what is stored in shared pref.
+     * Private helper method that checks if user's input is different from what
+     * is stored in shared pref.
+     *
      * @return
      */
     private boolean checkIfChanged() {
         //get everything
-        if ((!fname.getText().toString().equals(prefs.getString("fname", null)) ||
-                (!lname.getText().toString().equals(prefs.getString("lname", null))) ||
-                (!email.getText().toString().equals(prefs.getString("email", null))) ||
-                (!password.getText().toString().equals(prefs.getString("password", null))) ||
-                (!(spinner_curr.getSelectedItemPosition() == (prefs.getInt("curr", 0)))) ||
-        (!(spinner_stock.getSelectedItemPosition() == (prefs.getInt("stock", 0)))))) {
-
+        if ((!fname.getText().toString().equals(prefs.getString("fname", null))
+                || (!lname.getText().toString().equals(prefs.getString("lname", null)))
+                || (!email.getText().toString().equals(prefs.getString("email", null)))
+                || (!password.getText().toString().equals(prefs.getString("password", null)))
+                || (!(spinner_curr.getSelectedItemPosition() == (prefs.getInt("curr", 0))))
+                || (!(spinner_stock.getSelectedItemPosition() == (prefs.getInt("stock", 0)))))) {
             return true;
         }
         return false;
     }
 
-
-
     /**
      * Helper method that will determine if the back key was pressed
+     *
      * @param keyCode
      * @param event
      *
@@ -250,9 +263,12 @@ public class SettingsActivity extends Menus {
         return isBackKey;
     }
 
+    /**
+     * Overriding onBackPressed to show a dialog if data is not saved
+     */
     @Override
     public void onBackPressed() {
-        if(checkIfChanged()) {
+        if (checkIfChanged()) {
             showDialog(null);
         } else {
             super.onBackPressed();
