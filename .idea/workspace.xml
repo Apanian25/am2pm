@@ -7,17 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8f24117-9fa2-47d1-9130-e24c1ec8b07a" name="Default" comment="">
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/Stockers/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Stockers/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stockers/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Stockers/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stockers/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Stockers/.idea/runConfigurations.xml" afterDir="false" />
-=======
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Stockers/.idea/gradle.xml" afterPath="$PROJECT_DIR$/Stockers/.idea/gradle.xml" />
       <change beforePath="$PROJECT_DIR$/Stockers/.idea/misc.xml" afterPath="$PROJECT_DIR$/Stockers/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/Stockers/.idea/runConfigurations.xml" afterPath="$PROJECT_DIR$/Stockers/.idea/runConfigurations.xml" />
       <change beforePath="$PROJECT_DIR$/Stockers/app/google-services.json" afterPath="$PROJECT_DIR$/Stockers/app/google-services.json" />
->>>>>>> dd1d033a4762c13a00a1df62d5fd92b8dd4c160c
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
