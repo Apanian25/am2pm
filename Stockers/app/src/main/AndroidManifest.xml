@@ -26,8 +26,7 @@
         </activity>
         <activity android:name=".Hints.FinancialHintsActivity" />
         <activity android:name=".CurrecnyExchange.CurrencyExchangeActivity"/>
-        <activity android:name=".LoanCalculator.LoanCalculatorActivity"
-            android:theme="@style/Theme.AppCompat"/>
+        <activity android:name=".LoanCalculator.LoanCalculatorActivity"/>
         <activity android:name=".Menu.AboutActivity"></activity>
         <activity android:name=".Menu.SettingsActivity"></activity>
         <activity android:name=".StockQuote.StockQuotesActivity"></activity>
