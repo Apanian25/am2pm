@@ -56,14 +56,20 @@ public class CurrencyExchangeActivity extends Menus {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_currency_exchange);
+        if(checkConnectivity()) {
+            setContentView(R.layout.activity_currency_exchange);
+        } else {
+            setContentView(R.layout.error_page);
+        }
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        instantiatePrivateFields();
-        addTextChangedListenerToAmount();
+        if(checkConnectivity()) {
+            instantiatePrivateFields();
+            addTextChangedListenerToAmount();
+        }
     }
 
     /**
@@ -82,15 +88,18 @@ public class CurrencyExchangeActivity extends Menus {
      * Instantiates the private fields for the Class to use.
      */
     private void instantiatePrivateFields() {
-        getCurrency();
-        amount = findViewById(R.id.amount);
-        toCurrencySpinner = findViewById(R.id.to_currencies);
-        fromCurrencySpinner = findViewById(R.id.from_currencies);
-        reCalculateResult = false;
-        currencies = new ArrayList<>();
-        rates = new ArrayList<>();
-        //Default USD to get all currencies to populate the Spinners
-        checkConnectivity("USD");
+        if(checkConnectivity()) {
+            getCurrency();
+            amount = findViewById(R.id.amount);
+            toCurrencySpinner = findViewById(R.id.to_currencies);
+            fromCurrencySpinner = findViewById(R.id.from_currencies);
+            reCalculateResult = false;
+            currencies = new ArrayList<>();
+            rates = new ArrayList<>();
+            //Default USD to get all currencies to populate the Spinners
+            queryTheAPI(currency);
+        }
+
     }
 
     /**
@@ -126,9 +135,11 @@ public class CurrencyExchangeActivity extends Menus {
      * @param doubleAmount the original amount to be exchanged
      */
     private void performExchange(Double doubleAmount) {
+        Log.i("performExchange", toCurrencySpinner.getSelectedItem() + "");
         TextView exchangedAmount = findViewById(R.id.result);
         if(toCurrencySpinner.getSelectedItem() == null)
             return;
+        Log.i("performExchange", "worked");
         int index = currencies.indexOf(toCurrencySpinner.getSelectedItem().toString());
         if(index >= 0)
             exchangedAmount.setText(
@@ -159,8 +170,6 @@ public class CurrencyExchangeActivity extends Menus {
                 else
                     performExchange(Double.valueOf(value));
 
-                ((TextView)findViewById(R.id.convertedCurrency)).
-                        setText((String)toCurrencySpinner.getSelectedItem());
 
             } // to close the onItemSelected
             public void onNothingSelected(AdapterView<?> parent) {}
@@ -171,7 +180,9 @@ public class CurrencyExchangeActivity extends Menus {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
                 reCalculateResult = true;
-                checkConnectivity(fromCurrencySpinner.getSelectedItem().toString());
+                if(checkConnectivity()) {
+                    queryTheAPI(fromCurrencySpinner.getSelectedItem().toString());
+                }
 
             } // to close the onItemSelected
             public void onNothingSelected(AdapterView<?> parent) {}
@@ -225,6 +236,14 @@ public class CurrencyExchangeActivity extends Menus {
         }
     }
 
+    /**
+     * Runs the Async method to update the rates and the currencies
+     */
+    public void queryTheAPI(String currency) {
+        String url = "https://api.exchangeratesapi.io/latest?base=" + currency;
+        new getExchange().execute(url);
+    }
+
 
     /**
      * Checks to see if the users device is connected to the internet or data
@@ -232,17 +251,15 @@ public class CurrencyExchangeActivity extends Menus {
      * for exchanging currencies and the currencies themselves
      * If the user is NOT connected, the user will be redirected to a 503 page.
      */
-    private void checkConnectivity(String currency) {
+    private boolean checkConnectivity() {
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             //Connection is established
-            //the base rate will change when using the user preferences
-            String url = "https://api.exchangeratesapi.io/latest?base=" + currency;
-            new getExchange().execute(url);
+            return true;
         } else {
             //There is no Connection
-            //redirect to the 503 that Lara is creating
+            return false;
         }
     }
 }
