@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:theme="@style/AppTheme"
-    tools:context=".Menu.AboutActivity">
+    tools:context=".Menu.AboutActivity"
+    android:layout_margin="4dp">
 
     <ScrollView
         android:id="@+id/about_scroll"
@@ -14,8 +15,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        >
+        android:layout_alignParentTop="true">
 
         <LinearLayout
             android:layout_width="match_parent"
