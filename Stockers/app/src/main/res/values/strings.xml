@@ -77,6 +77,9 @@
     <string name="setting_dialog_message">Are you sure you want to quit without saving?</string>
     <string name="btn_text_settings_cancel">Cancel</string>
     <string name="data_saved">Successfully modified your settings</string>
+    <string name="app_name">Stockers</string>
+    <string name="calculate">Calculate</string>
+    <string name="amount_hint">1000</string>
 
 
     <!--Strings For Loan Calculator Activity-->
@@ -84,7 +87,6 @@
     <string name="interestRate">Interest Rate (%):</string>
     <string name="minPayment">Minimum Payment:</string>
     <string name="years">Years:</string>
-    <string name="calculate">Calculate</string>
     <string name="result">Results:</string>
 
 
