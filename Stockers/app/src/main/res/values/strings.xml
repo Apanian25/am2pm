@@ -141,5 +141,6 @@
     <string name="hints">Hints</string>
     <string name="loanCal">Loan Calculator</string>
     <string name="portfolio">Your Portfolio</string>
+    <string name="welcome">Welcome, </string>
 
 </resources>

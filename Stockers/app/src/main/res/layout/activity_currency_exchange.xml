@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".CurrecnyExchange.CurrencyExchangeActivity">
+    tools:context=".CurrecnyExchange.CurrencyExchangeActivity"
+    android:layout_marginLeft="4dp">
 
 
     <LinearLayout
@@ -54,9 +55,5 @@
             android:layout_height="50dp"
             android:layout_gravity="bottom"
             android:textSize="@dimen/CurrencyExchangeText" />
-
-
     </LinearLayout>
-
-
 </LinearLayout>

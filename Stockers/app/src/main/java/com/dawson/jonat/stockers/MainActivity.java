@@ -85,7 +85,7 @@ public class MainActivity extends Menus {
     //Start activities when the corresponding button is clicked
 
     public void foreignExchangeClick(View v) {
-        startActivity(new Intent(this, CurrencyExchangeActivity.class));
+        startActivity(new Intent(getApplicationContext(), CurrencyExchangeActivity.class));
     }
 
     public void financialHintsClick(View v) {
