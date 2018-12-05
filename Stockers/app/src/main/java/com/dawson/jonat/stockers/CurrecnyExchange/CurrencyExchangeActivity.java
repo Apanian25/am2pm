@@ -126,6 +126,8 @@ public class CurrencyExchangeActivity extends Menus {
      */
     private void performExchange(Double doubleAmount) {
         TextView exchangedAmount = findViewById(R.id.result);
+        if(currencySpinner.getSelectedItem() == null)
+            return;
         int index = currencies.indexOf(currencySpinner.getSelectedItem().toString());
         exchangedAmount.setText(
                 String.format("%s", Math.round(doubleAmount * rates.get(index) * 100)/100.0));
