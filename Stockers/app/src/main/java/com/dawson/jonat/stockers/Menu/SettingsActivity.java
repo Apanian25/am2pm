@@ -137,7 +137,7 @@ public class SettingsActivity extends Menus {
                 saveInfoHelper();
                 if (intent != null)
                     launchActivity(intent);
-                
+
                     finish();
 
 

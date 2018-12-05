@@ -9,6 +9,8 @@ import android.widget.ListView;
 import com.dawson.jonat.stockers.ContactDialog.ContactInformation;
 import com.dawson.jonat.stockers.CurrecnyExchange.CurrencyExchangeActivity;
 import android.preference.PreferenceManager;
+
+import com.dawson.jonat.stockers.LoanCalculator.LoanCalculator;
 import com.dawson.jonat.stockers.LoanCalculator.LoanCalculatorActivity;
 import android.view.View;
 import android.content.Context;
@@ -58,18 +60,12 @@ public class MainActivity extends Menus {
         mAuth = FirebaseAuth.getInstance();
 
         //Sign the user in with the predefined authentication identification
-        mAuth.signInAnonymously().addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                Toast.makeText(context, "This Worked", Toast.LENGTH_LONG).show();
-            }
-        });
+        mAuth.signInAnonymously();
 
         mAuth.signInAnonymously();
+
         //Subscribe to news service
         SubscriptionManager.sub("News", this, false);
-
-
     }
 
     @Override
@@ -86,7 +82,6 @@ public class MainActivity extends Menus {
 
     public void foreignExchangeClick(View v) {
         startActivity(new Intent(getApplicationContext(), CurrencyExchangeActivity.class));
-
     }
 
     public void financialHintsClick(View v) {

@@ -14,9 +14,10 @@ import android.widget.Toast;
 
 import java.util.List;
 import com.dawson.jonat.stockers.Entity.Note;
+import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
 
-public class NoteActivity extends AppCompatActivity {
+public class NoteActivity extends Menus {
 
     private NoteViewModel noteViewModel;
     public static final int NEW_NOTE_ACTIVITY_REQUEST_CODE = 1;
@@ -31,9 +32,6 @@ public class NoteActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final NoteListAdapter adapter = new NoteListAdapter(this);
-        DividerItemDecoration horizontalLine = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
-        horizontalLine.setDrawable(getDrawable(R.drawable.horizontal_line));
-        recyclerView.addItemDecoration(horizontalLine);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

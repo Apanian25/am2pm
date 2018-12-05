@@ -17,6 +17,14 @@ public class NotificationUtilities {
         this.context = context;
     }
 
+    /**
+     * This method will build a notification to be displayed to the user using the given
+     * title and text. It will set the notification to disapear after being clicked, and
+     * will also bring the user to the news page after being clicked.
+     *
+     * @param title
+     * @param text
+     */
     public void displayNotification(String title, String text) {
 
         //Channel Id can be null since it is only used on Oreo and above (todo later)
@@ -24,6 +32,7 @@ public class NotificationUtilities {
                 .setSmallIcon(R.drawable.ic_stockers_logo)
                 .setContentTitle(title)
                 .setContentText(text)
+                .setAutoCancel(true)
                 //This allows for the notification to pop up
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setDefaults(Notification.DEFAULT_ALL);
