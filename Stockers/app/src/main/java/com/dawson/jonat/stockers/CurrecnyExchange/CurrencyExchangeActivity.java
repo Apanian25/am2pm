@@ -47,6 +47,7 @@ public class CurrencyExchangeActivity extends Menus {
 
     private Spinner toCurrencySpinner, fromCurrencySpinner;
     private EditText amount;
+    private String currency;
     private boolean reCalculateResult;
     ArrayList<String> currencies;
     ArrayList<Double> rates;
@@ -56,20 +57,32 @@ public class CurrencyExchangeActivity extends Menus {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_currency_exchange);
-        instantiatePrivateFields();
-        addTextChangedListenerToAmount();
     }
 
     @Override
     public void onStart() {
         super.onStart();
         instantiatePrivateFields();
+        addTextChangedListenerToAmount();
     }
+
+    /**
+     * Gets the
+     *
+     * @author Nicholas, Lara
+     */
+    private void getCurrency(){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        int currencyPosition = prefs.getInt("curr", 0);
+        currency = getResources().getStringArray(R.array.spinner_values_currency)[currencyPosition];
+    }
+
 
     /**
      * Instantiates the private fields for the Class to use.
      */
     private void instantiatePrivateFields() {
+        getCurrency();
         amount = findViewById(R.id.amount);
         toCurrencySpinner = findViewById(R.id.to_currencies);
         fromCurrencySpinner = findViewById(R.id.from_currencies);
@@ -131,6 +144,9 @@ public class CurrencyExchangeActivity extends Menus {
 
         toCurrencySpinner.setAdapter(createAdapter());
         fromCurrencySpinner.setAdapter(createAdapter());
+        if(!currency.equals("BTC") && !currency.isEmpty()) {
+            fromCurrencySpinner.setSelection(currencies.indexOf(currency));
+        }
 
         toCurrencySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
@@ -193,7 +209,7 @@ public class CurrencyExchangeActivity extends Menus {
         @Override
         protected void onPostExecute(Boolean aBoolean) {
 
-            if(toCurrencySpinner.getSelectedItem() == null) {
+            if(toCurrencySpinner.getSelectedItem() == null && fromCurrencySpinner.getSelectedItem() == null) {
                 //first time the Api is querried
                 createSpinners();
             }
