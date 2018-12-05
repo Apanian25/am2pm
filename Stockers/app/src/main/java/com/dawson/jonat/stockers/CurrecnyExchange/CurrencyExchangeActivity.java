@@ -66,8 +66,10 @@ public class CurrencyExchangeActivity extends Menus {
     @Override
     public void onStart() {
         super.onStart();
-        if(checkConnectivity())
+        if(checkConnectivity()) {
             instantiatePrivateFields();
+            addTextChangedListenerToAmount();
+        }
     }
 
     /**
@@ -133,9 +135,11 @@ public class CurrencyExchangeActivity extends Menus {
      * @param doubleAmount the original amount to be exchanged
      */
     private void performExchange(Double doubleAmount) {
+        Log.i("performExchange", toCurrencySpinner.getSelectedItem() + "");
         TextView exchangedAmount = findViewById(R.id.result);
         if(toCurrencySpinner.getSelectedItem() == null)
             return;
+        Log.i("performExchange", "worked");
         int index = currencies.indexOf(toCurrencySpinner.getSelectedItem().toString());
         if(index >= 0)
             exchangedAmount.setText(

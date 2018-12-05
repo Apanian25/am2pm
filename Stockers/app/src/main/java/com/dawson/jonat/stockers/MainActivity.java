@@ -65,8 +65,6 @@ public class MainActivity extends Menus {
             }
         });
 
-        startActivity(new Intent(this, CurrencyExchangeActivity.class));
-
         mAuth.signInAnonymously();
         //Subscribe to news service
         SubscriptionManager.sub("News", this, false);
@@ -87,7 +85,7 @@ public class MainActivity extends Menus {
     //Start activities when the corresponding button is clicked
 
     public void foreignExchangeClick(View v) {
-
+        startActivity(new Intent(this, CurrencyExchangeActivity.class));
     }
 
     public void financialHintsClick(View v) {
