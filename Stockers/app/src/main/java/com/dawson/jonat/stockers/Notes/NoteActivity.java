@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -30,6 +31,9 @@ public class NoteActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final NoteListAdapter adapter = new NoteListAdapter(this);
+        DividerItemDecoration horizontalLine = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
+        horizontalLine.setDrawable(getDrawable(R.drawable.horizontal_line));
+        recyclerView.addItemDecoration(horizontalLine);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

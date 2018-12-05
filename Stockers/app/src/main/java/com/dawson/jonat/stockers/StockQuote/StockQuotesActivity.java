@@ -1,11 +1,13 @@
 package com.dawson.jonat.stockers.StockQuote;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.ArraySet;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,21 +20,26 @@ import com.dawson.jonat.stockers.Entity.Ticker;
 import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 /**
- * Class responsible for displaying for creating a recycler View that
- * gathers up to 5 ticker symbols that the user can view
+ * Class responsible for displaying for creating a recycler View that gathers up
+ * to 5 ticker symbols that the user can view
  *
  * @author Lara Mezirovsky
  * @version 1.0
  */
-public class StockQuotesActivity extends Menus {
+public class StockQuotesActivity extends Menus implements Serializable {
+
     ArrayList<Ticker> list;
-    EditText ed;
+    Set<String> tickers;
+    EditText et;
     RecyclerView rv;
     private TickerAdapter tickerAdapter;
-    SharedPreferences prefs;
-    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,42 +47,92 @@ public class StockQuotesActivity extends Menus {
         setContentView(R.layout.activity_stock_quotes);
         list = new ArrayList<>();
         //find edit text
-        ed = findViewById(R.id.tickerInput);
+        et = findViewById(R.id.tickerInput);
         rv = findViewById(R.id.tickerList);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        tickers = new LinkedHashSet<String>();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        tickers = prefs.getStringSet("listTickers", tickers);
+        createTheAdapter();
+
     }
 
     /**
-     * private helper method that generates an array  of tickers
-     * Max length: 5 tickers symbols inputed by the user
-     * Cant input "" or space
+     * private helper method that generates an array of tickers Max length: 5
+     * tickers symbols inputed by the user Cant input "" or space Will check for
+     * duplicates
      */
-    private ArrayList<Ticker> getData() {
-        //will be adding to array if size is less than 5
-        if (list.size() < 5) {
-            String text = ed.getText().toString();
-            //check if not empty string
-            if((!(text.equals("")) || text.equals(null))){
-                list.add(new Ticker(text, R.drawable.trash, R.drawable.search));
-                return list;
+    private void createTheAdapter() {
+        if (tickers == null) {
+            //we are going to have an empty array list
+            list = new ArrayList<>(); //empty
+        } else {
+            for (String ticker : tickers) {
+                //create a Ticker symbol
+                list.add(new Ticker(ticker));
             }
-            else{
-                Toast.makeText(this, R.string.empty_string, Toast.LENGTH_SHORT).show();
+        }
+
+        tickerAdapter = new TickerAdapter(this, list);
+        rv.setAdapter(tickerAdapter);
+    }
+
+    /**
+     * Adds a Item to the list and notifies the Adapter that the list has
+     * changed
+     *
+     * @param view
+     */
+    public void addTicker(View view) {
+        if (list.size() < 5) {
+            String text = et.getText().toString();
+            //check if not empty string
+            if ((!(text.equals("") || text.isEmpty() || list.contains(" ")|| isInList(text)))) {
+                    list.add(new Ticker(text));
+                    //add this to the shared preferences
+                    tickerAdapter.notifyDataSetChanged();
+            } else {
+                Toast.makeText(this, R.string.empty_or_there, Toast.LENGTH_SHORT).show();
             }
         } else {
             Toast.makeText(this, R.string.more_than_five, Toast.LENGTH_SHORT).show();
         }
-        return list;
     }
 
-    public void addTicker(View view) {
-        tickerAdapter = new TickerAdapter(this, getData());
-        rv.setAdapter(tickerAdapter);
+    /**
+     * Helper method to check if element already exists in list
+     */
+    private boolean isInList(String text) {
+        for (int index = 0; index < list.size(); index++) {
+            if (list.get(index).getSymbol().equals(text)) {
+                return true;
+            }
+        }
+        return false;
     }
 
+    /**
+     * Override onPause so that it saves the list of tickers in the shared
+     * preferences
+     */
+    @Override
+    public void onPause() {
+        super.onPause();
+        tickers.clear();
+        for (Ticker ticker : list) {
+            tickers.add(ticker.getSymbol());
+        }
+        saveListInShared();
+    }
 
+    /**
+     * Helper method to saved the current list in shared preferences
+     */
+    public void saveListInShared() {
+        //save the serializable list in shared preferences
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        editor.putStringSet("listTickers", this.tickers);
+        editor.commit();
+
+    }
 }
-
-

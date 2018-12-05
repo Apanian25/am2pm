@@ -1,6 +1,20 @@
 <resources>
+
+    <!--Manifest-->
+    <string name="app_name">Stockers</string>
+
+
+    <!--Action Bar-->
+    <string name="app_name_team">FEAM2PM</string>
+
+
+    <!--Hints Activity String-->
+    <string name="learn_more">Learn More</string>
+
     <!-- IMPLICIT INTENT TO DAWSON WEBSITE -->
     <string name="urlToDawson">https://www.dawsoncollege.qc.ca</string>
+
+
     <!-- ABOUT ACTIVITY STRINGS -->
     <string name="desc_title">About the app</string>
     <string name="desc">This app is intended to be an educational tool for learning a bit about finances (loans, currency exchange and stocks)  The purpose of this project is to create an application that will exercise what our team (see below) have learned about the Android framework and Mobile software development</string>
@@ -20,9 +34,13 @@
     <string name="about_lara_short">19 years old, loves design and creating websites/apps on any platform</string>
     <string name="danny"><b>Danny Manzano</b></string>
     <string name="about_danny_short">21 years old, great with logic and data structures</string>
+
+
     <!--DIALOGS IN ABOUT ACTIVITY-->
     <string name="about_dialog_title">More about us</string>
     <string name="btn_text">OK</string>
+
+
     <!-- SETTING ACTIVITY STRINGS -->
     <string name="settings_title">Settings</string>
     <string name="fname"><b>First Name:</b></string>
@@ -37,7 +55,6 @@
         <item>USD</item>
         <item>BTC</item>
     </string-array>
-
     <string-array name="spinner_values_stock">
         <item>TSX</item>
         <item>NYSE</item>
@@ -54,12 +71,12 @@
     <string name="chose_stock">Chose stock</string>
     <string name="btn_text_settings">Save</string>
 
+
     <!--DIALOGS IN SETTINGS ACTIVITY-->
     <string name="setting_dialog_title">Save your changes</string>
-    <string name="setting_dialog_message">Are you sure you want to quit wihtout saving?</string>
-    <string name="btn_text_settings_cancle">Cancle</string>
+    <string name="setting_dialog_message">Are you sure you want to quit without saving?</string>
+    <string name="btn_text_settings_cancel">Cancel</string>
     <string name="data_saved">Successfully modified your settings</string>
-    <string name="app_name">Stockers</string>
     <string name="calculate">Calculate</string>
     <string name="amount_hint">1000</string>
 
@@ -70,6 +87,7 @@
     <string name="minPayment">Minimum Payment:</string>
     <string name="years">Years:</string>
     <string name="result">Results:</string>
+
 
     <!--Strings For Loan Calculator Results Table-->
     <string name="timeToPay">Time to pay off:</string>
@@ -84,9 +102,8 @@
         <item>10</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <!--Notes-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="learn_more">Learn More</string>
     <string name="title_activity_note">Note</string>
     <string name="hint_word">Enter Text here…</string>
     <string name="button_save">Save</string>
@@ -96,11 +113,15 @@
     <string name="not_saved">Note not saved</string>
     <string name="title_activity_stock_quotes">StockQuotesActivity</string>
 
+
     <!--STOCK QUOTE-->
     <string name="ticker_input">Enter a ticker symbol of your choice:</string>
     <string name="stock_quotes_title">Stock Quotes</string>
     <string name="more_than_five">Can view maximum 5 stocks at a time</string>
-    <string name="empty_string">Ticker symbol does not consist of space only</string>
+    <string name="empty_or_there">Invalid input or already exists</string>
+    <string name="already_exists">Ticker symbol already exists in the search list</string>
+
+
 
     <!--SHOW STOCK-->
     <string name="no_internet">The following page requires network connection</string>
@@ -112,4 +133,13 @@
     <string name="subSuccess">You are successfully subscribed to the news articles!!!</string>
     <string name="subFailed">Something went wrong, try again later</string>
     <string name="unSubSuccess">You are unsubscribed from the best news outlet</string>
+
+
+    <!--Main Layout-->
+    <string name="foreignEx">Foreign Exchange</string>
+    <string name="notes">Notes</string>
+    <string name="hints">Hints</string>
+    <string name="loanCal">Loan Calculator</string>
+    <string name="portfolio">Your Portfolio</string>
+
 </resources>

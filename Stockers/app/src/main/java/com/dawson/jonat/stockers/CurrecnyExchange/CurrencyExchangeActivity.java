@@ -12,6 +12,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -44,9 +45,10 @@ import java.util.Map;
  */
 public class CurrencyExchangeActivity extends Menus {
 
-    private Spinner currencySpinner;
+    private Spinner toCurrencySpinner, fromCurrencySpinner;
     private EditText amount;
     private String currency;
+    private boolean reCalculateResult;
     ArrayList<String> currencies;
     ArrayList<Double> rates;
 
@@ -56,8 +58,6 @@ public class CurrencyExchangeActivity extends Menus {
 
         if(checkConnectivity()) {
             setContentView(R.layout.activity_currency_exchange);
-            instantiatePrivateFields();
-            addTextChangedListenerToAmount();
         } else {
             setContentView(R.layout.error_page);
         }
@@ -71,22 +71,6 @@ public class CurrencyExchangeActivity extends Menus {
     }
 
     /**
-     * Instantiates the private fields for the Class to use.
-     */
-    private void instantiatePrivateFields() {
-        getCurrency();
-
-        amount = findViewById(R.id.amount);
-        //will be changed to users preference after
-        ((TextView)findViewById(R.id.userCurrency)).setText(currency);
-        currencySpinner = findViewById(R.id.currencies);
-        currencies = new ArrayList<>();
-        rates = new ArrayList<>();
-        queryTheAPI();
-
-    }
-
-    /**
      * Gets the
      *
      * @author Nicholas, Lara
@@ -95,6 +79,25 @@ public class CurrencyExchangeActivity extends Menus {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         int currencyPosition = prefs.getInt("curr", 0);
         currency = getResources().getStringArray(R.array.spinner_values_currency)[currencyPosition];
+    }
+
+
+    /**
+     * Instantiates the private fields for the Class to use.
+     */
+    private void instantiatePrivateFields() {
+        if(checkConnectivity()) {
+            getCurrency();
+            amount = findViewById(R.id.amount);
+            toCurrencySpinner = findViewById(R.id.to_currencies);
+            fromCurrencySpinner = findViewById(R.id.from_currencies);
+            reCalculateResult = false;
+            currencies = new ArrayList<>();
+            rates = new ArrayList<>();
+            //Default USD to get all currencies to populate the Spinners
+            queryTheAPI(currency);
+        }
+
     }
 
     /**
@@ -131,10 +134,11 @@ public class CurrencyExchangeActivity extends Menus {
      */
     private void performExchange(Double doubleAmount) {
         TextView exchangedAmount = findViewById(R.id.result);
-        if(currencySpinner.getSelectedItem() == null)
+        if(toCurrencySpinner.getSelectedItem() == null)
             return;
-        int index = currencies.indexOf(currencySpinner.getSelectedItem().toString());
-        exchangedAmount.setText(
+        int index = currencies.indexOf(toCurrencySpinner.getSelectedItem().toString());
+        if(index >= 0)
+            exchangedAmount.setText(
                 String.format("%s", Math.round(doubleAmount * rates.get(index) * 100)/100.0));
     }
 
@@ -142,14 +146,16 @@ public class CurrencyExchangeActivity extends Menus {
      * Creates the Spinner by populating it and assigning a Listener to it for when
      * the user changed the currency they would like to exchange to
      */
-    private void createSpinner(){
-        //create an array adapter using the pre-defined spinner layout in android
-        ArrayAdapter<String> adapter= new ArrayAdapter<>(this,R.layout.text_view_for_spinner, currencies);
+    private void createSpinners(){
+        //create the array adapters using the pre-defined spinner layout in android
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        toCurrencySpinner.setAdapter(createAdapter());
+        fromCurrencySpinner.setAdapter(createAdapter());
+        if(!currency.equals("BTC") && !currency.isEmpty()) {
+            fromCurrencySpinner.setSelection(currencies.indexOf(currency));
+        }
 
-        currencySpinner.setAdapter(adapter);
-        currencySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        toCurrencySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
@@ -161,11 +167,36 @@ public class CurrencyExchangeActivity extends Menus {
                     performExchange(Double.valueOf(value));
 
                 ((TextView)findViewById(R.id.convertedCurrency)).
-                        setText((String)currencySpinner.getSelectedItem());
+                        setText((String)toCurrencySpinner.getSelectedItem());
 
             } // to close the onItemSelected
             public void onNothingSelected(AdapterView<?> parent) {}
         });
+
+        fromCurrencySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                reCalculateResult = true;
+                if(checkConnectivity()) {
+                    queryTheAPI(fromCurrencySpinner.getSelectedItem().toString());
+                }
+
+            } // to close the onItemSelected
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+    }
+
+    /**
+     * create the array adapters using the pre-defined spinner layout in android
+     *
+     * @return ArrayAdapter<String>
+     */
+    private ArrayAdapter<String> createAdapter() {
+        ArrayAdapter<String> adapter= new ArrayAdapter<>(getApplicationContext(),R.layout.text_view_for_spinner, currencies);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.notifyDataSetChanged();
+        return adapter;
     }
 
     /**
@@ -176,6 +207,8 @@ public class CurrencyExchangeActivity extends Menus {
         protected Boolean doInBackground(String... strings) {
             try {
                 CurrencyExchangeApi api = new CurrencyExchangeApi();
+                currencies = new ArrayList<>();
+                rates = new ArrayList<>();
                 return api.getAllCurrencies(strings[0], currencies, rates);
             } catch (IOException e) {
                 return false;
@@ -184,14 +217,27 @@ public class CurrencyExchangeActivity extends Menus {
 
         @Override
         protected void onPostExecute(Boolean aBoolean) {
-            createSpinner();
+
+            if(toCurrencySpinner.getSelectedItem() == null && fromCurrencySpinner.getSelectedItem() == null) {
+                //first time the Api is querried
+                createSpinners();
+            }
+
+            if(reCalculateResult) {
+                //update the exchanged value
+                String value = amount.getText().toString();
+
+                if(!value.isEmpty())
+                    performExchange(Double.valueOf(value));
+                reCalculateResult = !reCalculateResult;
+            }
         }
     }
 
     /**
      * Runs the Async method to update the rates and the currencies
      */
-    public void queryTheAPI() {
+    public void queryTheAPI(String currency) {
         String url = "https://api.exchangeratesapi.io/latest?base=" + currency;
         new getExchange().execute(url);
     }
