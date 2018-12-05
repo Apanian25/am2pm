@@ -54,15 +54,20 @@ public class CurrencyExchangeActivity extends Menus {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_currency_exchange);
-        instantiatePrivateFields();
-        addTextChangedListenerToAmount();
+        if(checkConnectivity()) {
+            setContentView(R.layout.activity_currency_exchange);
+            instantiatePrivateFields();
+            addTextChangedListenerToAmount();
+        } else {
+            setContentView(R.layout.error_page);
+        }
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        instantiatePrivateFields();
+        if(checkConnectivity())
+            instantiatePrivateFields();
     }
 
     /**
@@ -77,8 +82,8 @@ public class CurrencyExchangeActivity extends Menus {
         currencySpinner = findViewById(R.id.currencies);
         currencies = new ArrayList<>();
         rates = new ArrayList<>();
+        queryTheAPI();
 
-        checkConnectivity();
     }
 
     /**
@@ -183,6 +188,14 @@ public class CurrencyExchangeActivity extends Menus {
         }
     }
 
+    /**
+     * Runs the Async method to update the rates and the currencies
+     */
+    public void queryTheAPI() {
+        String url = "https://api.exchangeratesapi.io/latest?base=" + currency;
+        new getExchange().execute(url);
+    }
+
 
     /**
      * Checks to see if the users device is connected to the internet or data
@@ -190,17 +203,15 @@ public class CurrencyExchangeActivity extends Menus {
      * for exchanging currencies and the currencies themselves
      * If the user is NOT connected, the user will be redirected to a 503 page.
      */
-    private void checkConnectivity() {
+    private boolean checkConnectivity() {
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             //Connection is established
-            //the base rate will change when using the user preferences
-            String url = "https://api.exchangeratesapi.io/latest?base=" + currency;
-            new getExchange().execute(url);
+            return true;
         } else {
             //There is no Connection
-            //redirect to the 503 that Lara is creating
+            return false;
         }
     }
 }
