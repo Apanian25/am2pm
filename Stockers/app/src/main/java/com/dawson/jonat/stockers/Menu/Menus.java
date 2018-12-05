@@ -9,16 +9,18 @@ import android.view.MenuItem;
 import com.dawson.jonat.stockers.R;
 
 /**
- * Class responsible for displaying an Options menu with
- * 3 choices: About --> info about app and the team
- * Go To Dawson - redirects the user to the dawson website using an implicit intent
- * Settings --> the user can edit his personal info
+ * Class responsible for displaying an Options menu with 3 choices: About -->
+ * info about app and the team Go To Dawson - redirects the user to the dawson
+ * website using an implicit intent Settings --> the user can edit his personal
+ * info
  *
  * @author Lara Mezirovsky
  * @version 1.0
  */
 public class Menus extends AppCompatActivity {
+
     protected boolean isOptionSelected;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,13 +39,13 @@ public class Menus extends AppCompatActivity {
     }
 
     /**
-     * Giving functionality to each option in the menu - launching other activities
-     * Note: view documentation in activities for functionality
+     * Giving functionality to each option in the menu - launching other
+     * activities Note: view documentation in activities for functionality
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-          Intent intent;
-         isOptionSelected = true;
+        Intent intent;
+        isOptionSelected = true;
         switch (item.getItemId()) {
             case R.id.about:
                 intent = new Intent(this, AboutActivity.class);
@@ -55,7 +57,7 @@ public class Menus extends AppCompatActivity {
                 launchActivity(intent);
                 return isOptionSelected;
             case R.id.settings:
-                 intent = new Intent(this, SettingsActivity.class);
+                intent = new Intent(this, SettingsActivity.class);
                 launchActivity(intent);
                 return isOptionSelected;
             default:

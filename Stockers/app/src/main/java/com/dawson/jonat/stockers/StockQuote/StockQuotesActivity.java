@@ -27,20 +27,19 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * Class responsible for displaying for creating a recycler View that
- * gathers up to 5 ticker symbols that the user can view
+ * Class responsible for displaying for creating a recycler View that gathers up
+ * to 5 ticker symbols that the user can view
  *
  * @author Lara Mezirovsky
  * @version 1.0
  */
 public class StockQuotesActivity extends Menus implements Serializable {
+
     ArrayList<Ticker> list;
     Set<String> tickers;
     EditText et;
     RecyclerView rv;
     private TickerAdapter tickerAdapter;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +56,13 @@ public class StockQuotesActivity extends Menus implements Serializable {
         createTheAdapter();
 
     }
+
     /**
-     * private helper method that generates an array  of tickers
-     * Max length: 5 tickers symbols inputed by the user
-     * Cant input "" or spac
+     * private helper method that generates an array of tickers Max length: 5
+     * tickers symbols inputed by the user Cant input "" or space Will check for
+     * duplicates
      */
     private void createTheAdapter() {
-
-//todo: if tickers not null load it, else have an empty data set
         if (tickers == null) {
             //we are going to have an empty array list
             list = new ArrayList<>(); //empty
@@ -80,36 +78,48 @@ public class StockQuotesActivity extends Menus implements Serializable {
     }
 
     /**
-     * Adds a Item to the list and notifies the Adapter that the list has changed
+     * Adds a Item to the list and notifies the Adapter that the list has
+     * changed
+     *
      * @param view
      */
     public void addTicker(View view) {
         if (list.size() < 5) {
             String text = et.getText().toString();
             //check if not empty string
-            if((!(text.equals("") || text.isEmpty()))){
-                list.add(new Ticker(text));
-                //add this to the shared preferences
-                tickerAdapter.notifyDataSetChanged();
-            }
-            else{
-                Toast.makeText(this, R.string.empty_string, Toast.LENGTH_SHORT).show();
+            if ((!(text.equals("") || text.isEmpty() || list.contains(" ")|| isInList(text)))) {
+                    list.add(new Ticker(text));
+                    //add this to the shared preferences
+                    tickerAdapter.notifyDataSetChanged();
+            } else {
+                Toast.makeText(this, R.string.empty_or_there, Toast.LENGTH_SHORT).show();
             }
         } else {
             Toast.makeText(this, R.string.more_than_five, Toast.LENGTH_SHORT).show();
         }
     }
 
+    /**
+     * Helper method to check if element already exists in list
+     */
+    private boolean isInList(String text) {
+        for (int index = 0; index < list.size(); index++) {
+            if (list.get(index).getSymbol().equals(text)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
-     * Override onPause so that it saves the list of tickers
-     * in the shared preferences
+     * Override onPause so that it saves the list of tickers in the shared
+     * preferences
      */
     @Override
     public void onPause() {
         super.onPause();
         tickers.clear();
-        for(Ticker ticker : list) {
+        for (Ticker ticker : list) {
             tickers.add(ticker.getSymbol());
         }
         saveListInShared();
@@ -118,7 +128,7 @@ public class StockQuotesActivity extends Menus implements Serializable {
     /**
      * Helper method to saved the current list in shared preferences
      */
-    public void saveListInShared(){
+    public void saveListInShared() {
         //save the serializable list in shared preferences
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
         editor.putStringSet("listTickers", this.tickers);
@@ -126,5 +136,3 @@ public class StockQuotesActivity extends Menus implements Serializable {
 
     }
 }
-
-

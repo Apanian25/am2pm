@@ -14,7 +14,8 @@
         android:id="@+id/tickerSymbol"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"/>
+        android:layout_marginLeft="15dp"
+        android:textSize="20dp"/>
 
     <ImageButton
         android:layout_width="40dp"

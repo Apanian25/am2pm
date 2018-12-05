@@ -18,10 +18,13 @@ import com.dawson.jonat.stockers.Entity.Ticker;
 import com.dawson.jonat.stockers.R;
 
 import java.util.ArrayList;
+
 /**
  * Adapter responsible to create a recycler view holding up to 5 ticker symbols
- * If user clicks on trash - will delete that item + update the list
- * If user clicks on the view - an intent will get launched to see more info about that stock
+ * If user clicks on trash - will delete that item + update the list If user
+ * clicks on the view - an intent will get launched to see more info about that
+ * stock
+ *
  * @author Lara Mezirovsky
  * @version 1.0
  */
@@ -31,7 +34,8 @@ public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHold
     ArrayList<Ticker> tickers;
 
     /**
-     * Init context (StockQuotesActivity) and list of ticker symbols from the user
+     * Init context (StockQuotesActivity) and list of ticker symbols from the
+     * user
      *
      * @param context
      * @param list
@@ -41,12 +45,28 @@ public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHold
         tickers = list;
     }
 
+    /**
+     * Inflating the view to contain image, text, image
+     *
+     * @param parent
+     * @param position
+     * @return
+     */
     @Override
     public TickerHolder onCreateViewHolder(ViewGroup parent, int position) {
         View v = LayoutInflater.from(c).inflate(R.layout.recyclerview_ticker_item, parent, false);
         return new TickerHolder(v);
     }
 
+    /**
+     * Creating a view with delete icon, text, search icon Adding event listener
+     * on sub (will remove from the recycler view) Adding event listener on
+     * search (will launch an intent to another activity that will make an api
+     * request with that ticker symbol)
+     *
+     * @param tickerHolder
+     * @param i
+     */
     @Override
     public void onBindViewHolder(final TickerHolder tickerHolder, int i) {
         Ticker t = tickers.get(i);
@@ -67,8 +87,7 @@ public class TickerAdapter extends RecyclerView.Adapter<TickerAdapter.TickerHold
             public void onClick(View v) {
                 tickers.remove(tickerHolder.getAdapterPosition());
                 notifyDataSetChanged();
-//                notifyItemRemoved(tickerHolder.getAdapterPosition());
-//                notifyItemRangeChanged(tickerHolder.getAdapterPosition(), getItemCount());
+                notifyItemRangeChanged(tickerHolder.getAdapterPosition(), getItemCount());
             }
         });
     }
