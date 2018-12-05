@@ -77,7 +77,6 @@
     <string name="setting_dialog_message">Are you sure you want to quit without saving?</string>
     <string name="btn_text_settings_cancel">Cancel</string>
     <string name="data_saved">Successfully modified your settings</string>
-    <string name="app_name">Stockers</string>
     <string name="calculate">Calculate</string>
     <string name="amount_hint">1000</string>
 

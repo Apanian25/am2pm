@@ -9,10 +9,13 @@ import android.widget.ListView;
 import com.dawson.jonat.stockers.ContactDialog.ContactInformation;
 import com.dawson.jonat.stockers.CurrecnyExchange.CurrencyExchangeActivity;
 import android.preference.PreferenceManager;
+
+import com.dawson.jonat.stockers.LoanCalculator.LoanCalculator;
 import com.dawson.jonat.stockers.LoanCalculator.LoanCalculatorActivity;
 import android.view.View;
 import android.content.Context;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dawson.jonat.stockers.Menu.AboutActivity;
 import com.dawson.jonat.stockers.Menu.SettingsActivity;
@@ -64,13 +67,10 @@ public class MainActivity extends Menus {
             }
         });
 
-        startActivity(new Intent(this, CurrencyExchangeActivity.class));
-
         mAuth.signInAnonymously();
+
         //Subscribe to news service
         SubscriptionManager.sub("News", this, false);
-
-
     }
 
     @Override
