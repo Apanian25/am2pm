@@ -14,6 +14,7 @@ import android.view.View;
 import android.content.Context;
 import android.widget.TextView;
 
+import com.dawson.jonat.stockers.Menu.AboutActivity;
 import com.dawson.jonat.stockers.Menu.SettingsActivity;
 import com.dawson.jonat.stockers.Messaging.NewsArticlesActivity;
 import com.dawson.jonat.stockers.Messaging.SubscriptionManager;
@@ -105,10 +106,14 @@ public class MainActivity extends Menus {
     }
 
     public void portfolioClick(View v) {
-
+            //todo
     }
 
     public void messageClick(View v){
         startActivity(new Intent(this, NewsArticlesActivity.class));
+    }
+
+    public void onClickAboutPage(View view) {
+        startActivity(new Intent(this, AboutActivity.class));
     }
 }
