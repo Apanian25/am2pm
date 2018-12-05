@@ -13,6 +13,7 @@ import com.dawson.jonat.stockers.LoanCalculator.LoanCalculatorActivity;
 import android.view.View;
 import android.content.Context;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dawson.jonat.stockers.Menu.AboutActivity;
 import com.dawson.jonat.stockers.Menu.SettingsActivity;
@@ -64,8 +65,6 @@ public class MainActivity extends Menus {
             }
         });
 
-        startActivity(new Intent(this, CurrencyExchangeActivity.class));
-
         mAuth.signInAnonymously();
         //Subscribe to news service
         SubscriptionManager.sub("News", this, false);
@@ -86,6 +85,7 @@ public class MainActivity extends Menus {
     //Start activities when the corresponding button is clicked
 
     public void foreignExchangeClick(View v) {
+        startActivity(new Intent(getApplicationContext(), CurrencyExchangeActivity.class));
 
     }
 
