@@ -19,10 +19,10 @@
     <string name="desc_title">About the app</string>
     <string name="desc">This app is intended to be an educational tool for learning a bit about finances (loans, currency exchange and stocks)  The purpose of this project is to create an application that will exercise what our team (see below) have learned about the Android framework and Mobile software development</string>
     <string name="names_title">Meet our awesome developers</string>
-    <string name="team">Lara M, Nicholas A, John P, Danny M</string>
+    <string name="team">Lara M, Nicholas A, Jonathan P, Danny M</string>
     <string name="why_title">Purpose of the app</string>
     <string name="why">Final project for the Android Course(420-517-DW) with Patricia Campbell, Dawson College</string>
-    <string name="git_john">Get to know John Pesce more at @jonathanpesce on gitlab</string>
+    <string name="git_john">Get to know Jonathan Pesce more at @jonathanpesce on gitlab</string>
     <string name="git_lara">Get to know Lara Mezirovsky more at @Mosh_La on gitlab</string>
     <string name="git_nick">Get to know Nick more at @Apanian25 on gitlab</string>
     <string name="git_danny">Get to know Danny more at @danny on gitlab</string>

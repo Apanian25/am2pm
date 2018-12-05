@@ -13,9 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dawson.jonat.stockers.ContactDialog.ContactUtilities;
+import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
 
-public class LoanCalculatorActivity extends AppCompatActivity {
+public class LoanCalculatorActivity extends Menus {
 
     Spinner spinnerYears;
     EditText amountView, interestRateView, minPaymentView;

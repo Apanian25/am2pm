@@ -14,9 +14,10 @@ import android.widget.Toast;
 
 import java.util.List;
 import com.dawson.jonat.stockers.Entity.Note;
+import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
 
-public class NoteActivity extends AppCompatActivity {
+public class NoteActivity extends Menus {
 
     private NoteViewModel noteViewModel;
     public static final int NEW_NOTE_ACTIVITY_REQUEST_CODE = 1;
