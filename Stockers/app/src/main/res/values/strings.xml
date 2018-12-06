@@ -96,6 +96,7 @@
     <string name="interestAccumulated">Interest Accumulated:</string>
     <string name="totalPaid">Total Amount Paid:</string>
     <string name="amountLeft">Balance Left:</string>
+    <string name="subject">Credit Loan Calculation Results</string>
 
     <string-array name="yearOptions">
         <item>1</item>
