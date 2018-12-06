@@ -6,13 +6,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.Messaging.ArticlesRecyclerView.NewsRecyclerView;
 import com.dawson.jonat.stockers.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserStockActivity extends Activity {
+public class UserStockActivity extends Menus {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class UserStockActivity extends Activity {
         String user = getIntent().getExtras().getString("username");
 
         ((TextView)findViewById(R.id.UserName)).setText(user);
-        ((TextView)findViewById(R.id.balance)).setText(balance);
+        ((TextView)findViewById(R.id.balance)).setText(getResources().getString(R.string.balance) + " " + balance);
 
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.displayStocks);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
