@@ -24,6 +24,7 @@
     <style name="BackgroundImageView">
         <item name="android:src">@color/orange</item>
     </style>
+
     <!-- The default font for RecyclerView items is too small.
     The margin is a simple delimiter between the words.
     Style is based off code from:

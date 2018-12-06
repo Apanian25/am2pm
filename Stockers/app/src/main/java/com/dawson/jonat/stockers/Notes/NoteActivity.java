@@ -16,6 +16,11 @@ import java.util.List;
 import com.dawson.jonat.stockers.Entity.Note;
 import com.dawson.jonat.stockers.R;
 
+/**
+ * @author Nicholas Apanian
+ * Most of the code in this class is based off of:
+ * https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#13
+ */
 public class NoteActivity extends AppCompatActivity {
 
     private NoteViewModel noteViewModel;

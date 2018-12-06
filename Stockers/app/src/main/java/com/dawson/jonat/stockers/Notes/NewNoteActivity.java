@@ -10,6 +10,11 @@ import android.widget.EditText;
 
 import com.dawson.jonat.stockers.R;
 
+/**
+ * @author Nicholas Apanian
+ * Most of the code in this class is based off of:
+ * https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#12
+ */
 public class NewNoteActivity extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
