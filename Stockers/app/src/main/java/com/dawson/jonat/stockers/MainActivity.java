@@ -24,6 +24,7 @@ import com.dawson.jonat.stockers.Messaging.SubscriptionManager;
 import com.dawson.jonat.stockers.Notes.NoteActivity;
 import com.dawson.jonat.stockers.Hints.FinancialHintsActivity;
 import com.dawson.jonat.stockers.StockQuote.StockQuotesActivity;
+import com.dawson.jonat.stockers.UserStock.UserStockActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,6 +63,10 @@ public class MainActivity extends Menus {
 
         //Subscribe to news service
         SubscriptionManager.sub("News", this, false);
+
+        Intent intent = new Intent(this, UserStockActivity.class);
+        intent.putExtra("username", "PesceTheFish");
+        startActivity(intent);
     }
 
     @Override

@@ -147,5 +147,6 @@
     <!--API-->
     <string name="purchasePrice">Purchase Price: </string>
     <string name="quantity">Quantity: </string>
+    <string name="cash">Cash: </string>
 
 </resources>

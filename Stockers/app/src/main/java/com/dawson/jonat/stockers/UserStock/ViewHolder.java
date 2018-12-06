@@ -23,7 +23,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
      */
     public ViewHolder(View view, Context context) {
         super(view);
-        textViewTickerSymbol = (TextView)view.findViewById(R.id.ticker);
+        textViewTickerSymbol = (TextView)view.findViewById(R.id.tickerSymbol);
         textViewQuantity = (TextView)view.findViewById(R.id.quantity);
         textViewPurchasePrice = (TextView)view.findViewById(R.id.purchasePrice);
     }

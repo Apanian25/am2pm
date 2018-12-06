@@ -6,9 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.dawson.jonat.stockers.UserStock.ViewHolder;
 import com.dawson.jonat.stockers.R;
-
 import java.util.List;
 
 /**
@@ -22,7 +20,7 @@ public class UserStockRecyclerView extends RecyclerView.Adapter<ViewHolder> {
 
 
     /**
-     * Initialize the Context that launced the recycler view, the list of newsInformation to be
+     * Initialize the Context that launced the recycler view, the list of User Stock to be
      * displayed
      *
      * @param context
@@ -55,8 +53,8 @@ public class UserStockRecyclerView extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         viewHolder.textViewTickerSymbol.setText(stocks.get(position).getTickerSymbol());
-        viewHolder.textViewPurchasePrice.setText(context.getResources().getString(R.string.purchasePrice) + stocks.get(position).getPurchasePrice());
-        viewHolder.textViewQuantity.setText(context.getResources().getString(R.string.quantity) + stocks.get(position).getQuantity());
+        viewHolder.textViewPurchasePrice.setText(context.getResources().getString(R.string.purchasePrice) + " $" + stocks.get(position).getPurchasePrice());
+        viewHolder.textViewQuantity.setText(context.getResources().getString(R.string.quantity) + " " + stocks.get(position).getQuantity());
     }
 
     /**
