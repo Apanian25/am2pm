@@ -17,7 +17,6 @@ import com.dawson.jonat.stockers.Entity.Note;
 import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
 
-<<<<<<< HEAD
 /**
  * @author Nicholas Apanian
  * Most of the code in this class is based off of:

@@ -40,6 +40,11 @@ public class NewNoteActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Loads tha page displaying the text from the note that was clicked on from the previous
+     * Activity
+     * @param intent
+     */
     private void loadEditNote(final Intent intent) {
         mEditNoteView.setText(intent.getExtras().getString("note"));
 
@@ -70,6 +75,10 @@ public class NewNoteActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Loads the page displaying nothing in the Text field and is ready to create a new
+     * note
+     */
     private void loadNewNote() {
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
