@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".CurrecnyExchange.CurrencyExchangeActivity"
+    android:layout_marginLeft="4dp">
+
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <Spinner
+            android:id="@+id/from_currencies"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            />
+        <Spinner
+            android:id="@+id/to_currencies"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/amount"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/amount_hint"
+            android:textColorHint="@android:color/darker_gray"
+            android:inputType="numberDecimal"
+            android:textSize="@dimen/CurrencyExchangeText"/>
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:textSize="@dimen/CurrencyExchangeText" />
+    </LinearLayout>
+</LinearLayout>

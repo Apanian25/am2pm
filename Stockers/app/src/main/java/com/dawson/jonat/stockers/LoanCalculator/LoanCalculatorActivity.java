@@ -13,9 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dawson.jonat.stockers.ContactDialog.ContactUtilities;
+import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
 
-public class LoanCalculatorActivity extends AppCompatActivity {
+public class LoanCalculatorActivity extends Menus {
 
     Spinner spinnerYears;
     EditText amountView, interestRateView, minPaymentView;
@@ -29,8 +30,30 @@ public class LoanCalculatorActivity extends AppCompatActivity {
 
         this.initializeViews();
         this.fillYearSpinner();
+
+        if (savedInstanceState != null) {
+            LoanPayoutSummary summary = new LoanPayoutSummary(savedInstanceState.getInt("timeToPayOff"),
+                    savedInstanceState.getDouble("ogBalance"), savedInstanceState.getDouble("interestAccumulated"),
+                    savedInstanceState.getDouble("totalAmountPaid"), savedInstanceState.getDouble("amountLeft"));
+            displayResults(summary);
+        }
     }
 
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        if (resultsTable != null) {
+            LoanPayoutSummary summary = (LoanPayoutSummary) resultsTable.getTag();
+            savedInstanceState.putDouble("ogBalance", summary.getOriginalAmountOwed());
+            savedInstanceState.putDouble("amoutLeft", summary.getAmountLeftToPay());
+            savedInstanceState.putDouble("interestAccumulated", summary.getInterestAccumulated());
+            savedInstanceState.putDouble("totalAmountPaid", summary.getTotalPaid());
+            savedInstanceState.putInt("timeToPayOff", summary.getMonthsToPayOff());
+        }
+        savedInstanceState = null;
+    }
 
     /**
      * Reads the user input and will then calculate the LoanPaymentResults, which will then be

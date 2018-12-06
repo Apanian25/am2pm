@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
+
+import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.Messaging.ArticlesRecyclerView.NewsInformation;
 import com.dawson.jonat.stockers.Messaging.ArticlesRecyclerView.NewsRecyclerView;
 import com.dawson.jonat.stockers.R;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class NewsArticlesActivity extends Activity {
+public class NewsArticlesActivity extends Menus {
 
     private DatabaseReference databaseReference;
     private Context context;

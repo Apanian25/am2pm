@@ -20,6 +20,11 @@
         <item name="android:background">@color/gray_purple</item>
     </style>
 
+    <style name="HintCard">
+        <item name="android:background">@color/orange</item>
+        <item name="android:translationZ">20dp</item>
+    </style>
+
 
     <style name="BackgroundImageView">
         <item name="android:src">@color/orange</item>

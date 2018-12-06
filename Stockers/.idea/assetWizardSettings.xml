@@ -37,9 +37,9 @@
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="fb8c61" />
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="C:\Users\Danny\Desktop\Android Project Illustrator\stockers_logo_textless.svg" />
-                                      <entry key="foregroundLayerName" value="ic_launcher_foreground_stockers_textless_logo" />
-                                      <entry key="outputName" value="ic_stockers_textless_logo" />
+                                      <entry key="foregroundImage" value="C:\Users\Danny\Desktop\portfolio_icon.png" />
+                                      <entry key="foregroundLayerName" value="ic_launcher_foreground_portfolio_logo" />
+                                      <entry key="outputName" value="ic_portfolio_logo" />
                                     </map>
                                   </option>
                                 </PersistentState>
