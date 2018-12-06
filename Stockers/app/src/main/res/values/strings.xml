@@ -120,7 +120,10 @@
     <string name="more_than_five">Can view maximum 5 stocks at a time</string>
     <string name="empty_or_there">Invalid input or already exists</string>
     <string name="already_exists">Ticker symbol already exists in the search list</string>
-
+    <string name="buy_displayed_stock">Buy This Stock</string>
+    <string name="quantity">Quantity:</string> <!-- is there a max? should we query the quantity available and put a spinner list
+    up to this quantity?"-->
+    <string name="buy">Buy Now</string>
 
 
     <!--SHOW STOCK-->

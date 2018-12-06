@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +63,10 @@ public class ShowStockActivity extends Menus {
         String url = "https://www.worldtradingdata.com/api/v1/stock?symbol=" + tickerText + "&api_token=Qqn56QrK7FSkUbQxb3OFnZAqzKdAZ7NrMiGjPJgg2ky1qPywjPtETg81lbcB";
         new StocksThread().execute(url);
 
+    }
+
+    public void buyStock(View view) {
+        //todo phase2
     }
 
     /**
