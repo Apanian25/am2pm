@@ -124,6 +124,7 @@
     <string name="quantity">Quantity:</string> <!-- is there a max? should we query the quantity available and put a spinner list
     up to this quantity?"-->
     <string name="buy">Buy Now</string>
+    <string name="enter_quantity">Enter desired quantity</string>
 
 
     <!--SHOW STOCK-->

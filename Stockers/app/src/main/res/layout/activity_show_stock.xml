@@ -56,7 +56,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/quantity"/>
 
-            <!-- to discuss the presentation of the quantity-->
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_quantity"/>
         </LinearLayout>
 
         <Button
@@ -64,6 +67,9 @@
             android:layout_height="wrap_content"
             android:text="@string/buy"
             android:onClick="buyStock"/>
+
+        <!--todo if stock is not available, hide this linar layout -->
+        <!-- todo add text view : max to be calculated -->
 
         <ImageView
             android:layout_width="match_parent"
