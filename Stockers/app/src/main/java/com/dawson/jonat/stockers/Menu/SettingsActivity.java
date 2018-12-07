@@ -191,32 +191,48 @@ public class SettingsActivity extends Menus {
      * stock exchange and date in shared preferences
      */
     private void saveInfoHelper(){
-        boolean firstSave = (prefs.getString("email", null) == null);
-        //store first name
-        editor.putString("fname", fname.getText().toString());
-        // store last name
-        editor.putString("lname", lname.getText().toString());
-        // store email
-        editor.putString("email", email.getText().toString());
-        // store password
-        editor.putString("password", password.getText().toString());
-        // store currency
-        editor.putInt("curr", spinner_curr.getSelectedItemPosition());
-        // store stock
-        editor.putInt("stock", spinner_stock.getSelectedItemPosition());
-        // store date
-        editor.putString("date", new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime()));
 
-        editor.commit();
+        if(!isAnyEmpty()) {
+            boolean firstSave = (prefs.getString("email", null) == null);
+            //store first name
+            editor.putString("fname", fname.getText().toString());
+            // store last name
+            editor.putString("lname", lname.getText().toString());
+            // store email
+            editor.putString("email", email.getText().toString());
+            // store password
+            editor.putString("password", password.getText().toString());
+            // store currency
+            editor.putInt("curr", spinner_curr.getSelectedItemPosition());
+            // store stock
+            editor.putInt("stock", spinner_stock.getSelectedItemPosition());
+            // store date
+            editor.putString("date", new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime()));
 
-        Toast.makeText(this, R.string.data_saved, Toast.LENGTH_SHORT).show();
+            editor.commit();
 
-        loadInfo(); //to show new data immediately without refreshing the page
+            Toast.makeText(this, R.string.data_saved, Toast.LENGTH_SHORT).show();
 
-        if(firstSave){
-            finish();
+            loadInfo(); //to show new data immediately without refreshing the page
+
+            if(firstSave){
+                finish();
+            }
+
+        }else{
+            Toast.makeText(this, R.string.data_empty, Toast.LENGTH_SHORT).show();
         }
+
     }
+
+    private boolean isAnyEmpty(){
+            //get everything
+            return (fname.getText().toString().trim().length() == 0)
+                    || (lname.getText().toString().trim().length() == 0)
+                    || (email.getText().toString().trim().length() == 0)
+                    || (password.getText().toString().trim().length() == 0);
+    }
+
 
     /**
      * Helper method used to load shared preferences
@@ -228,7 +244,7 @@ public class SettingsActivity extends Menus {
         password.setText(prefs.getString("password", null));
         spinner_curr.setSelection(prefs.getInt("curr", 0));
         spinner_stock.setSelection(prefs.getInt("stock", 0));
-        last_mod_date.setText(" " + prefs.getString("date", "N/A"));
+        last_mod_date.setText(" " + prefs.getString("date", getString(R.string.na)));
     }
 
     /**
@@ -272,7 +288,11 @@ public class SettingsActivity extends Menus {
     @Override
     public void onBackPressed() {
         if (checkIfChanged()) {
-            showDialog(null);
+            if(!isAnyEmpty()) {
+                showDialog(null);
+            }else{
+                Toast.makeText(this, R.string.data_empty, Toast.LENGTH_SHORT).show();
+            }
         } else {
             super.onBackPressed();
         }

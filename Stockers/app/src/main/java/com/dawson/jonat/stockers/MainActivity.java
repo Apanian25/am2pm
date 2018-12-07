@@ -46,14 +46,10 @@ public class MainActivity extends Menus {
         context = this;
 
         //Check if first visit
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        String email = sp.getString("email", null);
-        if(email == null){
-            Intent intent = new Intent(this, SettingsActivity.class);
-            launchActivity(intent);
-        }
+
 
         TextView userTV = findViewById(R.id.usernameLbl);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         userTV.setText(sp.getString("fname" , "") + " " + sp.getString("lname", null));
 
         //Instantiate firebase auth
@@ -66,6 +62,17 @@ public class MainActivity extends Menus {
 
         //Subscribe to news service
         SubscriptionManager.sub("News", this, false);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String email = sp.getString("email", null);
+        if(email == null){
+            Intent intent = new Intent(this, SettingsActivity.class);
+            launchActivity(intent);
+        }
     }
 
     @Override
