@@ -59,6 +59,7 @@ public class APISell implements OnCompleted{
         params.put("quantity", "" + quantity);
 
         SimpleAPICaller caller = new SimpleAPICaller(BASEURL + SELLROUTE, HttpMethods.POST, params, bearerToken);
+//        SimpleAPICaller caller = new SimpleAPICaller("http://stockers-web-app.herokuapp.com/api/api/allstocks", HttpMethods.GET, null, bearerToken);
         APIUserThread thread = new APIUserThread(this);
         thread.execute(caller);
     }
