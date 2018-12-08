@@ -1,68 +1,78 @@
 package com.dawson.jonat.stockers.APIUtil;
 
-import android.content.Context;
 import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Helper method that deals with selling a stock through the API
+ * Deals with making the HttpRequest by building a SimpleAPICaller
+ * And calling the APIUserThread and handles the response
+ *
+ * @author Danny
+ */
 public class APISell implements OnCompleted{
 
     //Logging
     private final String TAG = "APISell";
 
     //UI
-    private ProgressBar pb;
-    private Context c;
+    private OnCompleted c;
 
     //API Info
     private String bearerToken;
 
-
+    //Base url for API call
     private final String BASEURL = "http://stockers-web-app.herokuapp.com/api/";
 
-    public APISell(ProgressBar pb, Context c, String bearerToken){
-        this.pb= pb;
+    /**
+     * Stores the bearer token and an OnCompleted listener
+     * to deal with the response
+     *
+     * @param c
+     * @param bearerToken
+     */
+    public APISell(OnCompleted c, String bearerToken){
         this.c = c;
         this.bearerToken = bearerToken;
     }
 
+    /**
+     * Validates quantity and makes the API call by building the Http Request
+     * and pass it to the thread
+     *
+     * @param ticker
+     * @param quantity
+     * @throws IllegalArgumentException
+     */
     public void sell(String ticker, int quantity) throws IllegalArgumentException{
         final String SELLROUTE = "api/sell";
 
+        //Quantity validation
         if(quantity <= 0){
             throw new IllegalArgumentException("The quantity value needs to be positive");
         }
 
+        //Builds the params
         Map<String, String> params = new HashMap<>();
         params.put("ticker", ticker);
         params.put("quantity", "" + quantity);
 
         SimpleAPICaller caller = new SimpleAPICaller(BASEURL + SELLROUTE, HttpMethods.POST, params, bearerToken);
-        APIUserThread thread = new APIUserThread(this.pb, this);
+        APIUserThread thread = new APIUserThread(this);
         thread.execute(caller);
     }
 
 
+    /**
+     * Calls the OnCompleted listener instance
+     *
+     * @param response
+     */
     @Override
     public void OnTaskCompleted(SimpleAPIResponse response) {
         Log.i(TAG, response.getMessageBody() + "*" + response.getStatusCode());
-    }
-
-    private void parseAPISellResponse(SimpleAPIResponse response) throws JSONException {
-        JSONObject obj = (JSONObject) new JSONTokener(response.getMessageBody()).nextValue();
-        if(obj.has("cashleft")){
-            Toast.makeText(c, "You have " + obj.getString("cashleft") + " of cash left after selling", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(c, "Error the attempt of selling", Toast.LENGTH_SHORT).show();
-        }
+        c.OnTaskCompleted(response);
     }
 
 

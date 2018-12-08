@@ -41,7 +41,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".Portfolio.PortfolioTestActivity"></activity>
+        <activity android:name=".UserStock.UserStockActivity"></activity>
     </application>
 
 </manifest>

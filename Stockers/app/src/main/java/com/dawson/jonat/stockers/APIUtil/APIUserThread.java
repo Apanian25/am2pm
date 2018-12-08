@@ -20,19 +20,10 @@ public class APIUserThread extends AsyncTask<SimpleAPICaller, Integer, SimpleAPI
 
     private final String TAG = "APIThread";
     private static final int NETIOBUFFER = 1024;
-    private ProgressBar bar;
     private OnCompleted listener;
 
-    public APIUserThread(ProgressBar bar, OnCompleted listener){
-        this.bar = bar;
+    public APIUserThread(OnCompleted listener){
         this.listener = listener;
-    }
-
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        //progress bar?
     }
 
     @Override
@@ -141,15 +132,4 @@ public class APIUserThread extends AsyncTask<SimpleAPICaller, Integer, SimpleAPI
         outputStreamWriter.flush();
     }
 
-
-    /**
-     * Updates progress bar with current value
-     *
-     * @param values
-     */
-    @Override
-    protected void onProgressUpdate(Integer... values) {
-        super.onProgressUpdate(values);
-        //update progress bar
-    }
 }

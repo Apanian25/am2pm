@@ -96,6 +96,7 @@
     <string name="interestAccumulated">Interest Accumulated:</string>
     <string name="totalPaid">Total Amount Paid:</string>
     <string name="amountLeft">Balance Left:</string>
+    <string name="subject">Credit Loan Calculation Results</string>
 
     <string-array name="yearOptions">
         <item>1</item>
@@ -142,5 +143,10 @@
     <string name="loanCal">Loan Calculator</string>
     <string name="portfolio">Your Portfolio</string>
     <string name="welcome">Welcome, </string>
+
+    <!--API-->
+    <string name="purchasePrice">Purchase Price: </string>
+    <string name="quantity">Quantity: </string>
+    <string name="balance">Balance: </string>
 
 </resources>
