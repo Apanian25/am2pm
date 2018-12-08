@@ -1,12 +1,15 @@
 package com.dawson.jonat.stockers.StockQuote;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +42,10 @@ public class ShowStockActivity extends Menus {
     ConnectivityManager connectionManager; //Class that answers queries about the state of network connectivity.
     NetworkInfo netInfo;
     String tickerText;
-
+    LinearLayout buyLayout;
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
+    TextView max;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +57,11 @@ public class ShowStockActivity extends Menus {
             price = findViewById(R.id.currentPrice);
             stockExcahnge = findViewById(R.id.stockExchange);
             tickerText = getIntent().getExtras().getString("ticker");
+            buyLayout =  findViewById(R.id.buylayout);
             showStockQuotes();
+            prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+            max = findViewById(R.id.maxAmount);
         } else {
             //redirection to error page (503 error)
             setContentView(R.layout.error_page);
@@ -60,12 +70,23 @@ public class ShowStockActivity extends Menus {
 
     public void showStockQuotes() {
         //get the url
-        String url = "https://www.worldtradingdata.com/api/v1/stock?symbol=" + tickerText + "&api_token=Qqn56QrK7FSkUbQxb3OFnZAqzKdAZ7NrMiGjPJgg2ky1qPywjPtETg81lbcB";
+        String url = "https://www.worldtradingdata.com/api/v1/stock?symbol=" + tickerText + "&api_token=mUPqsrk2HXuiNHZqGkMvLicpZoLi1bXzTPXMbJIZj1BEMsnodb2lSmrsypwT";
         new StocksThread().execute(url);
+    }
 
+    public void getToken(){
+        CreateConnectionToPhpApi api = new CreateConnectionToPhpApi(this);
+        //use actual values after todo
+        api.execute("nicholas.apanian@outlook.com","nicholas");
+    }
+
+    public void calculateMax(String quantityOfStock, String price){
+        GetCashFromPhpApi balance = new GetCashFromPhpApi(this);
+        balance.execute(prefs.getString("token", "no token available"), quantityOfStock, price);
     }
 
     public void buyStock(View view) {
+        //make a post req
         //todo phase2
     }
 
@@ -93,8 +114,13 @@ public class ShowStockActivity extends Menus {
                 companyName.setText(result[0]);
                 price.setText(result[1] + " " + result[2]);
                 stockExcahnge.setText(result[3]);
+                getToken();
+                //set the max quantity
+                calculateMax(result[4], result[1]);
+                max.setText("Max you can buy: " + prefs.getInt("max", 0));
             } catch (NullPointerException np) {
                 ticker.setText(getString(R.string.no_results_found) + "  " + tickerText);
+                buyLayout.setVisibility(LinearLayout.GONE);
             }
         }
 
@@ -141,7 +167,7 @@ public class ShowStockActivity extends Menus {
                 //if still here, the response was fine
                 //get the stream to the input
                 input = httpUrlCon.getInputStream();
-                String[] results = new String[4]; //assume - company name  --> 0, price --> 1 currency at --> 2, stock ex -->3
+                String[] results = new String[5]; //assume - company name  --> 0, price --> 1 currency at --> 2, stock ex -->3
                 try {
                     JSONObject json = new JSONObject(convertResponseToString(input));
                     JSONObject resultsToReturn = json.getJSONArray("data").getJSONObject(0);
@@ -149,6 +175,7 @@ public class ShowStockActivity extends Menus {
                     results[1] = resultsToReturn.getString("price");
                     results[2] = resultsToReturn.getString("currency");
                     results[3] = resultsToReturn.getString("stock_exchange_long") + " ( " + resultsToReturn.getString("stock_exchange_short") + " )";
+                    results[4] = resultsToReturn.getString("shares");
                     return results;
 
                 } catch (JSONException np) {

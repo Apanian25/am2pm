@@ -62,7 +62,7 @@
     </string-array>
     <string name="choose_curr">Choose currency</string>
     <string name="choose_stock">Choose stock</string>
-<string-array name="spinner_values_curr">
+    <string-array name="spinner_values_curr">
      <item>TSX</item>
      <item>NYSE</item>
      <item>NASDAQ</item>
@@ -138,7 +138,6 @@
     <string name="subSuccess">You are successfully subscribed to the news articles!!!</string>
     <string name="subFailed">Something went wrong, try again later</string>
     <string name="unSubSuccess">You are unsubscribed from the best news outlet</string>
-
 
     <!--Main Layout-->
     <string name="foreignEx">Foreign Exchange</string>

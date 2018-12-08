@@ -40,36 +40,54 @@
             android:id="@+id/stockExchange"
             android:layout_gravity="center" />
 
-            <!-- PHASE2 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buylayout"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/purple_text_header"
                 android:layout_marginTop="7dp"
                 android:text="@string/buy_displayed_stock"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/quantity"/>
 
-            <EditText
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/enter_quantity"/>
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/quantity" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enter_quantity"
+                    android:inputType="number"/>
+        </LinearLayout>
+            <TextView
+                android:id="@+id/maxAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_gravity="center_horizontal"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/buy"
+                    android:onClick="buyStock"
+                    android:layout_gravity="center"/>
         </LinearLayout>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/buy"
-            android:onClick="buyStock"/>
-
-        <!--todo if stock is not available, hide this linar layout -->
         <!-- todo add text view : max to be calculated -->
+        <!-- todo actually buy the stock and modify the balance-->
+        <!-- todo to show the balance"-->
+
 
         <ImageView
             android:layout_width="match_parent"
