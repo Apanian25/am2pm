@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +19,6 @@ import com.dawson.jonat.stockers.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -38,14 +38,13 @@ import java.net.URL;
  */
 public class ShowStockActivity extends Menus {
 
-    TextView ticker, companyName, price, stockExcahnge;
+    TextView ticker, companyName, price, stockExcahnge, max, balance;
     ConnectivityManager connectionManager; //Class that answers queries about the state of network connectivity.
     NetworkInfo netInfo;
     String tickerText;
     LinearLayout buyLayout;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
-    TextView max;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +61,7 @@ public class ShowStockActivity extends Menus {
             prefs = PreferenceManager.getDefaultSharedPreferences(this);
             editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
             max = findViewById(R.id.maxAmount);
+            balance = findViewById(R.id.currentBalance);
         } else {
             //redirection to error page (503 error)
             setContentView(R.layout.error_page);
@@ -87,7 +87,14 @@ public class ShowStockActivity extends Menus {
 
     public void buyStock(View view) {
         //make a post req
+        BuyStocks buy = new BuyStocks(this, ((EditText)findViewById(R.id.quantity)).getText().toString(),
+                ((TextView)findViewById(R.id.ticker)).getText().toString());
+        buy.execute(prefs.getString("token", "no token available"));
         //todo phase2
+    }
+
+    public void setBalance(String balance) {
+        this.balance.setText(getResources().getString(R.string.currentBalance) + balance);
     }
 
     /**
@@ -118,6 +125,7 @@ public class ShowStockActivity extends Menus {
                 //set the max quantity
                 calculateMax(result[4], result[1]);
                 max.setText("Max you can buy: " + prefs.getInt("max", 0));
+                balance.setText("Your balance is: " + prefs.getString("balance", ""));
             } catch (NullPointerException np) {
                 ticker.setText(getString(R.string.no_results_found) + "  " + tickerText);
                 buyLayout.setVisibility(LinearLayout.GONE);
