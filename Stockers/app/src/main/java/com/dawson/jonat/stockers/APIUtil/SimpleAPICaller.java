@@ -54,13 +54,11 @@ public class SimpleAPICaller {
      * @return
      */
     public String buildQueryString() throws UnsupportedEncodingException {
-        String qs = "?";
-        return buildString(qs);
+        return buildString("?");
     }
 
     public String buildPostParams() throws UnsupportedEncodingException {
-        String qs = "";
-        return buildString(qs);
+        return buildString("");
     }
 
     private String buildString(String qs) throws UnsupportedEncodingException {

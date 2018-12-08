@@ -23,6 +23,7 @@ import com.dawson.jonat.stockers.Messaging.NewsArticlesActivity;
 import com.dawson.jonat.stockers.Messaging.SubscriptionManager;
 import com.dawson.jonat.stockers.Notes.NoteActivity;
 import com.dawson.jonat.stockers.Hints.FinancialHintsActivity;
+import com.dawson.jonat.stockers.Portfolio.PortfolioTestActivity;
 import com.dawson.jonat.stockers.StockQuote.StockQuotesActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -109,6 +110,7 @@ public class MainActivity extends Menus {
 
     public void portfolioClick(View v) {
             //todo
+        startActivity(new Intent(this, PortfolioTestActivity.class));
     }
 
     public void messageClick(View v){

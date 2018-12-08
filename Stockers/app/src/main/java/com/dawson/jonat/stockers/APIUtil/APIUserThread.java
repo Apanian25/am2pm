@@ -2,6 +2,7 @@ package com.dawson.jonat.stockers.APIUtil;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ProgressBar;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -19,6 +20,14 @@ public class APIUserThread extends AsyncTask<SimpleAPICaller, Integer, SimpleAPI
 
     private final String TAG = "APIThread";
     private static final int NETIOBUFFER = 1024;
+    private ProgressBar bar;
+    private OnCompleted listener;
+
+    public APIUserThread(ProgressBar bar, OnCompleted listener){
+        this.bar = bar;
+        this.listener = listener;
+    }
+
 
     @Override
     protected void onPreExecute() {
@@ -29,7 +38,7 @@ public class APIUserThread extends AsyncTask<SimpleAPICaller, Integer, SimpleAPI
     @Override
     protected void onPostExecute(SimpleAPIResponse simpleAPIResponse) {
         super.onPostExecute(simpleAPIResponse);
-
+        listener.OnTaskCompleted(simpleAPIResponse);
     }
 
     /**

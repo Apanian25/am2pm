@@ -2,13 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dawson.jonat.stockers">
 
-    <uses-permission
-        android:name=
-            "android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission
-        android:name=
-            "android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -25,24 +21,27 @@
             </intent-filter>
         </activity>
         <activity android:name=".Hints.FinancialHintsActivity" />
-        <activity android:name=".CurrecnyExchange.CurrencyExchangeActivity"/>
-        <activity android:name=".LoanCalculator.LoanCalculatorActivity"/>
-        <activity android:name=".Menu.AboutActivity"></activity>
-        <activity android:name=".Menu.SettingsActivity"></activity>
-        <activity android:name=".StockQuote.StockQuotesActivity"></activity>
-        <activity android:name=".StockQuote.ShowStockActivity"></activity>
-
+        <activity android:name=".CurrecnyExchange.CurrencyExchangeActivity" />
+        <activity android:name=".LoanCalculator.LoanCalculatorActivity" />
+        <activity android:name=".Menu.AboutActivity" />
+        <activity android:name=".Menu.SettingsActivity" />
+        <activity android:name=".StockQuote.StockQuotesActivity" />
+        <activity android:name=".StockQuote.ShowStockActivity" />
         <activity
             android:name=".Notes.NoteActivity"
-            android:label="@string/title_activity_note"></activity>
+            android:label="@string/title_activity_note" />
         <activity
             android:name=".Notes.NewNoteActivity"
-            android:label="@string/title_activity_new_note"></activity>
-        <activity android:name=".Messaging.NewsArticlesActivity"></activity>
+            android:label="@string/title_activity_new_note" />
+        <activity android:name=".Messaging.NewsArticlesActivity" />
+
         <service android:name=".Messaging.StockersFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <activity android:name=".Portfolio.PortfolioTestActivity"></activity>
     </application>
+
 </manifest>
