@@ -46,4 +46,12 @@ public class UserStockActivity extends Menus {
 
         return stocks;
     }
+
+    private String getResposne(String BearerTolken) {
+        return null;
+    }
+
+    private String getBearerToken() {
+        return "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9zdG9ja2Vycy13ZWItYXBwLmhlcm9rdWFwcC5jb20vYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1NDQzMDI1MjIsImV4cCI6MTU0NDMwNjEyMiwibmJmIjoxNTQ0MzAyNTIyLCJqdGkiOiI3ZkFxQ1U1SDBzQ2czc2dsIn0.V0TOj24f-7JJFeylV68Xzt8QZJ9jujghH06Eu5lzUWQ";
+    }
 }
