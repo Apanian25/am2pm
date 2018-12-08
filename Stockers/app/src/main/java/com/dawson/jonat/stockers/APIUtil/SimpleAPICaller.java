@@ -9,6 +9,7 @@ import java.util.Map;
  * Object that represents Http Request
  * Containing UrlAPI, HttpMethod, bearer token and params
  *
+ * @author Danny
  */
 public class SimpleAPICaller {
 
