@@ -14,6 +14,7 @@ public class SimpleAPICaller {
         this.urlAPI = urlAPI;
         this.method = method;
         this.params = params;
+        this.bearer = bearer;
     }
 
     public String getUrlAPI() {
