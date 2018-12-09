@@ -62,5 +62,12 @@ public class UserStockActivity extends Menus {
 
     }
 
-
+    @Override
+    public void OnTaskCompleted(SimpleAPIResponse response) {
+        //Refresh the page
+        //Temporary if you have another solution
+        finish();
+        startActivity(getIntent());
+        Toast.makeText(this, "Refreshed", Toast.LENGTH_SHORT).show();
+    }
 }

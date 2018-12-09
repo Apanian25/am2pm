@@ -129,16 +129,19 @@ public class SimpleAPICaller {
     private String buildString(String qs) throws UnsupportedEncodingException {
         int startLength = qs.length() + 1;
 
-        for (Map.Entry<String, String> param : this.params.entrySet()) {
-            qs += URLEncoder.encode(param.getKey(), "UTF-8") + "=" + URLEncoder.encode(param.getValue(), "UTF-8") + "&";
-        }
+        if(params != null) {
+            for (Map.Entry<String, String> param : this.params.entrySet()) {
+                qs += URLEncoder.encode(param.getKey(), "UTF-8") + "=" + URLEncoder.encode(param.getValue(), "UTF-8") + "&";
+            }
 
-        //Returns empty if the params are empty
-        if (qs.length() < startLength) {
-            return "";
-        }
+            //Returns empty if the params are empty
+            if (qs.length() < startLength) {
+                return "";
+            }
 
-        //Delete the last '&' before returning
-        return qs.substring(0, qs.length() - startLength);
+            //Delete the last '&' before returning
+            return qs.substring(0, qs.length() - startLength);
+        }
+        return "";
     }
 }

@@ -153,6 +153,7 @@ public class APIUserThread extends AsyncTask<SimpleAPICaller, Integer, SimpleAPI
     private HttpURLConnection buildAPIPost(SimpleAPICaller caller) throws IOException{
         URL url = new URL(caller.getUrlAPI());
         HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
+        urlConn.setDoOutput(true);
         basicBuild(urlConn, caller);
         writePostParams(urlConn, caller.buildPostParams());
         return urlConn;
@@ -168,11 +169,9 @@ public class APIUserThread extends AsyncTask<SimpleAPICaller, Integer, SimpleAPI
     private void basicBuild(HttpURLConnection urlConn, SimpleAPICaller caller) throws IOException{
         urlConn.setReadTimeout(10000);
         urlConn.setConnectTimeout(15000);
+        String s = caller.getMethod().toString().toUpperCase();
         urlConn.setRequestMethod(caller.getMethod().toString().toUpperCase());
         urlConn.setDoInput(true);
-
-        if (caller.getMethod() == HttpMethods.POST)
-            urlConn.setDoOutput(true);
 
         if(caller.getBearer() != null){
             urlConn.addRequestProperty("Authorization", "Bearer " + caller.getBearer());
