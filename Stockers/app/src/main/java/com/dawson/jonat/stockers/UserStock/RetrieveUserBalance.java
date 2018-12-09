@@ -28,12 +28,23 @@ public class RetrieveUserBalance implements OnCompleted {
     private String bearerToken;
     private TextView balanceView;
 
+    /**
+     * Constructor that ensure sets the values of the context, bearer token and the balance text view
+     *
+     * @param context
+     * @param bearerToken
+     * @param balanceView
+     */
     public RetrieveUserBalance(Context context, String bearerToken, TextView balanceView) {
         this.context = context;
         this.bearerToken = bearerToken;
         this.balanceView = balanceView;
     }
 
+    /**
+     * Creates a simpleApiCaller and uses it to execute a ApiUserThread that will query the php api
+     * in order to get the amount of cash the user currently has left.
+     */
     public void getCashAndDisplay() {
         String route = "http://stockers-web-app.herokuapp.com/api/api/cash";
 
@@ -44,6 +55,11 @@ public class RetrieveUserBalance implements OnCompleted {
         apiUserThread.execute(simpleAPICaller);
     }
 
+    /**
+     * Responds to the response from the api and will display the balance that is left
+     *
+     * @param response
+     */
     @Override
     public void OnTaskCompleted(SimpleAPIResponse response) {
         String balance = getBalanceFromResponse(response.getMessageBody());
@@ -52,6 +68,12 @@ public class RetrieveUserBalance implements OnCompleted {
     }
 
 
+    /**
+     * Decodes the json to get the amount of cash that the user has left.
+     *
+     * @param jsonString
+     * @return
+     */
     private String getBalanceFromResponse(String jsonString) {
         try {
             return new JSONObject(jsonString).getString("cash");

@@ -26,12 +26,24 @@ public class RetrieveUserStock implements OnCompleted {
     private String bearerToken;
     private RecyclerView recyclerView;
 
+    /**
+     * The constructor sets the value of the context, bearerToken and the recycler view
+     *
+     * @param context
+     * @param bearerToken
+     * @param recyclerView
+     */
     public RetrieveUserStock(Context context, String bearerToken, RecyclerView recyclerView) {
         this.context = context;
         this.bearerToken = bearerToken;
         this.recyclerView = recyclerView;
     }
 
+
+    /**
+     * Creates a SimpleApiCaller and uses it to call the ApiUserThread which will query the api in
+     * the background in order to retrieve the stocks that the current user has.
+     */
     public void getStocksAndDisplay() {
         String route = "http://stockers-web-app.herokuapp.com/api/api/allstocks";
 
@@ -42,6 +54,12 @@ public class RetrieveUserStock implements OnCompleted {
         apiUserThread.execute(simpleAPICaller);
     }
 
+    /**
+     * This responds to the reponse from the server, retrieving the stocks that the current user has
+     * and displaying them in a recyler view in the UserStockActivity.
+     *
+     * @param response
+     */
     @Override
     public void OnTaskCompleted(SimpleAPIResponse response) {
         List<StockInformation> stocks = getStocksFromResponse(response.getMessageBody());
@@ -50,6 +68,14 @@ public class RetrieveUserStock implements OnCompleted {
         recyclerView.setAdapter(new UserStockRecyclerView(context, stocks));
     }
 
+
+    /**
+     * Decodes the json from the api and transforms it into a list of StockInformation to be user
+     * by the Recycler View.
+     *
+     * @param jsonString
+     * @return
+     */
     private List<StockInformation> getStocksFromResponse(String jsonString) {
         List<StockInformation> stockInformations = new ArrayList<>();
 
