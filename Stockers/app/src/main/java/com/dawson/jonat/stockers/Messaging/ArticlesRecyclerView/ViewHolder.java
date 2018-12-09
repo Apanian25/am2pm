@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.dawson.jonat.stockers.R;
 
 public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    private static final String SUBJECT = "Credit Loan Calculation Results";
     private Context contextOfView;
 
     TextView textViewTitle;
