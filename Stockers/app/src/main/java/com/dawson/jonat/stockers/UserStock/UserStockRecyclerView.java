@@ -25,7 +25,7 @@ public class UserStockRecyclerView extends RecyclerView.Adapter<ViewHolder> {
      *
      * @param context
      */
-    public  UserStockRecyclerView(Context context, List<StockInformation> stocks) {
+    public UserStockRecyclerView(Context context, List<StockInformation> stocks) {
         this.inflater = LayoutInflater.from(context);
         this.stocks = stocks;
         this.context = context;

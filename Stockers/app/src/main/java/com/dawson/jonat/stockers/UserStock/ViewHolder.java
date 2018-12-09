@@ -6,9 +6,14 @@ import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.dawson.jonat.stockers.APIUtil.APISell;
+import com.dawson.jonat.stockers.APIUtil.OnCompleted;
+import com.dawson.jonat.stockers.APIUtil.SimpleAPIResponse;
 import com.dawson.jonat.stockers.R;
 
-public class ViewHolder extends RecyclerView.ViewHolder {
+public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener{
     private Context contextOfView;
 
     TextView textViewTickerSymbol;
@@ -23,8 +28,34 @@ public class ViewHolder extends RecyclerView.ViewHolder {
      */
     public ViewHolder(View view, Context context) {
         super(view);
+        contextOfView = context;
         textViewTickerSymbol = (TextView)view.findViewById(R.id.tickerSymbol);
         textViewQuantity = (TextView)view.findViewById(R.id.quantity);
         textViewPurchasePrice = (TextView)view.findViewById(R.id.purchasePrice);
+        view.setOnLongClickListener(this);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+
+        if(contextOfView instanceof OnCompleted){
+
+        APISell apisell = new APISell((OnCompleted) contextOfView, "");
+
+
+        String ticker = textViewTickerSymbol.getText().toString();
+        String quantity = textViewQuantity.getText().toString();
+        quantity  = quantity.split(" ")[1];
+
+
+        try {
+            apisell.sell(ticker, Integer.parseInt(quantity));
+        }catch(IllegalArgumentException e){
+            Toast.makeText(contextOfView, e.getMessage(), Toast.LENGTH_SHORT);
+        }
+        Toast.makeText(contextOfView, "Calling the API", Toast.LENGTH_SHORT).show();
+
+        }
+        return true;
     }
 }
