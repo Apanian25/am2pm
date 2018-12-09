@@ -33,22 +33,22 @@ public class UserStockActivity extends Menus {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_stock);
 
-        String balance = getBalance();
-        //List<StockInformation> stocks = getStocks();
         String user = getIntent().getExtras().getString("username");
 
         ((TextView) findViewById(R.id.UserName)).setText(user);
-        ((TextView) findViewById(R.id.balance)).setText(getResources().getString(R.string.balance) + " " + balance);
+
+        RetrieveUserBalance retrieveUserBalance = new RetrieveUserBalance(this, getBearerToken(),
+                (TextView)findViewById(R.id.balance));
+        retrieveUserBalance.getCashAndDisplay();
 
         RetrieveUserStock retrieveUserStock = new RetrieveUserStock(this, getBearerToken(),
                 (RecyclerView) findViewById(R.id.displayStocks));
         retrieveUserStock.getStocksAndDisplay();
     }
 
-
-
     private String getBearerToken() {
-        return "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9zdG9ja2Vycy13ZWItYXBwLmhlcm9rdWFwcC5jb20vYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1NDQzMTEwNzEsImV4cCI6MTU0NDMxNDY3MSwibmJmIjoxNTQ0MzExMDcxLCJqdGkiOiJJdGJXc0NKSWU0eTl6WjFJIn0.UPYnTASEpk9rDkkScTLiDIxtro10_-ny7BhrTCW-E2E";
+        return "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9zdG9ja2Vycy13ZWItYXBwLmhlcm9rdWFwcC5jb20vYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1NDQzMTUxMTIsImV4cCI6MTU0NDMxODcxMiwibmJmIjoxNTQ0MzE1MTEyLCJqdGkiOiJtTk9LN1FuWkJKdEVwNXJZIn0.qUxCX0vhm_FpBMnnLQyYvboLRBF56cK7mwZUA-IZVNU";
+
     }
 
 
