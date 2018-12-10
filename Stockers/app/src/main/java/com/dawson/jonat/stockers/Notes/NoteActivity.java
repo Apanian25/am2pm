@@ -17,6 +17,11 @@ import com.dawson.jonat.stockers.Entity.Note;
 import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
 
+/**
+ * @author Nicholas Apanian
+ * Most of the code in this class is based off of:
+ * https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#13
+ */
 public class NoteActivity extends Menus {
 
     private NoteViewModel noteViewModel;
@@ -28,23 +33,16 @@ public class NoteActivity extends Menus {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
-        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
-
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final NoteListAdapter adapter = new NoteListAdapter(this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        noteViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
-            @Override
-            public void onChanged(@Nullable final List<Note> notes) {
-                // Update the cached copy of the words in the adapter.
-                adapter.setNotes(notes);
-            }
-        });
+        init();
     }
 
 
+    /**
+     * Process the results given from the started Activity
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -70,8 +68,34 @@ public class NoteActivity extends Menus {
     }
 
 
+    /**
+     * Create a new note
+     * @param view
+     */
     public void createNote(View view) {
         Intent intent = new Intent(NoteActivity.this, NewNoteActivity.class);
         startActivityForResult(intent, NEW_NOTE_ACTIVITY_REQUEST_CODE);
+    }
+
+    /**
+     * This method is used to initialize the private fields
+     */
+    private void init() {
+
+        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        final NoteListAdapter adapter = new NoteListAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        noteViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
+            @Override
+            public void onChanged(@Nullable final List<Note> notes) {
+                // Update the cached copy of the words in the adapter.
+                adapter.setNotes(notes);
+            }
+        });
+
     }
 }

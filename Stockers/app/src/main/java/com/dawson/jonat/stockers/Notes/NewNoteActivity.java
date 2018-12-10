@@ -10,6 +10,11 @@ import android.widget.EditText;
 
 import com.dawson.jonat.stockers.R;
 
+/**
+ * @author Nicholas Apanian
+ * Most of the code in this class is based off of:
+ * https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#12
+ */
 public class NewNoteActivity extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
@@ -35,6 +40,11 @@ public class NewNoteActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Loads tha page displaying the text from the note that was clicked on from the previous
+     * Activity
+     * @param intent
+     */
     private void loadEditNote(final Intent intent) {
         mEditNoteView.setText(intent.getExtras().getString("note"));
 
@@ -65,6 +75,10 @@ public class NewNoteActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Loads the page displaying nothing in the Text field and is ready to create a new
+     * note
+     */
     private void loadNewNote() {
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
