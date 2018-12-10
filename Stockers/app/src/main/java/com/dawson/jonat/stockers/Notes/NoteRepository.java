@@ -11,6 +11,11 @@ import com.dawson.jonat.stockers.Interface.NoteDAO;
 
 import java.util.List;
 
+/**
+ * @author Nicholas Apanian
+ * Most of the code in this class is based off of:
+ * https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#7
+ */
 public class NoteRepository {
 
     private NoteDAO noteDAO;
