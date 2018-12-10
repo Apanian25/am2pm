@@ -81,6 +81,6 @@ public class RetrieveUserBalance implements OnCompleted {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return "???";
+        return context.getResources().getString(R.string.errorConnection);
     }
 }

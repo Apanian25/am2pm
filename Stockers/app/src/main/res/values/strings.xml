@@ -149,5 +149,5 @@
     <string name="quantity">Quantity: </string>
     <string name="balance">Balance: </string>
     <string name="errorJson">Opps, something went wrong, we were unable to load your stocks</string>
-
+    <string name="errorConnection">Opps, looks like we are currently unable to connect to the servers</string>
 </resources>
