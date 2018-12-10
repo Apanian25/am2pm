@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dawson.jonat.stockers.APIUtil.APIAuth;
 import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
 
@@ -215,6 +216,8 @@ public class SettingsActivity extends Menus {
 
             loadInfo(); //to show new data immediately without refreshing the page
 
+            requestToken();
+
             if(firstSave){
                 finish();
             }
@@ -225,6 +228,21 @@ public class SettingsActivity extends Menus {
 
     }
 
+    /**
+     * After clicking on saving, it will take the user's credential and authenticate to store a bearer
+     * token into the SharedPreferences
+     *
+     */
+    private void requestToken(){
+        APIAuth auth = new APIAuth(this.prefs.getString("email", ""), this.prefs.getString("password", ""), this.prefs.getString("fname", "") + " " +this.prefs.getString("lname", ""), this.prefs, null);
+        auth.authenticate();
+    }
+
+    /**
+     * check's if the user's input has an empty field
+     *
+     * @return
+     */
     private boolean isAnyEmpty(){
             //get everything
             return (fname.getText().toString().trim().length() == 0)

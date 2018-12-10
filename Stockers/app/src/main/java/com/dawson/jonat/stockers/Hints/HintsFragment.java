@@ -56,7 +56,7 @@ public class HintsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         String hintStr = hint == null ? savedInstanceState.getString("hint") : hint.getHint();
-        final String linkStr = hint == null ? savedInstanceState.getString("link") : hint.getHint();
+        final String linkStr = hint == null ? savedInstanceState.getString("link") : hint.getUrl();
 
         TextView tv = (TextView) view.findViewById(R.id.hintTV);
         tv.setText(hintStr);
