@@ -10,12 +10,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dawson.jonat.stockers.APIUtil.APIAuth;
 import com.dawson.jonat.stockers.APIUtil.APISell;
 import com.dawson.jonat.stockers.APIUtil.OnCompleted;
+import com.dawson.jonat.stockers.APIUtil.OnTokenCompleted;
 import com.dawson.jonat.stockers.APIUtil.SimpleAPIResponse;
 import com.dawson.jonat.stockers.R;
 
-public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
+public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener, OnTokenCompleted {
     private Context contextOfView;
 
     TextView textViewTickerSymbol;
@@ -37,17 +39,54 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongCl
         view.setOnLongClickListener(this);
     }
 
+    /**
+     * Validates token before calling the sell api
+     *
+     * @param v
+     * @return
+     */
     @Override
     public boolean onLongClick(View v) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(contextOfView);
+        String token = prefs.getString("token", null);
 
+        APIAuth auth = new APIAuth(prefs.getString("email", ""), prefs.getString("password", ""), prefs.getString("fname", "") + " " + prefs.getString("lname", ""), prefs, this);
+        auth.validateToken(token);
+        return true;
+    }
+
+    /**
+     * Decides action upon the response of a valid token
+     * if false, it will try to authenticate
+     * if true, it will sell
+     *
+     * @param validToken
+     */
+    @Override
+    public void onTaskCompleted(boolean validToken) {
+        if(validToken){
+            sell();
+        }else{
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(contextOfView);
+            APIAuth auth = new APIAuth(prefs.getString("email", ""), prefs.getString("password", ""), prefs.getString("fname", "") + " " + prefs.getString("lname", ""), prefs, this);
+            auth.authenticate();
+            Toast.makeText(contextOfView, "Authentication failed please try again", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Calls the sell API
+     */
+    public void sell(){
         if (contextOfView instanceof OnCompleted) {
 
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(contextOfView);
             String token = sp.getString("token", null);
 
+
+
             if(token == null){
                 Toast.makeText(contextOfView, "You are not authenticated please look at your settings", Toast.LENGTH_SHORT);
-                return false;
             }else {
 
                 APISell apisell = new APISell((OnCompleted) contextOfView, token);
@@ -63,10 +102,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongCl
                 } catch (IllegalArgumentException e) {
                     Toast.makeText(contextOfView, e.getMessage(), Toast.LENGTH_SHORT);
                 }
-                Toast.makeText(contextOfView, "Calling the API", Toast.LENGTH_SHORT).show();
-                return true;
             }
         }
-        return false;
     }
 }

@@ -234,7 +234,7 @@ public class SettingsActivity extends Menus {
      *
      */
     private void requestToken(){
-        APIAuth auth = new APIAuth(this.prefs.getString("email", ""), this.prefs.getString("password", ""), this.prefs.getString("fname", "") + " " +this.prefs.getString("lname", ""), this.prefs);
+        APIAuth auth = new APIAuth(this.prefs.getString("email", ""), this.prefs.getString("password", ""), this.prefs.getString("fname", "") + " " +this.prefs.getString("lname", ""), this.prefs, null);
         auth.authenticate();
     }
 
