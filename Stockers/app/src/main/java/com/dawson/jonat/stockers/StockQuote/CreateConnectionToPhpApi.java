@@ -7,6 +7,8 @@ import android.preference.PreferenceManager;
 import android.util.JsonReader;
 import android.util.Log;
 
+import com.dawson.jonat.stockers.R;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -57,8 +59,10 @@ public class CreateConnectionToPhpApi extends AsyncTask<String,Void,String> {
             if(conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream in = conn.getInputStream();
                 String token = (new JSONObject(convertResponseToString(in))).getString("token");
-                Log.i("Testing", "toooooooooooooken:" + token);
                 return token;
+            }
+            else{
+                return  context.getResources().getString(R.string.wrong_credential);
             }
         } catch (IOException | JSONException e) {
             e.printStackTrace();
@@ -73,17 +77,15 @@ public class CreateConnectionToPhpApi extends AsyncTask<String,Void,String> {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
         //parse the token
-
         editor.putString("token" , token);
         editor.commit();
-        Log.i("Testing", "This is --->" + prefs.getString("token", null));
     }
 
     /**
      * Private helper method to get inputStream to json object
      *
      * @author Patricia Campbell, faculty at Dawson College in the Computer
-     * Science departement todo: add git lab repo link
+     * Science departement
      */
     private String convertResponseToString(InputStream input) throws IOException {
         int bytesRead, totalRead = 0;

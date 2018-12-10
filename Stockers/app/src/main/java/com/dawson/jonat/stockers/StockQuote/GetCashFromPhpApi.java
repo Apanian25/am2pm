@@ -42,18 +42,11 @@ public class GetCashFromPhpApi extends AsyncTask<String,Void,Integer> {
         try {
             //process token
             createConnection("http://stockers-web-app.herokuapp.com/api/api/cash");
-            Log.i("Testing", "" + conn.getResponseCode());
-            Log.i("Testing", "" + conn.getResponseMessage());
             if(conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                Log.i("Testing", "I am here");
                 InputStream in = conn.getInputStream();
                 String balance = (new JSONObject(convertResponseToString(in))).getString("cash");
-                Log.e("Testing", "toooooooooooooken:" + balance);
                 //calculate max balance/price
                 int max = (int) Math.floor(Double.valueOf(balance) / Double.valueOf(information[2]));
-                Log.e("Testing", "This is balance--> " + Double.valueOf(balance));
-                Log.e("Testing", "This is info--> " + Double.valueOf(information[2]));
-                Log.e("Testing", "This is max--> " + max);
                 //if the max amount is bigger than the available stock then ---> max = available stock
                 if (max > Integer.valueOf(information[1])) {
                     max = Integer.valueOf(information[1]);

@@ -33,12 +33,12 @@ import java.net.URL;
  * Class responsible for displaying information about a stock which is presented
  * by the ticker symbol the user inputs
  *
- * @author Lara Mezirovsky
+ * @author Lara Mezirovsky, Nicholas Apanian
  * @version 1.0
  */
 public class ShowStockActivity extends Menus {
 
-    TextView ticker, companyName, price, stockExcahnge, max, balance;
+    TextView ticker, companyName, price, stockExcahnge, max, balance, error;
     ConnectivityManager connectionManager; //Class that answers queries about the state of network connectivity.
     NetworkInfo netInfo;
     String tickerText;
@@ -57,27 +57,38 @@ public class ShowStockActivity extends Menus {
             stockExcahnge = findViewById(R.id.stockExchange);
             tickerText = getIntent().getExtras().getString("ticker");
             buyLayout =  findViewById(R.id.buylayout);
-            showStockQuotes();
-            prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
             max = findViewById(R.id.maxAmount);
             balance = findViewById(R.id.currentBalance);
+            error = findViewById(R.id.error);
+            prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
         } else {
             //redirection to error page (503 error)
             setContentView(R.layout.error_page);
         }
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        showStockQuotes();
+    }
 
+    /**
+     * Start the thread that show info about the stock quotes
+     */
     public void showStockQuotes() {
         //get the url
         String url = "https://www.worldtradingdata.com/api/v1/stock?symbol=" + tickerText + "&api_token=mUPqsrk2HXuiNHZqGkMvLicpZoLi1bXzTPXMbJIZj1BEMsnodb2lSmrsypwT";
         new StocksThread().execute(url);
     }
 
-    public void getToken(){
+
+    /**
+     * Start the thread that gets the token
+     */
+    public void getToken() {
         CreateConnectionToPhpApi api = new CreateConnectionToPhpApi(this);
-        //use actual values after todo
-        api.execute("nicholas.apanian@outlook.com","nicholas");
+            api.execute(prefs.getString("email", "not found"), prefs.getString("password", "not found"));
     }
 
     public void calculateMax(String quantityOfStock, String price){
@@ -90,7 +101,6 @@ public class ShowStockActivity extends Menus {
         BuyStocks buy = new BuyStocks(this, ((EditText)findViewById(R.id.quantity)).getText().toString(),
                 ((TextView)findViewById(R.id.ticker)).getText().toString());
         buy.execute(prefs.getString("token", "no token available"));
-        //todo phase2
     }
 
     public void setBalance(String balance) {
@@ -122,10 +132,18 @@ public class ShowStockActivity extends Menus {
                 price.setText(result[1] + " " + result[2]);
                 stockExcahnge.setText(result[3]);
                 getToken();
-                //set the max quantity
-                calculateMax(result[4], result[1]);
-                max.setText("Max you can buy: " + prefs.getInt("max", 0));
-                balance.setText("Your balance is: " + prefs.getString("balance", ""));
+                String invalidToken = getResources().getString(R.string.wrong_credential);
+                if(prefs.getString("token", invalidToken).equals(invalidToken)) {
+                    showError(invalidToken);
+                    Log.i("NICHOLAS","hello");
+                    Log.i("NICHOLAS",prefs.getString("email", "eee"));
+                } else{
+                    //set the max quantity
+                    error.setVisibility(View.INVISIBLE);
+                    calculateMax(result[4], result[1]);
+                    max.setText("Max you can buy: " + prefs.getInt("max", 0));
+                    balance.setText("Your balance is: " + prefs.getString("balance", ""));
+                }
             } catch (NullPointerException np) {
                 ticker.setText(getString(R.string.no_results_found) + "  " + tickerText);
                 buyLayout.setVisibility(LinearLayout.GONE);
@@ -244,9 +262,16 @@ public class ShowStockActivity extends Menus {
             return true;
 
         } else {
-            Toast.makeText(this, R.string.no_internet, Toast.LENGTH_LONG).show();
+            showError(getResources().getString(R.string.no_internet));
             return false;
         }
+    }
+
+    /**
+     * Display error on page
+     */
+    public void showError(String errorMessage) {
+        error.setText(errorMessage);
     }
 }
 

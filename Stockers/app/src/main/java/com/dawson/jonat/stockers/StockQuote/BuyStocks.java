@@ -62,8 +62,6 @@ public class BuyStocks extends AsyncTask<String, Void, String> {
                 //parse the balance
                 editor.putString("balance" , balance);
                 editor.commit();
-
-
                 return "success!";
             } else if (conn.getResponseCode() == HttpURLConnection.HTTP_BAD_REQUEST) {
                return "Invalid ticker or quantity";
@@ -75,7 +73,7 @@ public class BuyStocks extends AsyncTask<String, Void, String> {
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
-        return ""; //todo to show the user the status of the request
+        return "";
     }
 
     @Override
