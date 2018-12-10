@@ -1,6 +1,8 @@
 package com.dawson.jonat.stockers.UserStock;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -26,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UserStockActivity extends Menus {
+public class UserStockActivity extends Menus implements OnCompleted{
 
     /**
      * On create uses the RetrieveUserBalance and RetrieveUserStock in order to get and display
@@ -58,7 +60,9 @@ public class UserStockActivity extends Menus {
      * @return
      */
     private String getBearerToken() {
-        return "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9zdG9ja2Vycy13ZWItYXBwLmhlcm9rdWFwcC5jb20vYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1NDQzMTUxMTIsImV4cCI6MTU0NDMxODcxMiwibmJmIjoxNTQ0MzE1MTEyLCJqdGkiOiJtTk9LN1FuWkJKdEVwNXJZIn0.qUxCX0vhm_FpBMnnLQyYvboLRBF56cK7mwZUA-IZVNU";
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String token = sp.getString("token", null);
+        return token;
 
     }
 
@@ -68,6 +72,6 @@ public class UserStockActivity extends Menus {
         //Temporary if you have another solution
         finish();
         startActivity(getIntent());
-        Toast.makeText(this, "Refreshed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Your has been sold", Toast.LENGTH_SHORT).show();
     }
 }

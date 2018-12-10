@@ -32,6 +32,8 @@ public class APIAuth implements OnCompleted{
     private final String BASEURL = "http://stockers-web-app.herokuapp.com/api/";
 
     private boolean firstAPIcall = true;
+    private String caller = "";
+    private OnTokenCompleted listener;
 
     /**
      * Instantiates credentials
@@ -41,11 +43,12 @@ public class APIAuth implements OnCompleted{
      * @param name
      * @param sp
      */
-    public APIAuth(String email, String password, String name, SharedPreferences sp){
+    public APIAuth(String email, String password, String name, SharedPreferences sp, OnTokenCompleted listener){
         this.email = email;
         this.password = password;
         this.name = name;
         this.sp = sp;
+        this.listener = listener;
     }
 
     /**
@@ -57,6 +60,14 @@ public class APIAuth implements OnCompleted{
     public void authenticate(){
         login();
         firstAPIcall = true;
+    }
+
+    public void validateToken(String token){
+        final String LOGINROUTE = "users";
+        this.caller = "validate_token";
+        SimpleAPICaller caller = new SimpleAPICaller(BASEURL + LOGINROUTE, HttpMethods.GET, null, token);
+        APIUserThread thread = new APIUserThread(this);
+        thread.execute(caller);
     }
 
     /**
@@ -101,17 +112,24 @@ public class APIAuth implements OnCompleted{
     public void OnTaskCompleted(SimpleAPIResponse response) {
         JSONObject obj = parseResponse(response);
 
-        try {
-            if (obj != null && obj.has("token")) {
-                saveToken(obj.getString("token"));
-            }else{
-                if(obj.has("error") && firstAPIcall){
-                    register();
-                    firstAPIcall = false;
-                }
+        if(caller.equals("validate_token")){
+            caller = "";
+            if(obj != null && this.listener != null) {
+                this.listener.onTaskCompleted(!obj.has("error"));
             }
-        }catch(JSONException e){
-            Log.i(TAG, "There was an unexpected error");
+        }else {
+            try {
+                if (obj != null && obj.has("token")) {
+                    saveToken(obj.getString("token"));
+                } else {
+                    if (obj.has("error") && firstAPIcall) {
+                        register();
+                        firstAPIcall = false;
+                    }
+                }
+            } catch (JSONException e) {
+                Log.i(TAG, "There was an unexpected error");
+            }
         }
     }
 
