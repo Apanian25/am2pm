@@ -189,6 +189,7 @@ public class APIUserThread extends AsyncTask<SimpleAPICaller, Integer, SimpleAPI
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(con.getOutputStream());
         outputStreamWriter.write(params);
         outputStreamWriter.flush();
+        outputStreamWriter.close();
     }
 
 }

@@ -12,6 +12,7 @@ import com.dawson.jonat.stockers.APIUtil.OnCompleted;
 import com.dawson.jonat.stockers.APIUtil.SimpleAPICaller;
 import com.dawson.jonat.stockers.APIUtil.SimpleAPIResponse;
 import com.dawson.jonat.stockers.R;
+import com.dawson.jonat.stockers.StockQuote.ShowStockActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,6 +66,9 @@ public class RetrieveUserBalance implements OnCompleted {
         String balance = getBalanceFromResponse(response.getMessageBody());
 
         balanceView.setText(context.getResources().getString(R.string.balance) + " " + balance);
+
+        if (context instanceof ShowStockActivity)
+            ((ShowStockActivity)context).calculateMax();
     }
 
 

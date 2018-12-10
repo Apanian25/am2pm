@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
+import com.dawson.jonat.stockers.UserStock.RetrieveUserBalance;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,6 +46,9 @@ public class ShowStockActivity extends Menus {
     LinearLayout buyLayout;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
+    int amount;
+    double priceOfStock;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +74,7 @@ public class ShowStockActivity extends Menus {
     @Override
     public void onResume() {
         super.onResume();
+        setBalance();
         showStockQuotes();
     }
 
@@ -84,16 +89,25 @@ public class ShowStockActivity extends Menus {
 
 
     /**
-     * Start the thread that gets the token
+     * Retrieves the token.
+     *
+     * @return
      */
-    public void getToken() {
-        CreateConnectionToPhpApi api = new CreateConnectionToPhpApi(this);
-            api.execute(prefs.getString("email", "not found"), prefs.getString("password", "not found"));
+    private String getToken() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String token = sp.getString("token", null);
+        return token;
     }
 
-    public void calculateMax(String quantityOfStock, String price){
-        GetCashFromPhpApi balance = new GetCashFromPhpApi(this);
-        balance.execute(prefs.getString("token", "no token available"), quantityOfStock, price);
+    public void calculateMax(){
+        String balanceAmount = balance.getText().toString();
+        int maximum = (int) Math.floor(Double.valueOf(balanceAmount.substring(balanceAmount.indexOf(" ") + 1)) / Double.valueOf(priceOfStock));
+
+        if (maximum > Integer.valueOf(amount)) {
+            maximum = Integer.valueOf(amount);
+        }
+
+        max.setText(getResources().getString(R.string.maximum) + maximum);
     }
 
     public void buyStock(View view) {
@@ -103,8 +117,9 @@ public class ShowStockActivity extends Menus {
         buy.execute(prefs.getString("token", "no token available"));
     }
 
-    public void setBalance(String balance) {
-        this.balance.setText(getResources().getString(R.string.currentBalance) + balance);
+    public void setBalance() {
+        RetrieveUserBalance setBalance = new RetrieveUserBalance(this, getToken(), balance);
+        setBalance.getCashAndDisplay();
     }
 
     /**
@@ -131,7 +146,7 @@ public class ShowStockActivity extends Menus {
                 companyName.setText(result[0]);
                 price.setText(result[1] + " " + result[2]);
                 stockExcahnge.setText(result[3]);
-                getToken();
+                String token = getToken();
                 String invalidToken = getResources().getString(R.string.wrong_credential);
                 if(prefs.getString("token", invalidToken).equals(invalidToken)) {
                     showError(invalidToken);
@@ -140,9 +155,8 @@ public class ShowStockActivity extends Menus {
                 } else{
                     //set the max quantity
                     error.setVisibility(View.INVISIBLE);
-                    calculateMax(result[4], result[1]);
-                    max.setText("Max you can buy: " + prefs.getInt("max", 0));
-                    balance.setText("Your balance is: " + prefs.getString("balance", ""));
+                    setPriceAndQuantity(result[4], result[1]);
+                    calculateMax();
                 }
             } catch (NullPointerException np) {
                 ticker.setText(getString(R.string.no_results_found) + "  " + tickerText);
@@ -272,6 +286,11 @@ public class ShowStockActivity extends Menus {
      */
     public void showError(String errorMessage) {
         error.setText(errorMessage);
+    }
+
+    void setPriceAndQuantity(String amount, String price) {
+        this.amount = Integer.valueOf(amount);
+        this.priceOfStock = Double.valueOf(price);
     }
 }
 

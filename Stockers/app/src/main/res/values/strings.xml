@@ -151,8 +151,8 @@
 
     <!--API-->
     <string name="purchasePrice">Purchase Price: </string>
-    <string name="quantity">Quantity: </string>
     <string name="balance">Balance: </string>
     <string name="errorJson">Opps, something went wrong, we were unable to load your stocks</string>
+    <string name="maximum">Max Amount:</string>
 
 </resources>

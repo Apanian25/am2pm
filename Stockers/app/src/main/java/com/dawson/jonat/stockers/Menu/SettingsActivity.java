@@ -210,6 +210,8 @@ public class SettingsActivity extends Menus {
             // store date
             editor.putString("date", new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime()));
 
+            editor.putString("token", "");
+
             editor.commit();
 
             Toast.makeText(this, R.string.data_saved, Toast.LENGTH_SHORT).show();
