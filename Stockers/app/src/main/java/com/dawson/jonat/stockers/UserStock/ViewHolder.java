@@ -63,7 +63,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongCl
      * @param validToken
      */
     @Override
-    public void onTaskCompleted(boolean validToken) {
+    public void onTaskTokenCompleted(boolean validToken) {
         if(validToken){
             sell();
         }else{
