@@ -16,6 +16,9 @@ import com.dawson.jonat.stockers.ContactDialog.ContactUtilities;
 import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
 
+/**
+ * Activity that is used to represent the UI for the loan calculator.
+ */
 public class LoanCalculatorActivity extends Menus {
 
     Spinner spinnerYears;

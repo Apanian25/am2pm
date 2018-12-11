@@ -11,6 +11,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+/**
+ * Utilities class that is used to subscribe and unsubscribe users from specific topics
+ */
 public class SubscriptionManager {
 
     /**
