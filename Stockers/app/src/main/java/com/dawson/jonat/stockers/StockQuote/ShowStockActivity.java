@@ -157,9 +157,9 @@ public class ShowStockActivity extends Menus {
                 companyName.setText(result[0]);
                 price.setText(result[1] + " " + result[2]);
                 stockExcahnge.setText(result[3]);
-                String token = getToken();
                 String invalidToken = getResources().getString(R.string.wrong_credential);
-                if(token.isEmpty()) {
+                if(prefs.getString("token", invalidToken).equals(invalidToken)) {
+
                     showError(invalidToken);
                 } else{
                     //set the max quantity
