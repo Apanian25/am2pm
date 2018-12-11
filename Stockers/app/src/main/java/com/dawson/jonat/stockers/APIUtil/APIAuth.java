@@ -115,7 +115,7 @@ public class APIAuth implements OnCompleted{
         if(caller.equals("validate_token")){
             caller = "";
             if(obj != null && this.listener != null) {
-                this.listener.onTaskCompleted(!obj.has("error"));
+                this.listener.onTaskTokenCompleted(!obj.has("error"));
             }
         }else {
             try {
