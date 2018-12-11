@@ -154,5 +154,6 @@
     <string name="balance">Balance: </string>
     <string name="errorJson">Opps, something went wrong, we were unable to load your stocks</string>
     <string name="maximum">Max Amount:</string>
+    <string name="errorConnection">Something went wrong with the connection :(</string>
 
 </resources>
