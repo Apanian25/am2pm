@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Activity that is used to display all the articles that are contained with the firebase database.
+ */
 public class NewsArticlesActivity extends Menus {
 
     private DatabaseReference databaseReference;

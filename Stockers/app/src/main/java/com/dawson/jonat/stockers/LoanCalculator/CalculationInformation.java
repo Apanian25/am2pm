@@ -1,5 +1,8 @@
 package com.dawson.jonat.stockers.LoanCalculator;
 
+/**
+ * Class contains information generated from calculating loan interest
+ */
 public class CalculationInformation {
 
     private double principal;

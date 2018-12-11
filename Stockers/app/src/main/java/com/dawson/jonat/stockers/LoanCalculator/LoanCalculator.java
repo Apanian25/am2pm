@@ -1,5 +1,8 @@
 package com.dawson.jonat.stockers.LoanCalculator;
 
+/**
+ * Utilities class that is provides methods to help calculate the loan interest on a calculator.
+ */
 public class LoanCalculator {
     private static final double AVERAGE_DAYS_PER_MONTH = 30.4169;
 

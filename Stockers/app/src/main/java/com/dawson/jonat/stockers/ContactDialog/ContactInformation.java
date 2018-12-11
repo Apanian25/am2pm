@@ -2,6 +2,9 @@ package com.dawson.jonat.stockers.ContactDialog;
 
 import android.graphics.Bitmap;
 
+/**
+ * This class holds all the necessary information of a contact
+ */
 public class ContactInformation {
     private String contactName;
     private String image;

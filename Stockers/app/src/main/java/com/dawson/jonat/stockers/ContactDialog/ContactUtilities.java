@@ -17,7 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ *  Utilities class that contains methods used to help with retrieve contacts and their information
+ *  using content providers.
  */
 public class ContactUtilities {
 

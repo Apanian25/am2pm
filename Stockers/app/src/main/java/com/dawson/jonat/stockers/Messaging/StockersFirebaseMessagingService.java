@@ -6,6 +6,9 @@ import com.google.firebase.iid.FirebaseInstanceIdService;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+/**
+ * Class is used to handle notification that come from Firebase
+ */
 public class StockersFirebaseMessagingService extends FirebaseMessagingService {
     private final String TAG = "MessagingService";
 
