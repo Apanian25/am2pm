@@ -35,7 +35,7 @@ import java.net.URL;
  * by the ticker symbol the user inputs
  *
  * @author Lara Mezirovsky, Nicholas Apanian
- * @version 1.0
+ * @version 1.0.0
  */
 public class ShowStockActivity extends Menus {
 
@@ -99,6 +99,9 @@ public class ShowStockActivity extends Menus {
         return token;
     }
 
+    /**
+     * Calculates the maximum amount of stocks the user can afford to buy
+     */
     public void calculateMax(){
         String balanceAmount = balance.getText().toString();
         int maximum = (int) Math.floor(Double.valueOf(balanceAmount.substring(balanceAmount.indexOf(" ") + 1)) / Double.valueOf(priceOfStock));
@@ -110,6 +113,11 @@ public class ShowStockActivity extends Menus {
         max.setText(getResources().getString(R.string.maximum) + maximum);
     }
 
+    /**
+     * Calls on the API to buy the stocks and updates the user the balance ann their maximum amount
+     * of stocks they can buy
+     * @param view
+     */
     public void buyStock(View view) {
         //make a post req
         BuyStocks buy = new BuyStocks(this, ((EditText)findViewById(R.id.quantity)).getText().toString(),
@@ -117,13 +125,16 @@ public class ShowStockActivity extends Menus {
         buy.execute(prefs.getString("token", "no token available"));
     }
 
+    /**
+     * Sets the users current balance
+     */
     public void setBalance() {
         RetrieveUserBalance setBalance = new RetrieveUserBalance(this, getToken(), balance);
         setBalance.getCashAndDisplay();
     }
 
     /**
-     * Inner class to represent my thread
+     * Inner class to represent the thread
      */
     private class StocksThread extends AsyncTask<String, Void, String[]> {
 
@@ -148,10 +159,8 @@ public class ShowStockActivity extends Menus {
                 stockExcahnge.setText(result[3]);
                 String token = getToken();
                 String invalidToken = getResources().getString(R.string.wrong_credential);
-                if(prefs.getString("token", invalidToken).equals(invalidToken)) {
+                if(token.isEmpty()) {
                     showError(invalidToken);
-                    Log.i("NICHOLAS","hello");
-                    Log.i("NICHOLAS",prefs.getString("email", "eee"));
                 } else{
                     //set the max quantity
                     error.setVisibility(View.INVISIBLE);

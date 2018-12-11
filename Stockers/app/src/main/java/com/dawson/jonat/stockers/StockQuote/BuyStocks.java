@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * @author Nicholas Apanian, Lara Mezirovsky
+ * @version 1.0.0
+ */
 public class BuyStocks extends AsyncTask<String, Void, String> {
 
     private final ShowStockActivity stockActivity;
