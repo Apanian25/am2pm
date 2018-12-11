@@ -9,6 +9,9 @@ import android.support.v4.app.NotificationCompat;
 
 import com.dawson.jonat.stockers.R;
 
+/**
+ * Utilities class that is used to generate specific notifications for the user.
+ */
 public class NotificationUtilities {
 
     private Context context;

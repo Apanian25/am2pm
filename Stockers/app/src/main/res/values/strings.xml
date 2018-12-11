@@ -62,7 +62,7 @@
     </string-array>
     <string name="choose_curr">Choose currency</string>
     <string name="choose_stock">Choose stock</string>
-<string-array name="spinner_values_curr">
+    <string-array name="spinner_values_curr">
      <item>TSX</item>
      <item>NYSE</item>
      <item>NASDAQ</item>
@@ -96,6 +96,7 @@
     <string name="interestAccumulated">Interest Accumulated:</string>
     <string name="totalPaid">Total Amount Paid:</string>
     <string name="amountLeft">Balance Left:</string>
+    <string name="subject">Credit Loan Calculation Results</string>
 
     <string-array name="yearOptions">
         <item>1</item>
@@ -121,8 +122,11 @@
     <string name="more_than_five">Can view maximum 5 stocks at a time</string>
     <string name="empty_or_there">Invalid input or already exists</string>
     <string name="already_exists">Ticker symbol already exists in the search list</string>
-
-
+    <string name="buy_displayed_stock">Buy This Stock</string>
+    <string name="quantity">Quantity:</string> <!-- is there a max? should we query the quantity available and put a spinner list
+    up to this quantity?"-->
+    <string name="buy">Buy Now</string>
+    <string name="enter_quantity">Enter desired quantity</string>
 
     <!--SHOW STOCK-->
     <string name="no_internet">The following page requires network connection</string>
@@ -134,7 +138,8 @@
     <string name="subSuccess">You are successfully subscribed to the news articles!!!</string>
     <string name="subFailed">Something went wrong, try again later</string>
     <string name="unSubSuccess">You are unsubscribed from the best news outlet</string>
-
+    <string name="currentBalance">Current Balance: </string>
+    <string name="wrong_credential">There was an issue logging into your account, please verify your credentials</string>
 
     <!--Main Layout-->
     <string name="foreignEx">Foreign Exchange</string>
@@ -143,5 +148,12 @@
     <string name="loanCal">Loan Calculator</string>
     <string name="portfolio">Your Portfolio</string>
     <string name="welcome">Welcome, </string>
+
+    <!--API-->
+    <string name="purchasePrice">Purchase Price: </string>
+    <string name="balance">Balance: </string>
+    <string name="errorJson">Opps, something went wrong, we were unable to load your stocks</string>
+    <string name="maximum">Max Amount:</string>
+    <string name="errorConnection">Something went wrong with the connection :(</string>
 
 </resources>

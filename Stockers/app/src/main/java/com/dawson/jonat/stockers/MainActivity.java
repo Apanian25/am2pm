@@ -4,18 +4,13 @@ package com.dawson.jonat.stockers;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.widget.ListView;
-import com.dawson.jonat.stockers.ContactDialog.ContactInformation;
 import com.dawson.jonat.stockers.CurrecnyExchange.CurrencyExchangeActivity;
 import android.preference.PreferenceManager;
 
-import com.dawson.jonat.stockers.LoanCalculator.LoanCalculator;
 import com.dawson.jonat.stockers.LoanCalculator.LoanCalculatorActivity;
 import android.view.View;
 import android.content.Context;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dawson.jonat.stockers.Menu.AboutActivity;
 import com.dawson.jonat.stockers.Menu.SettingsActivity;
@@ -24,8 +19,7 @@ import com.dawson.jonat.stockers.Messaging.SubscriptionManager;
 import com.dawson.jonat.stockers.Notes.NoteActivity;
 import com.dawson.jonat.stockers.Hints.FinancialHintsActivity;
 import com.dawson.jonat.stockers.StockQuote.StockQuotesActivity;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.AuthResult;
+import com.dawson.jonat.stockers.UserStock.UserStockActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
@@ -62,6 +56,8 @@ public class MainActivity extends Menus {
 
         //Subscribe to news service
         SubscriptionManager.sub("News", this, false);
+
+
     }
 
     @Override
@@ -108,7 +104,7 @@ public class MainActivity extends Menus {
     }
 
     public void portfolioClick(View v) {
-            //todo
+        startActivity(new Intent(this, UserStockActivity.class));
     }
 
     public void messageClick(View v){

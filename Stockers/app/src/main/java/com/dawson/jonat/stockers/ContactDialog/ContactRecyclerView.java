@@ -15,6 +15,10 @@ import com.dawson.jonat.stockers.R;
 
 import java.util.List;
 
+/**
+ * Recycler adapter used to connect a list of Contacts, in the form of a list of ContextInformation,
+ * to the Contact_view layout within a recycler view.
+ */
 public class ContactRecyclerView extends RecyclerView.Adapter<ViewHolder> {
 
     private Context context;

@@ -8,6 +8,12 @@ import android.content.Context;
 import com.dawson.jonat.stockers.Entity.Note;
 import com.dawson.jonat.stockers.Interface.NoteDAO;
 
+
+/**
+ * @author Nicholas Apanian
+ * Most of the code in this class is based off of:
+ * https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#6
+ */
 @Database(entities = {Note.class}, version = 1, exportSchema = false)
 public abstract class NoteRoomDatabase extends RoomDatabase{
 

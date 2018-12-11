@@ -5,6 +5,11 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+/**
+ * @author Nicholas Apanian
+ * Most of the code in this class is based off of:
+ * https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#3
+ */
 @Entity(tableName = "note_table")
 public class Note {
 

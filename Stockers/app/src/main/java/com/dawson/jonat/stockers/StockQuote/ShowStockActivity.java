@@ -1,20 +1,25 @@
 package com.dawson.jonat.stockers.StockQuote;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dawson.jonat.stockers.Menu.Menus;
 import com.dawson.jonat.stockers.R;
+import com.dawson.jonat.stockers.UserStock.RetrieveUserBalance;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -29,15 +34,20 @@ import java.net.URL;
  * Class responsible for displaying information about a stock which is presented
  * by the ticker symbol the user inputs
  *
- * @author Lara Mezirovsky
- * @version 1.0
+ * @author Lara Mezirovsky, Nicholas Apanian
+ * @version 1.0.0
  */
 public class ShowStockActivity extends Menus {
 
-    TextView ticker, companyName, price, stockExcahnge;
+    TextView ticker, companyName, price, stockExcahnge, max, balance, error;
     ConnectivityManager connectionManager; //Class that answers queries about the state of network connectivity.
     NetworkInfo netInfo;
     String tickerText;
+    LinearLayout buyLayout;
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
+    int amount;
+    double priceOfStock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,22 +60,81 @@ public class ShowStockActivity extends Menus {
             price = findViewById(R.id.currentPrice);
             stockExcahnge = findViewById(R.id.stockExchange);
             tickerText = getIntent().getExtras().getString("ticker");
-            showStockQuotes();
+            buyLayout =  findViewById(R.id.buylayout);
+            max = findViewById(R.id.maxAmount);
+            balance = findViewById(R.id.currentBalance);
+            error = findViewById(R.id.error);
+            prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
         } else {
             //redirection to error page (503 error)
             setContentView(R.layout.error_page);
         }
     }
-
-    public void showStockQuotes() {
-        //get the url
-        String url = "https://www.worldtradingdata.com/api/v1/stock?symbol=" + tickerText + "&api_token=Qqn56QrK7FSkUbQxb3OFnZAqzKdAZ7NrMiGjPJgg2ky1qPywjPtETg81lbcB";
-        new StocksThread().execute(url);
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        setBalance();
+        showStockQuotes();
     }
 
     /**
-     * Inner class to represent my thread
+     * Start the thread that show info about the stock quotes
+     */
+    public void showStockQuotes() {
+        //get the url
+        String url = "https://www.worldtradingdata.com/api/v1/stock?symbol=" + tickerText + "&api_token=mUPqsrk2HXuiNHZqGkMvLicpZoLi1bXzTPXMbJIZj1BEMsnodb2lSmrsypwT";
+        new StocksThread().execute(url);
+    }
+
+
+    /**
+     * Retrieves the token.
+     *
+     * @return
+     */
+    private String getToken() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String token = sp.getString("token", null);
+        return token;
+    }
+
+    /**
+     * Calculates the maximum amount of stocks the user can afford to buy
+     */
+    public void calculateMax(){
+        String balanceAmount = balance.getText().toString();
+        int maximum = (int) Math.floor(Double.valueOf(balanceAmount.substring(balanceAmount.indexOf(" ") + 1)) / Double.valueOf(priceOfStock));
+
+        if (maximum > Integer.valueOf(amount)) {
+            maximum = Integer.valueOf(amount);
+        }
+
+        max.setText(getResources().getString(R.string.maximum) + maximum);
+    }
+
+    /**
+     * Calls on the API to buy the stocks and updates the user the balance ann their maximum amount
+     * of stocks they can buy
+     * @param view
+     */
+    public void buyStock(View view) {
+        //make a post req
+        BuyStocks buy = new BuyStocks(this, ((EditText)findViewById(R.id.quantity)).getText().toString(),
+                ((TextView)findViewById(R.id.ticker)).getText().toString());
+        buy.execute(prefs.getString("token", "no token available"));
+    }
+
+    /**
+     * Sets the users current balance
+     */
+    public void setBalance() {
+        RetrieveUserBalance setBalance = new RetrieveUserBalance(this, getToken(), balance);
+        setBalance.getCashAndDisplay();
+    }
+
+    /**
+     * Inner class to represent the thread
      */
     private class StocksThread extends AsyncTask<String, Void, String[]> {
 
@@ -88,8 +157,19 @@ public class ShowStockActivity extends Menus {
                 companyName.setText(result[0]);
                 price.setText(result[1] + " " + result[2]);
                 stockExcahnge.setText(result[3]);
+                String invalidToken = getResources().getString(R.string.wrong_credential);
+                if(prefs.getString("token", invalidToken).equals(invalidToken)) {
+
+                    showError(invalidToken);
+                } else{
+                    //set the max quantity
+                    error.setVisibility(View.INVISIBLE);
+                    setPriceAndQuantity(result[4], result[1]);
+                    calculateMax();
+                }
             } catch (NullPointerException np) {
                 ticker.setText(getString(R.string.no_results_found) + "  " + tickerText);
+                buyLayout.setVisibility(LinearLayout.GONE);
             }
         }
 
@@ -136,7 +216,7 @@ public class ShowStockActivity extends Menus {
                 //if still here, the response was fine
                 //get the stream to the input
                 input = httpUrlCon.getInputStream();
-                String[] results = new String[4]; //assume - company name  --> 0, price --> 1 currency at --> 2, stock ex -->3
+                String[] results = new String[5]; //assume - company name  --> 0, price --> 1 currency at --> 2, stock ex -->3
                 try {
                     JSONObject json = new JSONObject(convertResponseToString(input));
                     JSONObject resultsToReturn = json.getJSONArray("data").getJSONObject(0);
@@ -144,6 +224,7 @@ public class ShowStockActivity extends Menus {
                     results[1] = resultsToReturn.getString("price");
                     results[2] = resultsToReturn.getString("currency");
                     results[3] = resultsToReturn.getString("stock_exchange_long") + " ( " + resultsToReturn.getString("stock_exchange_short") + " )";
+                    results[4] = resultsToReturn.getString("shares");
                     return results;
 
                 } catch (JSONException np) {
@@ -204,9 +285,21 @@ public class ShowStockActivity extends Menus {
             return true;
 
         } else {
-            Toast.makeText(this, R.string.no_internet, Toast.LENGTH_LONG).show();
+            showError(getResources().getString(R.string.no_internet));
             return false;
         }
+    }
+
+    /**
+     * Display error on page
+     */
+    public void showError(String errorMessage) {
+        error.setText(errorMessage);
+    }
+
+    void setPriceAndQuantity(String amount, String price) {
+        this.amount = Integer.valueOf(amount);
+        this.priceOfStock = Double.valueOf(price);
     }
 }
 

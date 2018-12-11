@@ -10,6 +10,11 @@ import com.dawson.jonat.stockers.Entity.Note;
 
 import java.util.List;
 
+/**
+ * @author Nicholas Apanian
+ * Most of the code in this class is based off of:
+ * https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#4
+ */
 @Dao
 public interface NoteDAO {
 

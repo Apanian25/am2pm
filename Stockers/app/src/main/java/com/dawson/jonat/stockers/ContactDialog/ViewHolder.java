@@ -12,6 +12,11 @@ import com.dawson.jonat.stockers.Email.Email;
 import com.dawson.jonat.stockers.LoanCalculator.LoanPayoutSummary;
 import com.dawson.jonat.stockers.R;
 
+/**
+ * View Holder used to hold the view elements used in the contact_view in order for them to be reused.
+ * The class also defines the onclick listener for each view, being to launch an intent to create
+ * an email.
+ */
 public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private static final String SUBJECT = "Credit Loan Calculation Results";
     private Context contextOfView;
