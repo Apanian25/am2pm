@@ -104,10 +104,7 @@ public class MainActivity extends Menus {
     }
 
     public void portfolioClick(View v) {
-            //todo
-        Intent intent = new Intent(this, UserStockActivity.class);
-        intent.putExtra("username", "PesceTheFish");
-        startActivity(intent);
+        startActivity(new Intent(this, UserStockActivity.class));
     }
 
     public void messageClick(View v){

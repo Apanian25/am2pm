@@ -41,7 +41,9 @@ public class UserStockActivity extends Menus implements OnCompleted{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_stock);
 
-        String user = getIntent().getExtras().getString("username");
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String user = prefs.getString("fname", "") + " " + prefs.getString("lname", "");
+
 
         ((TextView) findViewById(R.id.UserName)).setText(user);
 
@@ -54,6 +56,8 @@ public class UserStockActivity extends Menus implements OnCompleted{
         retrieveUserStock.getStocksAndDisplay();
     }
 
+
+
     /**
      * Retrieves the bearer token.
      *
@@ -63,7 +67,6 @@ public class UserStockActivity extends Menus implements OnCompleted{
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         String token = sp.getString("token", null);
         return token;
-
     }
 
     @Override
