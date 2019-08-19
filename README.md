@@ -16,7 +16,7 @@ learning a bit about finances (loans, currency exchange and stocks)
   - Emailing option to share your accomplishments with your friends <br/>
   - and a lot more!
 
-* Our current version also supports a mobile friendly version of our web application to buy and sell stocks (https://stockers-web-app.herokuapp.com)
+* Our current version also supports a mobile friendly version of our web application to buy and sell stocks (http://stockers-web-app.herokuapp.com)
 
 <b> Developers:</b>
  * Nicholas Apanian
